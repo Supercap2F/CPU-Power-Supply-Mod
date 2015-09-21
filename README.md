@@ -1,1 +1,1 @@
-# CPU-Power-Supply-Mod
+# CPU Power Supply Mod
