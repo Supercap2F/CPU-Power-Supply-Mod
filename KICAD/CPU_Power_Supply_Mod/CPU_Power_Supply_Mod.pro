@@ -1,4 +1,4 @@
-update=9/19/2015 1:13:47 PM
+update=9/21/2015 5:38:07 PM
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -59,10 +59,10 @@ LibName38=C:/Users/OPTIPLEX  960/Documents/Electronics/KICAD/motors
 version=1
 LastNetListRead=
 UseCmpFile=1
-PadDrill=1.397000000000
-PadDrillOvalY=1.397000000000
-PadSizeH=2.286000000000
-PadSizeV=2.286000000000
+PadDrill=1.000000000000
+PadDrillOvalY=1.000000000000
+PadSizeH=1.700000000000
+PadSizeV=1.700000000000
 PcbTextSizeV=1.500000000000
 PcbTextSizeH=1.500000000000
 PcbTextThickness=0.300000000000
