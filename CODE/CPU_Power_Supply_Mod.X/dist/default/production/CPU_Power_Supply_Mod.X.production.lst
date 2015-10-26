@@ -1,245 +1,1940 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.34 build -361300703 
-                                                                                               Mon Oct 12 07:38:07 2015
+                                                                                               Mon Oct 26 16:45:18 2015
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
      1                           	processor	18F1220
      2                           	fnconf	rparam,??,?,0
      3                           	opt	pw 120
      4                           	opt	lm
-     5                           	psect	text0,global,reloc=2,class=CODE,delta=1
-     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
-     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
-     8                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
-     9                           	psect	rparam,global,class=COMRAM,space=1,delta=1
-    10  0000                     _ADCON1	set	4033
-    11  0000                     _LATA	set	3977
-    12  0000                     _LATB	set	3978
-    13  0000                     _LATBbits	set	3978
-    14  0000                     _OSCCONbits	set	4051
-    15  0000                     _PORTAbits	set	3968
-    16  0000                     _TRISA	set	3986
-    17  0000                     _TRISB	set	3987
-    18                           
-    19 ;;
-    20 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
-    21 ;;
-    22 ;; *************** function _main *****************
-    23 ;; Defined at:
-    24 ;;		line 51 in file "main.c"
-    25 ;; Parameters:    Size  Location     Type
-    26 ;;		None
-    27 ;; Auto vars:     Size  Location     Type
-    28 ;;		None
-    29 ;; Return value:  Size  Location     Type
-    30 ;;                  2   20[None  ] int 
-    31 ;; Registers used:
-    32 ;;		wreg, status,2
-    33 ;; Tracked objects:
-    34 ;;		On entry : 0/0
-    35 ;;		On exit  : 0/0
-    36 ;;		Unchanged: 0/0
-    37 ;; Data sizes:     COMRAM   BANK0
-    38 ;;      Params:         0       0
-    39 ;;      Locals:         0       0
-    40 ;;      Temps:          1       0
-    41 ;;      Totals:         1       0
-    42 ;;Total ram usage:        1 bytes
-    43 ;; This function calls:
-    44 ;;		Nothing
-    45 ;; This function is called by:
-    46 ;;		Startup code after reset
-    47 ;; This function uses a non-reentrant model
-    48 ;;
-    49                           
-    50                           	psect	text0
-    51  000F76                     __ptext0:
-    52                           	opt stack 0
-    53  000F76                     _main:
-    54                           	opt stack 31
-    55                           
-    56                           ;main.c: 56: OSCCONbits.IRCF0=1;
-    57                           
-    58                           ;incstack = 0
-    59  000F76  88D3               	bsf	4051,4,c	;volatile
-    60                           
-    61                           ;main.c: 57: OSCCONbits.IRCF1=1;
-    62  000F78  8AD3               	bsf	4051,5,c	;volatile
-    63                           
-    64                           ;main.c: 58: OSCCONbits.IRCF2=1;
-    65  000F7A  8CD3               	bsf	4051,6,c	;volatile
-    66                           
-    67                           ;main.c: 70: TRISA=0b00010011;
-    68  000F7C  0E13               	movlw	19
-    69  000F7E  6E92               	movwf	3986,c	;volatile
-    70                           
-    71                           ;main.c: 71: LATA=0b00000000;
-    72  000F80  0E00               	movlw	0
-    73  000F82  6E89               	movwf	3977,c	;volatile
-    74                           
-    75                           ;main.c: 72: ADCON1=0b11111111;
-    76  000F84  68C1               	setf	4033,c	;volatile
-    77                           
-    78                           ;main.c: 74: TRISB=0b00000000;
-    79  000F86  0E00               	movlw	0
-    80  000F88  6E93               	movwf	3987,c	;volatile
-    81                           
-    82                           ;main.c: 75: LATB=0b00000000;
-    83  000F8A  0E00               	movlw	0
-    84  000F8C  6E8A               	movwf	3978,c	;volatile
-    85  000F8E  D000               	goto	l627
-    86  000F90                     l627:
-    87                           
-    88                           ;main.c: 81: if(PORTAbits.RA0==1) {
-    89  000F90  A080               	btfss	3968,0,c	;volatile
-    90  000F92  D010               	goto	l22
-    91                           
-    92                           ;main.c: 82: _delay((unsigned long)((8)*(0x7A1200/4000.0)));
-    93  000F94  0E15               	movlw	21
-    94  000F96  6E01               	movwf	??_main& (0+255),c
-    95  000F98  0EC6               	movlw	198
-    96  000F9A                     u107:
-    97  000F9A  2EE8               	decfsz	wreg,f,c
-    98  000F9C  D7FE               	goto	u107
-    99  000F9E  2E01               	decfsz	??_main& (0+255),f,c
-   100  000FA0  D7FC               	goto	u107
-   101  000FA2  D000               	nop2	
-   102                           
-   103                           ;main.c: 83: if(PORTAbits.RA0==1){
-   104  000FA4  A080               	btfss	3968,0,c	;volatile
-   105  000FA6  D006               	goto	l22
-   106                           
-   107                           ;main.c: 84: LATBbits.LATB7=~LATBbits.LATB7;
-   108  000FA8  7E8A               	btg	3978,7,c	;volatile
-   109                           
-   110                           ;main.c: 85: while(PORTAbits.RA0==1);
-   111  000FAA  D000               	goto	l24
-   112  000FAC                     l24:
-   113  000FAC  A080               	btfss	3968,0,c	;volatile
-   114  000FAE  D002               	goto	l22
-   115  000FB0  D7FD               	goto	l24
-   116  000FB2  D000               	goto	l22
-   117  000FB4                     l22:
-   118                           
-   119                           ;main.c: 86: }
-   120                           ;main.c: 87: }
-   121                           ;main.c: 89: if(PORTAbits.RA1==1) {
-   122  000FB4  A280               	btfss	3968,1,c	;volatile
-   123  000FB6  D010               	goto	l27
-   124                           
-   125                           ;main.c: 90: _delay((unsigned long)((8)*(0x7A1200/4000.0)));
-   126  000FB8  0E15               	movlw	21
-   127  000FBA  6E01               	movwf	??_main& (0+255),c
-   128  000FBC  0EC6               	movlw	198
-   129  000FBE                     u117:
-   130  000FBE  2EE8               	decfsz	wreg,f,c
-   131  000FC0  D7FE               	goto	u117
-   132  000FC2  2E01               	decfsz	??_main& (0+255),f,c
-   133  000FC4  D7FC               	goto	u117
-   134  000FC6  D000               	nop2	
-   135                           
-   136                           ;main.c: 91: if(PORTAbits.RA1==1){
-   137  000FC8  A280               	btfss	3968,1,c	;volatile
-   138  000FCA  D006               	goto	l27
-   139                           
-   140                           ;main.c: 92: LATBbits.LATB6 =~LATBbits.LATB6;
-   141  000FCC  7C8A               	btg	3978,6,c	;volatile
-   142                           
-   143                           ;main.c: 93: while(PORTAbits.RA1==1);
-   144  000FCE  D000               	goto	l29
-   145  000FD0                     l29:
-   146  000FD0  A280               	btfss	3968,1,c	;volatile
-   147  000FD2  D002               	goto	l27
-   148  000FD4  D7FD               	goto	l29
-   149  000FD6  D000               	goto	l27
-   150  000FD8                     l27:
-   151                           
-   152                           ;main.c: 94: }
-   153                           ;main.c: 95: }
-   154                           ;main.c: 97: if(PORTAbits.RA4==1) {
-   155  000FD8  A880               	btfss	3968,4,c	;volatile
-   156  000FDA  D7DA               	goto	l627
-   157                           
-   158                           ;main.c: 98: _delay((unsigned long)((8)*(0x7A1200/4000.0)));
-   159  000FDC  0E15               	movlw	21
-   160  000FDE  6E01               	movwf	??_main& (0+255),c
-   161  000FE0  0EC6               	movlw	198
-   162  000FE2                     u127:
-   163  000FE2  2EE8               	decfsz	wreg,f,c
-   164  000FE4  D7FE               	goto	u127
-   165  000FE6  2E01               	decfsz	??_main& (0+255),f,c
-   166  000FE8  D7FC               	goto	u127
-   167  000FEA  D000               	nop2	
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1
+     6                           	psect	idataBANK0,global,class=CODE,delta=1
+     7                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1
+     8                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     9                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1
+    10                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1
+    11                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+    12                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+    13                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    21                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    22                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    23  0000                     
+    24                           	psect	idataCOMRAM
+    25  000788                     __pidataCOMRAM:
+    26                           	opt stack 0
+    27                           
+    28                           ;initializer for DefaultMenu@F2818
+    29  000788  04                 	db	4
+    30  000789  09                 	db	9
+    31  00078A  0F                 	db	15
+    32  00078B  45                 	db	69
+    33  00078C  4C                 	db	76
+    34  00078D  00                 	db	0
+    35  00078E  00                 	db	0
+    36  00078F  00                 	db	0
+    37  000790  00                 	db	0
+    38  000791  00                 	db	0
+    39  000792  00                 	db	0
+    40                           
+    41                           	psect	idataBANK0
+    42  000562                     __pidataBANK0:
+    43                           	opt stack 0
+    44                           
+    45                           ;initializer for _Default_Menu_Bitmaps
+    46  000562  0004               	dw	4
+    47  000564  0004               	dw	4
+    48  000566  0015               	dw	21
+    49  000568  0011               	dw	17
+    50  00056A  0011               	dw	17
+    51  00056C  000E               	dw	14
+    52  00056E  0000               	dw	0
+    53  000570  001B               	dw	27
+    54  000572  001B               	dw	27
+    55  000574  000A               	dw	10
+    56  000576  000E               	dw	14
+    57  000578  000E               	dw	14
+    58  00057A  0011               	dw	17
+    59  00057C  001F               	dw	31
+    60  00057E  000E               	dw	14
+    61  000580  0004               	dw	4
+    62  000582  000A               	dw	10
+    63  000584  000A               	dw	10
+    64  000586  000E               	dw	14
+    65  000588  000E               	dw	14
+    66  00058A  000E               	dw	14
+    67  00058C  0000               	dw	0
+    68  00058E  000F               	dw	15
+    69  000590  000F               	dw	15
+    70  000592  0001               	dw	1
+    71  000594  000F               	dw	15
+    72  000596  000F               	dw	15
+    73  000598  0000               	dw	0
+    74  00059A  000E               	dw	14
+    75  00059C  000E               	dw	14
+    76  00059E  0006               	dw	6
+    77  0005A0  000A               	dw	10
+    78  0005A2  000C               	dw	12
+    79  0005A4  000E               	dw	14
+    80  0005A6  000E               	dw	14
+    81  0005A8  000E               	dw	14
+    82  0005AA  000E               	dw	14
+    83  0005AC  000E               	dw	14
+    84  0005AE  000E               	dw	14
+    85  0005B0  000E               	dw	14
+    86  0005B2  000E               	dw	14
+    87  0005B4  0011               	dw	17
+    88  0005B6  001F               	dw	31
+    89  0005B8  001E               	dw	30
+    90  0005BA  001D               	dw	29
+    91  0005BC  001B               	dw	27
+    92  0005BE  0017               	dw	23
+    93  0005C0  000F               	dw	15
+    94  0005C2  001F               	dw	31
+    95  0005C4  0000               	dw	0
+    96  0005C6  0000               	dw	0
+    97  0005C8  000A               	dw	10
+    98  0005CA  000E               	dw	14
+    99  0005CC  0004               	dw	4
+   100  0005CE  0000               	dw	0
+   101  0005D0  0000               	dw	0
+   102  0000                     _ADCON1	set	4033
+   103  0000                     _INTCONbits	set	4082
+   104  0000                     _LATA	set	3977
+   105  0000                     _LATAbits	set	3977
+   106  0000                     _LATB	set	3978
+   107  0000                     _LATBbits	set	3978
+   108  0000                     _OSCCONbits	set	4051
+   109  0000                     _PORTAbits	set	3968
+   110  0000                     _RCONbits	set	4048
+   111  0000                     _T0CON	set	4053
+   112  0000                     _TMR0H	set	4055
+   113  0000                     _TMR0L	set	4054
+   114  0000                     _TRISA	set	3986
+   115  0000                     _TRISB	set	3987
+   116                           
+   117                           	psect	smallconst
+   118  000100                     __psmallconst:
+   119                           	opt stack 0
+   120  000100  00                 	db	0
+   121  000101                     STR_1:
+   122  000101  31                 	db	49	;'1'
+   123  000102  32                 	db	50	;'2'
+   124  000103  56                 	db	86	;'V'
+   125  000104  3D                 	db	61	;'='
+   126  000105  2F                 	db	47
+   127  000106  20                 	db	32
+   128  000107  35                 	db	53	;'5'
+   129  000108  56                 	db	86	;'V'
+   130  000109  3D                 	db	61	;'='
+   131  00010A  2F                 	db	47
+   132  00010B  20                 	db	32
+   133  00010C  33                 	db	51	;'3'
+   134  00010D  56                 	db	86	;'V'
+   135  00010E  33                 	db	51	;'3'
+   136  00010F  3D                 	db	61	;'='
+   137  000110  2F                 	db	47
+   138  000111  00                 	db	0
+   139  000112                     STR_2:
+   140  000112  2D                 	db	45
+   141  000113  31                 	db	49	;'1'
+   142  000114  32                 	db	50	;'2'
+   143  000115  56                 	db	86	;'V'
+   144  000116  3D                 	db	61	;'='
+   145  000117  2F                 	db	47
+   146  000118  20                 	db	32
+   147  000119  20                 	db	32
+   148  00011A  20                 	db	32
+   149  00011B  20                 	db	32
+   150  00011C  20                 	db	32
+   151  00011D  20                 	db	32
+   152  00011E  4D                 	db	77	;'M'
+   153  00011F  45                 	db	69	;'E'
+   154  000120  4E                 	db	78	;'N'
+   155  000121  55                 	db	85	;'U'
+   156  000122  00                 	db	0
+   157  0000                     
+   158                           ; #config settings
+   159  000123  00                 	db	0	; dummy byte at the end
+   160  0000                     
+   161                           	psect	cinit
+   162  000690                     __pcinit:
+   163                           	opt stack 0
+   164  000690                     start_initialization:
+   165                           	opt stack 0
+   166  000690                     __initialization:
+   167                           	opt stack 0
    168                           
-   169                           ;main.c: 99: if(PORTAbits.RA4==1){
-   170  000FEC  A880               	btfss	3968,4,c	;volatile
-   171  000FEE  D7D0               	goto	l627
+   169                           ; Clear objects allocated to COMRAM (2 bytes)
+   170  000690  6A30               	clrf	(__pbssCOMRAM+1)& (0+255),c
+   171  000692  6A2F               	clrf	__pbssCOMRAM& (0+255),c
    172                           
-   173                           ;main.c: 100: LATBbits.LATB1 =~LATBbits.LATB1;
-   174  000FF0  728A               	btg	3978,1,c	;volatile
-   175                           
-   176                           ;main.c: 101: while(PORTAbits.RA4==1);
-   177  000FF2  D000               	goto	l34
-   178  000FF4                     l34:
-   179  000FF4  A880               	btfss	3968,4,c	;volatile
-   180  000FF6  D7CC               	goto	l627
-   181  000FF8  D7FD               	goto	l34
-   182  000FFA  D7CA               	goto	l627
-   183  000FFC  EF01  F000         	goto	start
-   184  001000                     __end_of_main:
-   185                           	opt stack 0
-   186  0000                     wreg	equ	0xFE8
-   187                           
-   188                           	psect	cinit
-   189  000F70                     __pcinit:
-   190                           	opt stack 0
-   191  000F70                     start_initialization:
-   192                           	opt stack 0
-   193  000F70                     __initialization:
-   194                           	opt stack 0
-   195  000F70                     end_of_initialization:
-   196                           	opt stack 0
-   197  000F70                     __end_of__initialization:
-   198                           	opt stack 0
-   199  000F70  0100               	movlb	0
-   200  000F72  EFBB  F007         	goto	_main	;jump to C main() function
-   201                           wreg	equ	0xFE8
-   202                           
-   203                           	psect	cstackCOMRAM
-   204  000001                     __pcstackCOMRAM:
-   205                           	opt stack 0
-   206  000001                     ??_main:
-   207  000001                     
-   208                           ; 2 bytes @ 0x0
-   209  000001                     	ds	1
-   210                           wreg	equ	0xFE8
-   211                           wreg	equ	0xFE8
-   212                           
-   213                           	psect	rparam
-   214  0000                     wreg	equ	0xFE8
+   173                           ; Initialize objects allocated to BANK0 (112 bytes)
+   174                           ; load TBLPTR registers with __pidataBANK0
+   175  000694  0E62               	movlw	low __pidataBANK0
+   176  000696  6EF6               	movwf	tblptrl,c
+   177  000698  0E05               	movlw	high __pidataBANK0
+   178  00069A  6EF7               	movwf	tblptrh,c
+   179  00069C  0E00               	movlw	low (__pidataBANK0 shr (0+16))
+   180  00069E  6EF8               	movwf	tblptru,c
+   181  0006A0  EE00  F080         	lfsr	0,__pdataBANK0
+   182  0006A4  EE10 F070          	lfsr	1,112
+   183  0006A8                     copy_data0:
+   184  0006A8  0009               	tblrd		*+
+   185  0006AA  CFF5 FFEE          	movff	tablat,postinc0
+   186  0006AE  50E5               	movf	postdec1,w,c
+   187  0006B0  50E1               	movf	fsr1l,w,c
+   188  0006B2  E1FA               	bnz	copy_data0
+   189                           
+   190                           ; Initialize objects allocated to COMRAM (11 bytes)
+   191                           ; load TBLPTR registers with __pidataCOMRAM
+   192  0006B4  0E88               	movlw	low __pidataCOMRAM
+   193  0006B6  6EF6               	movwf	tblptrl,c
+   194  0006B8  0E07               	movlw	high __pidataCOMRAM
+   195  0006BA  6EF7               	movwf	tblptrh,c
+   196  0006BC  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   197  0006BE  6EF8               	movwf	tblptru,c
+   198  0006C0  EE00  F024         	lfsr	0,__pdataCOMRAM
+   199  0006C4  EE10 F00B          	lfsr	1,11
+   200  0006C8                     copy_data1:
+   201  0006C8  0009               	tblrd		*+
+   202  0006CA  CFF5 FFEE          	movff	tablat,postinc0
+   203  0006CE  50E5               	movf	postdec1,w,c
+   204  0006D0  50E1               	movf	fsr1l,w,c
+   205  0006D2  E1FA               	bnz	copy_data1
+   206  0006D4                     end_of_initialization:
+   207                           	opt stack 0
+   208  0006D4                     __end_of__initialization:
+   209                           	opt stack 0
+   210  0006D4  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   211  0006D6  6EF8               	movwf	tblptru,c
+   212  0006D8  0100               	movlb	0
+   213  0006DA  EFE9  F002         	goto	_main	;jump to C main() function
+   214                           tblptru	equ	0xFF8
+   215                           tblptrh	equ	0xFF7
+   216                           tblptrl	equ	0xFF6
+   217                           tablat	equ	0xFF5
+   218                           postinc0	equ	0xFEE
+   219                           postdec1	equ	0xFE5
+   220                           fsr1l	equ	0xFE1
+   221                           
+   222                           	psect	bssCOMRAM
+   223  00002F                     __pbssCOMRAM:
+   224                           	opt stack 0
+   225  00002F                     _CharacterBlink:
+   226                           	opt stack 0
+   227  00002F                     	ds	2
+   228                           tblptru	equ	0xFF8
+   229                           tblptrh	equ	0xFF7
+   230                           tblptrl	equ	0xFF6
+   231                           tablat	equ	0xFF5
+   232                           postinc0	equ	0xFEE
+   233                           postdec1	equ	0xFE5
+   234                           fsr1l	equ	0xFE1
+   235                           
+   236                           	psect	dataCOMRAM
+   237  000024                     __pdataCOMRAM:
+   238                           	opt stack 0
+   239  000024                     DefaultMenu@F2818:
+   240                           	opt stack 0
+   241  000024                     	ds	11
+   242                           tblptru	equ	0xFF8
+   243                           tblptrh	equ	0xFF7
+   244                           tblptrl	equ	0xFF6
+   245                           tablat	equ	0xFF5
+   246                           postinc0	equ	0xFEE
+   247                           postdec1	equ	0xFE5
+   248                           fsr1l	equ	0xFE1
+   249                           
+   250                           	psect	dataBANK0
+   251  000080                     __pdataBANK0:
+   252                           	opt stack 0
+   253  000080                     _Default_Menu_Bitmaps:
+   254                           	opt stack 0
+   255  000080                     	ds	112
+   256                           tblptru	equ	0xFF8
+   257                           tblptrh	equ	0xFF7
+   258                           tblptrl	equ	0xFF6
+   259                           tablat	equ	0xFF5
+   260                           postinc0	equ	0xFEE
+   261                           postdec1	equ	0xFE5
+   262                           fsr1l	equ	0xFE1
+   263                           
+   264                           	psect	cstackCOMRAM
+   265  000001                     __pcstackCOMRAM:
+   266                           	opt stack 0
+   267  000001                     ??_LCDdata:
+   268  000001                     ?___wmul:
+   269                           	opt stack 0
+   270  000001                     ___wmul@multiplier:
+   271                           	opt stack 0
+   272                           
+   273                           ; 2 bytes @ 0x0
+   274  000001                     	ds	1
+   275  000002                     LCDdata@data:
+   276                           	opt stack 0
+   277                           
+   278                           ; 1 bytes @ 0x1
+   279  000002                     	ds	1
+   280  000003                     LCDdata@x:
+   281                           	opt stack 0
+   282  000003                     ___wmul@multiplicand:
+   283                           	opt stack 0
+   284                           
+   285                           ; 2 bytes @ 0x2
+   286  000003                     	ds	2
+   287  000005                     LCDwrchar@letter:
+   288                           	opt stack 0
+   289  000005                     LCDwrcmd@value:
+   290                           	opt stack 0
+   291  000005                     LCDsetaddr@add:
+   292                           	opt stack 0
+   293  000005                     ___wmul@product:
+   294                           	opt stack 0
+   295                           
+   296                           ; 2 bytes @ 0x4
+   297  000005                     	ds	1
+   298  000006                     LCDwrstring@string:
+   299                           	opt stack 0
+   300                           
+   301                           ; 2 bytes @ 0x5
+   302  000006                     	ds	2
+   303  000008                     ??_DefaultMenu:
+   304  000008                     
+   305                           ; 0 bytes @ 0x7
+   306  000008                     	ds	2
+   307  00000A                     _DefaultMenu$478:
+   308                           	opt stack 0
+   309                           
+   310                           ; 2 bytes @ 0x9
+   311  00000A                     	ds	2
+   312  00000C                     _DefaultMenu$480:
+   313                           	opt stack 0
+   314                           
+   315                           ; 2 bytes @ 0xB
+   316  00000C                     	ds	2
+   317  00000E                     _DefaultMenu$481:
+   318                           	opt stack 0
+   319                           
+   320                           ; 2 bytes @ 0xD
+   321  00000E                     	ds	2
+   322  000010                     _DefaultMenu$483:
+   323                           	opt stack 0
+   324                           
+   325                           ; 2 bytes @ 0xF
+   326  000010                     	ds	2
+   327  000012                     DefaultMenu@x:
+   328                           	opt stack 0
+   329                           
+   330                           ; 2 bytes @ 0x11
+   331  000012                     	ds	2
+   332  000014                     DefaultMenu@y:
+   333                           	opt stack 0
+   334                           
+   335                           ; 2 bytes @ 0x13
+   336  000014                     	ds	2
+   337  000016                     DefaultMenu@last:
+   338                           	opt stack 0
+   339                           
+   340                           ; 2 bytes @ 0x15
+   341  000016                     	ds	2
+   342  000018                     DefaultMenu@MenuItem:
+   343                           	opt stack 0
+   344                           
+   345                           ; 11 bytes @ 0x17
+   346  000018                     	ds	11
+   347  000023                     ??_main:
+   348                           
+   349                           ; 0 bytes @ 0x22
+   350  000023                     	ds	1
+   351                           tblptru	equ	0xFF8
+   352                           tblptrh	equ	0xFF7
+   353                           tblptrl	equ	0xFF6
+   354                           tablat	equ	0xFF5
+   355                           postinc0	equ	0xFEE
+   356                           postdec1	equ	0xFE5
+   357                           fsr1l	equ	0xFE1
+   358                           
+   359 ;;
+   360 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   361 ;;
+   362 ;; *************** function _main *****************
+   363 ;; Defined at:
+   364 ;;		line 45 in file "main.c"
+   365 ;; Parameters:    Size  Location     Type
+   366 ;;		None
+   367 ;; Auto vars:     Size  Location     Type
+   368 ;;		None
+   369 ;; Return value:  Size  Location     Type
+   370 ;;                  2   44[None  ] int 
+   371 ;; Registers used:
+   372 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+   373 ;; Tracked objects:
+   374 ;;		On entry : 0/0
+   375 ;;		On exit  : 0/0
+   376 ;;		Unchanged: 0/0
+   377 ;; Data sizes:     COMRAM   BANK0
+   378 ;;      Params:         0       0
+   379 ;;      Locals:         0       0
+   380 ;;      Temps:          1       0
+   381 ;;      Totals:         1       0
+   382 ;;Total ram usage:        1 bytes
+   383 ;; Hardware stack levels required when called:    4
+   384 ;; This function calls:
+   385 ;;		_DefaultMenu
+   386 ;;		_LCDwrcmd
+   387 ;; This function is called by:
+   388 ;;		Startup code after reset
+   389 ;; This function uses a non-reentrant model
+   390 ;;
+   391                           
+   392                           	psect	text0
+   393  0005D2                     __ptext0:
+   394                           	opt stack 0
+   395  0005D2                     _main:
+   396                           	opt stack 27
+   397                           
+   398                           ;main.c: 51: OSCCONbits.IRCF0=1;
+   399                           
+   400                           ;incstack = 0
+   401  0005D2  88D3               	bsf	4051,4,c	;volatile
+   402                           
+   403                           ;main.c: 52: OSCCONbits.IRCF1=1;
+   404  0005D4  8AD3               	bsf	4051,5,c	;volatile
+   405                           
+   406                           ;main.c: 53: OSCCONbits.IRCF2=1;
+   407  0005D6  8CD3               	bsf	4051,6,c	;volatile
+   408                           
+   409                           ;main.c: 65: TRISA=0b00010011;
+   410  0005D8  0E13               	movlw	19
+   411  0005DA  6E92               	movwf	3986,c	;volatile
+   412                           
+   413                           ;main.c: 66: LATA=0b00000000;
+   414  0005DC  0E00               	movlw	0
+   415  0005DE  6E89               	movwf	3977,c	;volatile
+   416                           
+   417                           ;main.c: 67: ADCON1=0b11111111;
+   418  0005E0  68C1               	setf	4033,c	;volatile
+   419                           
+   420                           ;main.c: 69: TRISB=0b00000000;
+   421  0005E2  0E00               	movlw	0
+   422  0005E4  6E93               	movwf	3987,c	;volatile
+   423                           
+   424                           ;main.c: 70: LATB=0b00000000;
+   425  0005E6  0E00               	movlw	0
+   426  0005E8  6E8A               	movwf	3978,c	;volatile
+   427                           
+   428                           ;main.c: 72: LATBbits.LATB1=1;
+   429  0005EA  828A               	bsf	3978,1,c	;volatile
+   430                           
+   431                           ;main.c: 73: LATBbits.LATB0=1;
+   432  0005EC  808A               	bsf	3978,0,c	;volatile
+   433                           
+   434                           ;main.c: 74: LATBbits.LATB7=1;
+   435  0005EE  8E8A               	bsf	3978,7,c	;volatile
+   436                           
+   437                           ;main.c: 75: LATBbits.LATB6=1;
+   438  0005F0  8C8A               	bsf	3978,6,c	;volatile
+   439                           
+   440                           ;main.c: 80: RCONbits.IPEN=0;
+   441  0005F2  9ED0               	bcf	4048,7,c	;volatile
+   442                           
+   443                           ;main.c: 90: TMR0L=0;
+   444  0005F4  0E00               	movlw	0
+   445  0005F6  6ED6               	movwf	4054,c	;volatile
+   446                           
+   447                           ;main.c: 91: TMR0H=0;
+   448  0005F8  0E00               	movlw	0
+   449  0005FA  6ED7               	movwf	4055,c	;volatile
+   450                           
+   451                           ;main.c: 92: T0CON=0b10010011;
+   452  0005FC  0E93               	movlw	147
+   453  0005FE  6ED5               	movwf	4053,c	;volatile
+   454                           
+   455                           ;main.c: 96: INTCONbits.TMR0IF=0;
+   456  000600  94F2               	bcf	intcon,2,c	;volatile
+   457                           
+   458                           ;main.c: 102: LCDwrcmd(0b00111100);
+   459  000602  0E3C               	movlw	60
+   460  000604  ECB6  F003         	call	_LCDwrcmd
+   461                           
+   462                           ;main.c: 103: LCDwrcmd(0b00000110);
+   463  000608  0E06               	movlw	6
+   464  00060A  ECB6  F003         	call	_LCDwrcmd
+   465                           
+   466                           ;main.c: 104: LCDwrcmd(0b00001100);
+   467  00060E  0E0C               	movlw	12
+   468  000610  ECB6  F003         	call	_LCDwrcmd
+   469                           
+   470                           ;main.c: 105: LCDwrcmd(0b00000001);
+   471  000614  0E01               	movlw	1
+   472  000616  ECB6  F003         	call	_LCDwrcmd
+   473                           
+   474                           ;main.c: 106: _delay((unsigned long)((2)*(0x7A1200/4000.0)));
+   475  00061A  0E06               	movlw	6
+   476  00061C  6E23               	movwf	??_main& (0+255),c
+   477  00061E  0E30               	movlw	48
+   478  000620                     u737:
+   479  000620  2EE8               	decfsz	wreg,f,c
+   480  000622  D7FE               	goto	u737
+   481  000624  2E23               	decfsz	??_main& (0+255),f,c
+   482  000626  D7FC               	goto	u737
+   483  000628  D000               	nop2	
+   484                           
+   485                           ;main.c: 108: DefaultMenu();
+   486  00062A  EC92  F000         	call	_DefaultMenu	;wreg free
+   487  00062E  EF01  F000         	goto	start
+   488  000632                     __end_of_main:
+   489                           	opt stack 0
+   490                           tblptru	equ	0xFF8
+   491                           tblptrh	equ	0xFF7
+   492                           tblptrl	equ	0xFF6
+   493                           tablat	equ	0xFF5
+   494                           intcon	equ	0xFF2
+   495                           postinc0	equ	0xFEE
+   496                           wreg	equ	0xFE8
+   497                           postdec1	equ	0xFE5
+   498                           fsr1l	equ	0xFE1
+   499                           
+   500 ;; *************** function _DefaultMenu *****************
+   501 ;; Defined at:
+   502 ;;		line 116 in file "main.c"
+   503 ;; Parameters:    Size  Location     Type
+   504 ;;		None
+   505 ;; Auto vars:     Size  Location     Type
+   506 ;;  MenuItem       11   23[COMRAM] struct MenuDisplay
+   507 ;;  last            2   21[COMRAM] int 
+   508 ;;  y               2   19[COMRAM] int 
+   509 ;;  x               2   17[COMRAM] int 
+   510 ;; Return value:  Size  Location     Type
+   511 ;;		None               void
+   512 ;; Registers used:
+   513 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+   514 ;; Tracked objects:
+   515 ;;		On entry : 0/0
+   516 ;;		On exit  : 0/0
+   517 ;;		Unchanged: 0/0
+   518 ;; Data sizes:     COMRAM   BANK0
+   519 ;;      Params:         0       0
+   520 ;;      Locals:        25       0
+   521 ;;      Temps:          2       0
+   522 ;;      Totals:        27       0
+   523 ;;Total ram usage:       27 bytes
+   524 ;; Hardware stack levels used:    1
+   525 ;; Hardware stack levels required when called:    3
+   526 ;; This function calls:
+   527 ;;		_LCDsetaddr
+   528 ;;		_LCDwrchar
+   529 ;;		_LCDwrcmd
+   530 ;;		_LCDwrstring
+   531 ;;		___wmul
+   532 ;; This function is called by:
+   533 ;;		_main
+   534 ;; This function uses a non-reentrant model
+   535 ;;
+   536                           
+   537                           	psect	text1
+   538  000124                     __ptext1:
+   539                           	opt stack 0
+   540  000124                     _DefaultMenu:
+   541                           	opt stack 27
+   542                           
+   543                           ;main.c: 121: int x,y;
+   544                           ;main.c: 122: int last=0;
+   545                           
+   546                           ;incstack = 0
+   547  000124  0E00               	movlw	0
+   548  000126  6E17               	movwf	DefaultMenu@last+1,c
+   549  000128  0E00               	movlw	0
+   550  00012A  6E16               	movwf	DefaultMenu@last,c
+   551                           
+   552                           ;main.c: 123: struct MenuDisplay {
+   553                           ;main.c: 124: unsigned char Addr[5];
+   554                           ;main.c: 125: unsigned char CurrentSelect;
+   555                           ;main.c: 126: unsigned char ONorOFF[5];
+   556                           ;main.c: 127: };
+   557                           ;main.c: 129: struct MenuDisplay MenuItem = {
+   558                           ;main.c: 130: 0x04,0x09,0x0F,0x45,0x4C,
+   559                           ;main.c: 131: 0,
+   560                           ;main.c: 132: 0,0,0,0,0
+   561                           ;main.c: 133: };
+   562  00012C  EE20  F024         	lfsr	2,DefaultMenu@F2818
+   563  000130  EE10  F018         	lfsr	1,DefaultMenu@MenuItem
+   564  000134  0E0A               	movlw	10
+   565  000136                     u421:
+   566  000136  CFDB FFE3          	movff	plusw2,plusw1
+   567  00013A  06E8               	decf	wreg,f,c
+   568  00013C  E2FC               	bc	u421
+   569                           
+   570                           ;main.c: 138: for(y=0;y<8;y++)
+   571  00013E  0E00               	movlw	0
+   572  000140  6E15               	movwf	DefaultMenu@y+1,c
+   573  000142  0E00               	movlw	0
+   574  000144  6E14               	movwf	DefaultMenu@y,c
+   575  000146                     l1060:
+   576  000146  BE15               	btfsc	DefaultMenu@y+1,7,c
+   577  000148  D008               	goto	l1064
+   578  00014A  5015               	movf	DefaultMenu@y+1,w,c
+   579  00014C  E141               	bnz	l1082
+   580  00014E  0E08               	movlw	8
+   581  000150  5C14               	subwf	DefaultMenu@y,w,c
+   582  000152  B0D8               	btfsc	status,0,c
+   583  000154  D03D               	goto	l1082
+   584  000156  D001               	goto	l1064
+   585  000158  D03B               	goto	l1082
+   586  00015A                     l1064:
+   587                           
+   588                           ;main.c: 139: for(x=0;x<7;x++)
+   589  00015A  0E00               	movlw	0
+   590  00015C  6E13               	movwf	DefaultMenu@x+1,c
+   591  00015E  0E00               	movlw	0
+   592  000160  6E12               	movwf	DefaultMenu@x,c
+   593  000162                     l1066:
+   594  000162  BE13               	btfsc	DefaultMenu@x+1,7,c
+   595  000164  D008               	goto	l1070
+   596  000166  5013               	movf	DefaultMenu@x+1,w,c
+   597  000168  E12F               	bnz	l1078
+   598  00016A  0E07               	movlw	7
+   599  00016C  5C12               	subwf	DefaultMenu@x,w,c
+   600  00016E  B0D8               	btfsc	status,0,c
+   601  000170  D02B               	goto	l1078
+   602  000172  D001               	goto	l1070
+   603  000174  D029               	goto	l1078
+   604  000176                     l1070:
+   605                           
+   606                           ;main.c: 140: {
+   607                           ;main.c: 141: LCDwrcmd((0b01000000|x)|(y<<3));
+   608  000176  3814               	swapf	DefaultMenu@y,w,c
+   609  000178  42E8               	rrncf	wreg,f,c
+   610  00017A  0BF8               	andlw	248
+   611  00017C  1012               	iorwf	DefaultMenu@x,w,c
+   612  00017E  0940               	iorlw	64
+   613  000180  ECB6  F003         	call	_LCDwrcmd
+   614                           
+   615                           ;main.c: 142: LCDwrchar(Default_Menu_Bitmaps[y][x]);
+   616  000184  C014  F001         	movff	DefaultMenu@y,___wmul@multiplier
+   617  000188  C015  F002         	movff	DefaultMenu@y+1,___wmul@multiplier+1
+   618  00018C  0E00               	movlw	0
+   619  00018E  6E04               	movwf	___wmul@multiplicand+1,c
+   620  000190  0E0E               	movlw	14
+   621  000192  6E03               	movwf	___wmul@multiplicand,c
+   622  000194  EC85  F003         	call	___wmul	;wreg free
+   623  000198  0E80               	movlw	low _Default_Menu_Bitmaps
+   624  00019A  6E08               	movwf	??_DefaultMenu& (0+255),c
+   625  00019C  0E00               	movlw	high _Default_Menu_Bitmaps
+   626  00019E  6E09               	movwf	(??_DefaultMenu+1)& (0+255),c
+   627  0001A0  5001               	movf	?___wmul,w,c
+   628  0001A2  2608               	addwf	??_DefaultMenu,f,c
+   629  0001A4  5002               	movf	?___wmul+1,w,c
+   630  0001A6  2209               	addwfc	??_DefaultMenu+1,f,c
+   631  0001A8  90D8               	bcf	status,0,c
+   632  0001AA  3412               	rlcf	DefaultMenu@x,w,c
+   633  0001AC  6ED9               	movwf	fsr2l,c
+   634  0001AE  3413               	rlcf	DefaultMenu@x+1,w,c
+   635  0001B0  6EDA               	movwf	fsr2h,c
+   636  0001B2  5008               	movf	??_DefaultMenu,w,c
+   637  0001B4  26D9               	addwf	fsr2l,f,c
+   638  0001B6  5009               	movf	??_DefaultMenu+1,w,c
+   639  0001B8  22DA               	addwfc	fsr2h,f,c
+   640  0001BA  50DF               	movf	indf2,w,c
+   641  0001BC  ECA8  F003         	call	_LCDwrchar
+   642  0001C0  4A12               	infsnz	DefaultMenu@x,f,c
+   643  0001C2  2A13               	incf	DefaultMenu@x+1,f,c
+   644  0001C4  D7CE               	goto	l1066
+   645  0001C6  D000               	goto	l1078
+   646  0001C8                     l1078:
+   647  0001C8  4A14               	infsnz	DefaultMenu@y,f,c
+   648  0001CA  2A15               	incf	DefaultMenu@y+1,f,c
+   649  0001CC  D7BC               	goto	l1060
+   650  0001CE  D000               	goto	l1082
+   651  0001D0                     l1082:
+   652                           
+   653                           ;main.c: 143: }
+   654                           ;main.c: 144: LCDsetaddr(0);
+   655  0001D0  0E00               	movlw	0
+   656  0001D2  EC99  F003         	call	_LCDsetaddr
+   657                           
+   658                           ;main.c: 146: LCDwrstring("12V=/ 5V=/ 3V3=/");
+   659  0001D6  0E01               	movlw	low STR_1
+   660  0001D8  6E06               	movwf	LCDwrstring@string,c
+   661  0001DA  0E01               	movlw	high STR_1
+   662  0001DC  6E07               	movwf	LCDwrstring@string+1,c
+   663  0001DE  EC6F  F003         	call	_LCDwrstring	;wreg free
+   664                           
+   665                           ;main.c: 147: LCDsetaddr(0x40);
+   666  0001E2  0E40               	movlw	64
+   667  0001E4  EC99  F003         	call	_LCDsetaddr
+   668                           
+   669                           ;main.c: 148: LCDwrstring("-12V=/      MENU");
+   670  0001E8  0E12               	movlw	low STR_2
+   671  0001EA  6E06               	movwf	LCDwrstring@string,c
+   672  0001EC  0E01               	movlw	high STR_2
+   673  0001EE  6E07               	movwf	LCDwrstring@string+1,c
+   674  0001F0  EC6F  F003         	call	_LCDwrstring	;wreg free
+   675  0001F4  D000               	goto	l1088
+   676  0001F6                     l1088:
+   677                           
+   678                           ;main.c: 156: if(PORTAbits.RA4==1) {
+   679  0001F6  A880               	btfss	3968,4,c	;volatile
+   680  0001F8  D047               	goto	l55
+   681                           
+   682                           ;main.c: 157: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
+   683  0001FA  0E20               	movlw	32
+   684  0001FC  6E08               	movwf	??_DefaultMenu& (0+255),c
+   685  0001FE  0E2A               	movlw	42
+   686  000200                     u747:
+   687  000200  2EE8               	decfsz	wreg,f,c
+   688  000202  D7FE               	goto	u747
+   689  000204  2E08               	decfsz	??_DefaultMenu& (0+255),f,c
+   690  000206  D7FC               	goto	u747
+   691                           
+   692                           ;main.c: 158: if(PORTAbits.RA4==1) {
+   693  000208  A880               	btfss	3968,4,c	;volatile
+   694  00020A  D03E               	goto	l55
+   695                           
+   696                           ;main.c: 159: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
+   697  00020C  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   698  00020E  0D01               	mullw	1
+   699  000210  0E18               	movlw	low DefaultMenu@MenuItem
+   700  000212  24F3               	addwf	prodl,w,c
+   701  000214  6ED9               	movwf	fsr2l,c
+   702  000216  0E00               	movlw	high DefaultMenu@MenuItem
+   703  000218  20F4               	addwfc	prodh,w,c
+   704  00021A  6EDA               	movwf	fsr2h,c
+   705  00021C  50DF               	movf	indf2,w,c
+   706  00021E  EC99  F003         	call	_LCDsetaddr
+   707                           
+   708                           ;main.c: 160: if(MenuItem.CurrentSelect==4)
+   709  000222  0E04               	movlw	4
+   710  000224  181D               	xorwf	DefaultMenu@MenuItem+5,w,c
+   711  000226  A4D8               	btfss	status,2,c
+   712  000228  D007               	goto	l1100
+   713                           
+   714                           ;main.c: 161: LCDwrstring("MENU");
+   715  00022A  0E1E               	movlw	low (STR_2+12)
+   716  00022C  6E06               	movwf	LCDwrstring@string,c
+   717  00022E  0E01               	movlw	high (STR_2+12)
+   718  000230  6E07               	movwf	LCDwrstring@string+1,c
+   719  000232  EC6F  F003         	call	_LCDwrstring	;wreg free
+   720  000236  D01C               	goto	l1108
+   721  000238                     l1100:
+   722                           
+   723                           ;main.c: 162: else
+   724                           ;main.c: 163: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
+   725  000238  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   726  00023A  0D01               	mullw	1
+   727  00023C  0E06               	movlw	6
+   728  00023E  26F3               	addwf	prodl,f,c
+   729  000240  0E00               	movlw	0
+   730  000242  22F4               	addwfc	prodh,f,c
+   731  000244  0E18               	movlw	low DefaultMenu@MenuItem
+   732  000246  24F3               	addwf	prodl,w,c
+   733  000248  6ED9               	movwf	fsr2l,c
+   734  00024A  0E00               	movlw	high DefaultMenu@MenuItem
+   735  00024C  20F4               	addwfc	prodh,w,c
+   736  00024E  6EDA               	movwf	fsr2h,c
+   737  000250  50DF               	movf	indf2,w,c
+   738  000252  A4D8               	btfss	status,2,c
+   739  000254  D004               	goto	l1104
+   740  000256  0E00               	movlw	0
+   741  000258  6E0B               	movwf	_DefaultMenu$478+1,c
+   742  00025A  0E2F               	movlw	47
+   743  00025C  D003               	goto	L1
+   744  00025E                     l1104:
+   745  00025E  0E00               	movlw	0
+   746  000260  6E0B               	movwf	_DefaultMenu$478+1,c
+   747  000262  0E00               	movlw	0
+   748  000264                     L1:
+   749  000264  6E0A               	movwf	_DefaultMenu$478,c
+   750  000266  D000               	goto	l1106
+   751  000268                     l1106:
+   752  000268  500A               	movf	_DefaultMenu$478,w,c
+   753  00026A  ECA8  F003         	call	_LCDwrchar
+   754  00026E  D000               	goto	l1108
+   755  000270                     l1108:
+   756                           
+   757                           ;main.c: 168: MenuItem.CurrentSelect++;
+   758  000270  2A1D               	incf	DefaultMenu@MenuItem+5,f,c
+   759                           
+   760                           ;main.c: 169: if(MenuItem.CurrentSelect==5)
+   761  000272  0E05               	movlw	5
+   762  000274  181D               	xorwf	DefaultMenu@MenuItem+5,w,c
+   763  000276  A4D8               	btfss	status,2,c
+   764  000278  D003               	goto	l64
+   765                           
+   766                           ;main.c: 170: MenuItem.CurrentSelect=0;
+   767  00027A  0E00               	movlw	0
+   768  00027C  6E1D               	movwf	DefaultMenu@MenuItem+5,c
+   769                           
+   770                           ;main.c: 171: while(PORTAbits.RA4==1);
+   771  00027E  D000               	goto	l64
+   772  000280                     l64:
+   773  000280  A880               	btfss	3968,4,c	;volatile
+   774  000282  D002               	goto	l55
+   775  000284  D7FD               	goto	l64
+   776  000286  D000               	goto	l55
+   777  000288                     l55:
+   778                           
+   779                           ;main.c: 172: }
+   780                           ;main.c: 173: }
+   781                           ;main.c: 175: if(PORTAbits.RA1==1) {
+   782  000288  A280               	btfss	3968,1,c	;volatile
+   783  00028A  D047               	goto	l67
+   784                           
+   785                           ;main.c: 176: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
+   786  00028C  0E20               	movlw	32
+   787  00028E  6E08               	movwf	??_DefaultMenu& (0+255),c
+   788  000290  0E2A               	movlw	42
+   789  000292                     u757:
+   790  000292  2EE8               	decfsz	wreg,f,c
+   791  000294  D7FE               	goto	u757
+   792  000296  2E08               	decfsz	??_DefaultMenu& (0+255),f,c
+   793  000298  D7FC               	goto	u757
+   794                           
+   795                           ;main.c: 177: if(PORTAbits.RA1==1) {
+   796  00029A  A280               	btfss	3968,1,c	;volatile
+   797  00029C  D03E               	goto	l67
+   798                           
+   799                           ;main.c: 178: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
+   800  00029E  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   801  0002A0  0D01               	mullw	1
+   802  0002A2  0E18               	movlw	low DefaultMenu@MenuItem
+   803  0002A4  24F3               	addwf	prodl,w,c
+   804  0002A6  6ED9               	movwf	fsr2l,c
+   805  0002A8  0E00               	movlw	high DefaultMenu@MenuItem
+   806  0002AA  20F4               	addwfc	prodh,w,c
+   807  0002AC  6EDA               	movwf	fsr2h,c
+   808  0002AE  50DF               	movf	indf2,w,c
+   809  0002B0  EC99  F003         	call	_LCDsetaddr
+   810                           
+   811                           ;main.c: 179: if(MenuItem.CurrentSelect==4)
+   812  0002B4  0E04               	movlw	4
+   813  0002B6  181D               	xorwf	DefaultMenu@MenuItem+5,w,c
+   814  0002B8  A4D8               	btfss	status,2,c
+   815  0002BA  D007               	goto	l1124
+   816                           
+   817                           ;main.c: 180: LCDwrstring("MENU");
+   818  0002BC  0E1E               	movlw	low (STR_2+12)
+   819  0002BE  6E06               	movwf	LCDwrstring@string,c
+   820  0002C0  0E01               	movlw	high (STR_2+12)
+   821  0002C2  6E07               	movwf	LCDwrstring@string+1,c
+   822  0002C4  EC6F  F003         	call	_LCDwrstring	;wreg free
+   823  0002C8  D01C               	goto	l1132
+   824  0002CA                     l1124:
+   825                           
+   826                           ;main.c: 181: else
+   827                           ;main.c: 182: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
+   828  0002CA  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   829  0002CC  0D01               	mullw	1
+   830  0002CE  0E06               	movlw	6
+   831  0002D0  26F3               	addwf	prodl,f,c
+   832  0002D2  0E00               	movlw	0
+   833  0002D4  22F4               	addwfc	prodh,f,c
+   834  0002D6  0E18               	movlw	low DefaultMenu@MenuItem
+   835  0002D8  24F3               	addwf	prodl,w,c
+   836  0002DA  6ED9               	movwf	fsr2l,c
+   837  0002DC  0E00               	movlw	high DefaultMenu@MenuItem
+   838  0002DE  20F4               	addwfc	prodh,w,c
+   839  0002E0  6EDA               	movwf	fsr2h,c
+   840  0002E2  50DF               	movf	indf2,w,c
+   841  0002E4  A4D8               	btfss	status,2,c
+   842  0002E6  D004               	goto	l1128
+   843  0002E8  0E00               	movlw	0
+   844  0002EA  6E0D               	movwf	_DefaultMenu$480+1,c
+   845  0002EC  0E2F               	movlw	47
+   846  0002EE  D003               	goto	L2
+   847  0002F0                     l1128:
+   848  0002F0  0E00               	movlw	0
+   849  0002F2  6E0D               	movwf	_DefaultMenu$480+1,c
+   850  0002F4  0E00               	movlw	0
+   851  0002F6                     L2:
+   852  0002F6  6E0C               	movwf	_DefaultMenu$480,c
+   853  0002F8  D000               	goto	l1130
+   854  0002FA                     l1130:
+   855  0002FA  500C               	movf	_DefaultMenu$480,w,c
+   856  0002FC  ECA8  F003         	call	_LCDwrchar
+   857  000300  D000               	goto	l1132
+   858  000302                     l1132:
+   859                           
+   860                           ;main.c: 184: if(MenuItem.CurrentSelect==0)
+   861  000302  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   862  000304  A4D8               	btfss	status,2,c
+   863  000306  D003               	goto	l1136
+   864                           
+   865                           ;main.c: 185: MenuItem.CurrentSelect=5;
+   866  000308  0E05               	movlw	5
+   867  00030A  6E1D               	movwf	DefaultMenu@MenuItem+5,c
+   868  00030C  D000               	goto	l1136
+   869  00030E                     l1136:
+   870                           
+   871                           ;main.c: 186: MenuItem.CurrentSelect--;
+   872  00030E  061D               	decf	DefaultMenu@MenuItem+5,f,c
+   873                           
+   874                           ;main.c: 187: while(PORTAbits.RA1==1);
+   875  000310  D000               	goto	l76
+   876  000312                     l76:
+   877  000312  A280               	btfss	3968,1,c	;volatile
+   878  000314  D002               	goto	l67
+   879  000316  D7FD               	goto	l76
+   880  000318  D000               	goto	l67
+   881  00031A                     l67:
+   882                           
+   883                           ;main.c: 188: }
+   884                           ;main.c: 189: }
+   885                           ;main.c: 191: if(PORTAbits.RA0==1) {
+   886  00031A  A080               	btfss	3968,0,c	;volatile
+   887  00031C  D0C2               	goto	l79
+   888                           
+   889                           ;main.c: 192: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
+   890  00031E  0E20               	movlw	32
+   891  000320  6E08               	movwf	??_DefaultMenu& (0+255),c
+   892  000322  0E2A               	movlw	42
+   893  000324                     u767:
+   894  000324  2EE8               	decfsz	wreg,f,c
+   895  000326  D7FE               	goto	u767
+   896  000328  2E08               	decfsz	??_DefaultMenu& (0+255),f,c
+   897  00032A  D7FC               	goto	u767
+   898                           
+   899                           ;main.c: 193: if(PORTAbits.RA0==1) {
+   900  00032C  A080               	btfss	3968,0,c	;volatile
+   901  00032E  D0B9               	goto	l79
+   902                           
+   903                           ;main.c: 194: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
+   904  000330  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   905  000332  0D01               	mullw	1
+   906  000334  0E18               	movlw	low DefaultMenu@MenuItem
+   907  000336  24F3               	addwf	prodl,w,c
+   908  000338  6ED9               	movwf	fsr2l,c
+   909  00033A  0E00               	movlw	high DefaultMenu@MenuItem
+   910  00033C  20F4               	addwfc	prodh,w,c
+   911  00033E  6EDA               	movwf	fsr2h,c
+   912  000340  50DF               	movf	indf2,w,c
+   913  000342  EC99  F003         	call	_LCDsetaddr
+   914                           
+   915                           ;main.c: 195: if(MenuItem.CurrentSelect==4) {
+   916  000346  0E04               	movlw	4
+   917  000348  181D               	xorwf	DefaultMenu@MenuItem+5,w,c
+   918  00034A  B4D8               	btfsc	status,2,c
+   919  00034C  D0A6               	goto	l93
+   920  00034E  D001               	goto	l1148
+   921                           
+   922                           ;main.c: 197: }
+   923  000350  D0A4               	goto	l93
+   924  000352                     l1148:
+   925                           
+   926                           ;main.c: 198: else {
+   927                           ;main.c: 199: MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.Curren
+      +                          tSelect];
+   928  000352  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   929  000354  0D01               	mullw	1
+   930  000356  0E06               	movlw	6
+   931  000358  26F3               	addwf	prodl,f,c
+   932  00035A  0E00               	movlw	0
+   933  00035C  22F4               	addwfc	prodh,f,c
+   934  00035E  0E18               	movlw	low DefaultMenu@MenuItem
+   935  000360  24F3               	addwf	prodl,w,c
+   936  000362  6ED9               	movwf	fsr2l,c
+   937  000364  0E00               	movlw	high DefaultMenu@MenuItem
+   938  000366  20F4               	addwfc	prodh,w,c
+   939  000368  6EDA               	movwf	fsr2h,c
+   940  00036A  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   941  00036C  0D01               	mullw	1
+   942  00036E  0E06               	movlw	6
+   943  000370  26F3               	addwf	prodl,f,c
+   944  000372  0E00               	movlw	0
+   945  000374  22F4               	addwfc	prodh,f,c
+   946  000376  0E18               	movlw	low DefaultMenu@MenuItem
+   947  000378  24F3               	addwf	prodl,w,c
+   948  00037A  6EE1               	movwf	fsr1l,c
+   949  00037C  0E00               	movlw	high DefaultMenu@MenuItem
+   950  00037E  20F4               	addwfc	prodh,w,c
+   951  000380  6EE2               	movwf	fsr1h,c
+   952  000382  50E7               	movf	indf1,w,c
+   953  000384  0AFF               	xorlw	255
+   954  000386  6EDF               	movwf	indf2,c
+   955                           
+   956                           ;main.c: 200: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
+   957  000388  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   958  00038A  0D01               	mullw	1
+   959  00038C  0E18               	movlw	low DefaultMenu@MenuItem
+   960  00038E  24F3               	addwf	prodl,w,c
+   961  000390  6ED9               	movwf	fsr2l,c
+   962  000392  0E00               	movlw	high DefaultMenu@MenuItem
+   963  000394  20F4               	addwfc	prodh,w,c
+   964  000396  6EDA               	movwf	fsr2h,c
+   965  000398  50DF               	movf	indf2,w,c
+   966  00039A  EC99  F003         	call	_LCDsetaddr
+   967                           
+   968                           ;main.c: 201: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
+   969  00039E  501D               	movf	DefaultMenu@MenuItem+5,w,c
+   970  0003A0  0D01               	mullw	1
+   971  0003A2  0E06               	movlw	6
+   972  0003A4  26F3               	addwf	prodl,f,c
+   973  0003A6  0E00               	movlw	0
+   974  0003A8  22F4               	addwfc	prodh,f,c
+   975  0003AA  0E18               	movlw	low DefaultMenu@MenuItem
+   976  0003AC  24F3               	addwf	prodl,w,c
+   977  0003AE  6ED9               	movwf	fsr2l,c
+   978  0003B0  0E00               	movlw	high DefaultMenu@MenuItem
+   979  0003B2  20F4               	addwfc	prodh,w,c
+   980  0003B4  6EDA               	movwf	fsr2h,c
+   981  0003B6  50DF               	movf	indf2,w,c
+   982  0003B8  A4D8               	btfss	status,2,c
+   983  0003BA  D004               	goto	l1156
+   984  0003BC  0E00               	movlw	0
+   985  0003BE  6E0F               	movwf	_DefaultMenu$481+1,c
+   986  0003C0  0E2F               	movlw	47
+   987  0003C2  D003               	goto	L3
+   988  0003C4                     l1156:
+   989  0003C4  0E00               	movlw	0
+   990  0003C6  6E0F               	movwf	_DefaultMenu$481+1,c
+   991  0003C8  0E00               	movlw	0
+   992  0003CA                     L3:
+   993  0003CA  6E0E               	movwf	_DefaultMenu$481,c
+   994  0003CC  D000               	goto	l1158
+   995  0003CE                     l1158:
+   996  0003CE  500E               	movf	_DefaultMenu$481,w,c
+   997  0003D0  ECA8  F003         	call	_LCDwrchar
+   998                           
+   999                           ;main.c: 202: switch(MenuItem.CurrentSelect) {
+  1000  0003D4  D054               	goto	l1170
+  1001  0003D6                     l1160:
+  1002                           
+  1003                           ;main.c: 204: LATBbits.LATB1=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
+  1004  0003D6  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1005  0003D8  0D01               	mullw	1
+  1006  0003DA  0E06               	movlw	6
+  1007  0003DC  26F3               	addwf	prodl,f,c
+  1008  0003DE  0E00               	movlw	0
+  1009  0003E0  22F4               	addwfc	prodh,f,c
+  1010  0003E2  0E18               	movlw	low DefaultMenu@MenuItem
+  1011  0003E4  24F3               	addwf	prodl,w,c
+  1012  0003E6  6ED9               	movwf	fsr2l,c
+  1013  0003E8  0E00               	movlw	high DefaultMenu@MenuItem
+  1014  0003EA  20F4               	addwfc	prodh,w,c
+  1015  0003EC  6EDA               	movwf	fsr2h,c
+  1016  0003EE  50DF               	movf	indf2,w,c
+  1017  0003F0  0AFF               	xorlw	255
+  1018  0003F2  6E08               	movwf	??_DefaultMenu& (0+255),c
+  1019  0003F4  4608               	rlncf	??_DefaultMenu,f,c
+  1020  0003F6  508A               	movf	3978,w,c	;volatile
+  1021  0003F8  1808               	xorwf	??_DefaultMenu,w,c
+  1022  0003FA  0BFD               	andlw	-3
+  1023  0003FC  D03D               	goto	L6
+  1024  0003FE                     l1162:
+  1025                           
+  1026                           ;main.c: 207: LATBbits.LATB7=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
+  1027  0003FE  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1028  000400  0D01               	mullw	1
+  1029  000402  0E06               	movlw	6
+  1030  000404  26F3               	addwf	prodl,f,c
+  1031  000406  0E00               	movlw	0
+  1032  000408  22F4               	addwfc	prodh,f,c
+  1033  00040A  0E18               	movlw	low DefaultMenu@MenuItem
+  1034  00040C  24F3               	addwf	prodl,w,c
+  1035  00040E  6ED9               	movwf	fsr2l,c
+  1036  000410  0E00               	movlw	high DefaultMenu@MenuItem
+  1037  000412  20F4               	addwfc	prodh,w,c
+  1038  000414  6EDA               	movwf	fsr2h,c
+  1039  000416  50DF               	movf	indf2,w,c
+  1040  000418  0AFF               	xorlw	255
+  1041  00041A  6E08               	movwf	??_DefaultMenu& (0+255),c
+  1042  00041C  3208               	rrcf	??_DefaultMenu,f,c
+  1043  00041E  3208               	rrcf	??_DefaultMenu,f,c
+  1044  000420  508A               	movf	3978,w,c	;volatile
+  1045  000422  1808               	xorwf	??_DefaultMenu,w,c
+  1046  000424  0B7F               	andlw	-129
+  1047  000426  D028               	goto	L6
+  1048  000428                     l1164:
+  1049                           
+  1050                           ;main.c: 210: LATBbits.LATB6=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
+  1051  000428  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1052  00042A  0D01               	mullw	1
+  1053  00042C  0E06               	movlw	6
+  1054  00042E  26F3               	addwf	prodl,f,c
+  1055  000430  0E00               	movlw	0
+  1056  000432  22F4               	addwfc	prodh,f,c
+  1057  000434  0E18               	movlw	low DefaultMenu@MenuItem
+  1058  000436  24F3               	addwf	prodl,w,c
+  1059  000438  6ED9               	movwf	fsr2l,c
+  1060  00043A  0E00               	movlw	high DefaultMenu@MenuItem
+  1061  00043C  20F4               	addwfc	prodh,w,c
+  1062  00043E  6EDA               	movwf	fsr2h,c
+  1063  000440  50DF               	movf	indf2,w,c
+  1064  000442  0AFF               	xorlw	255
+  1065  000444  6E08               	movwf	??_DefaultMenu& (0+255),c
+  1066  000446  3A08               	swapf	??_DefaultMenu,f,c
+  1067  000448  4608               	rlncf	??_DefaultMenu,f,c
+  1068  00044A  4608               	rlncf	??_DefaultMenu,f,c
+  1069  00044C  508A               	movf	3978,w,c	;volatile
+  1070  00044E  1808               	xorwf	??_DefaultMenu,w,c
+  1071  000450  0BBF               	andlw	-65
+  1072  000452  D012               	goto	L6
+  1073  000454                     l1166:
+  1074                           
+  1075                           ;main.c: 213: LATBbits.LATB0=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
+  1076  000454  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1077  000456  0D01               	mullw	1
+  1078  000458  0E06               	movlw	6
+  1079  00045A  26F3               	addwf	prodl,f,c
+  1080  00045C  0E00               	movlw	0
+  1081  00045E  22F4               	addwfc	prodh,f,c
+  1082  000460  0E18               	movlw	low DefaultMenu@MenuItem
+  1083  000462  24F3               	addwf	prodl,w,c
+  1084  000464  6ED9               	movwf	fsr2l,c
+  1085  000466  0E00               	movlw	high DefaultMenu@MenuItem
+  1086  000468  20F4               	addwfc	prodh,w,c
+  1087  00046A  6EDA               	movwf	fsr2h,c
+  1088  00046C  50DF               	movf	indf2,w,c
+  1089  00046E  0AFF               	xorlw	255
+  1090  000470  6E08               	movwf	??_DefaultMenu& (0+255),c
+  1091  000472  508A               	movf	3978,w,c	;volatile
+  1092  000474  1808               	xorwf	??_DefaultMenu,w,c
+  1093  000476  0BFE               	andlw	-2
+  1094  000478                     L6:
+  1095  000478  1808               	xorwf	??_DefaultMenu,w,c
+  1096  00047A  6E8A               	movwf	3978,c	;volatile
+  1097                           
+  1098                           ;main.c: 215: }
+  1099                           
+  1100                           ;main.c: 214: break;
+  1101  00047C  D00E               	goto	l93
+  1102  00047E                     l1170:
+  1103  00047E  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1104                           
+  1105                           ; Switch size 1, requested type "space"
+  1106                           ; Number of cases is 4, Range of values is 0 to 3
+  1107                           ; switch strategies available:
+  1108                           ; Name         Instructions Cycles
+  1109                           ; simple_byte           13     7 (average)
+  1110                           ;	Chosen strategy is simple_byte
+  1111  000480  0A00               	xorlw	0	; case 0
+  1112  000482  B4D8               	btfsc	status,2,c
+  1113  000484  D7A8               	goto	l1160
+  1114  000486  0A01               	xorlw	1	; case 1
+  1115  000488  B4D8               	btfsc	status,2,c
+  1116  00048A  D7B9               	goto	l1162
+  1117  00048C  0A03               	xorlw	3	; case 2
+  1118  00048E  B4D8               	btfsc	status,2,c
+  1119  000490  D7CB               	goto	l1164
+  1120  000492  0A01               	xorlw	1	; case 3
+  1121  000494  B4D8               	btfsc	status,2,c
+  1122  000496  D7DE               	goto	l1166
+  1123                           
+  1124                           ;main.c: 216: }
+  1125                           ;main.c: 217: while(PORTAbits.RA0==1);
+  1126  000498  D000               	goto	l93
+  1127  00049A                     l93:
+  1128  00049A  A080               	btfss	3968,0,c	;volatile
+  1129  00049C  D002               	goto	l79
+  1130  00049E  D7FD               	goto	l93
+  1131  0004A0  D000               	goto	l79
+  1132  0004A2                     l79:
+  1133                           
+  1134                           ;main.c: 218: }
+  1135                           ;main.c: 219: }
+  1136                           ;main.c: 221: if(INTCONbits.TMR0IF) {
+  1137  0004A2  A4F2               	btfss	intcon,2,c	;volatile
+  1138  0004A4  D6A8               	goto	l1088
+  1139                           
+  1140                           ;main.c: 222: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
+  1141  0004A6  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1142  0004A8  0D01               	mullw	1
+  1143  0004AA  0E18               	movlw	low DefaultMenu@MenuItem
+  1144  0004AC  24F3               	addwf	prodl,w,c
+  1145  0004AE  6ED9               	movwf	fsr2l,c
+  1146  0004B0  0E00               	movlw	high DefaultMenu@MenuItem
+  1147  0004B2  20F4               	addwfc	prodh,w,c
+  1148  0004B4  6EDA               	movwf	fsr2h,c
+  1149  0004B6  50DF               	movf	indf2,w,c
+  1150  0004B8  EC99  F003         	call	_LCDsetaddr
+  1151                           
+  1152                           ;main.c: 223: if(MenuItem.CurrentSelect==4)
+  1153  0004BC  0E04               	movlw	4
+  1154  0004BE  181D               	xorwf	DefaultMenu@MenuItem+5,w,c
+  1155  0004C0  A4D8               	btfss	status,2,c
+  1156  0004C2  D018               	goto	l1182
+  1157                           
+  1158                           ;main.c: 224: if(last)
+  1159  0004C4  5016               	movf	DefaultMenu@last,w,c
+  1160  0004C6  1017               	iorwf	DefaultMenu@last+1,w,c
+  1161  0004C8  B4D8               	btfsc	status,2,c
+  1162  0004CA  D007               	goto	l1180
+  1163                           
+  1164                           ;main.c: 225: LCDwrstring("MENU");
+  1165  0004CC  0E1E               	movlw	low (STR_2+12)
+  1166  0004CE  6E06               	movwf	LCDwrstring@string,c
+  1167  0004D0  0E01               	movlw	high (STR_2+12)
+  1168  0004D2  6E07               	movwf	LCDwrstring@string+1,c
+  1169  0004D4  EC6F  F003         	call	_LCDwrstring	;wreg free
+  1170  0004D8  D037               	goto	l1194
+  1171  0004DA                     l1180:
+  1172                           
+  1173                           ;main.c: 226: else {
+  1174                           ;main.c: 227: LCDwrchar(0x02);
+  1175  0004DA  0E02               	movlw	2
+  1176  0004DC  ECA8  F003         	call	_LCDwrchar
+  1177                           
+  1178                           ;main.c: 228: LCDwrchar(0x03);
+  1179  0004E0  0E03               	movlw	3
+  1180  0004E2  ECA8  F003         	call	_LCDwrchar
+  1181                           
+  1182                           ;main.c: 229: LCDwrchar(0x04);
+  1183  0004E6  0E04               	movlw	4
+  1184  0004E8  ECA8  F003         	call	_LCDwrchar
+  1185                           
+  1186                           ;main.c: 230: LCDwrchar(0x05);
+  1187  0004EC  0E05               	movlw	5
+  1188  0004EE  ECA8  F003         	call	_LCDwrchar
+  1189                           
+  1190                           ;main.c: 231: }
+  1191  0004F2  D02A               	goto	l1194
+  1192  0004F4                     l1182:
+  1193                           
+  1194                           ;main.c: 232: else
+  1195                           ;main.c: 233: if(MenuItem.ONorOFF[MenuItem.CurrentSelect])
+  1196  0004F4  501D               	movf	DefaultMenu@MenuItem+5,w,c
+  1197  0004F6  0D01               	mullw	1
+  1198  0004F8  0E06               	movlw	6
+  1199  0004FA  26F3               	addwf	prodl,f,c
+  1200  0004FC  0E00               	movlw	0
+  1201  0004FE  22F4               	addwfc	prodh,f,c
+  1202  000500  0E18               	movlw	low DefaultMenu@MenuItem
+  1203  000502  24F3               	addwf	prodl,w,c
+  1204  000504  6ED9               	movwf	fsr2l,c
+  1205  000506  0E00               	movlw	high DefaultMenu@MenuItem
+  1206  000508  20F4               	addwfc	prodh,w,c
+  1207  00050A  6EDA               	movwf	fsr2h,c
+  1208  00050C  50DF               	movf	indf2,w,c
+  1209  00050E  B4D8               	btfsc	status,2,c
+  1210  000510  D00A               	goto	l1186
+  1211                           
+  1212                           ;main.c: 234: LCDwrchar(last ? 0:1);
+  1213  000512  5016               	movf	DefaultMenu@last,w,c
+  1214  000514  1017               	iorwf	DefaultMenu@last+1,w,c
+  1215  000516  A4D8               	btfss	status,2,c
+  1216  000518  D002               	goto	u680
+  1217  00051A  0E01               	movlw	1
+  1218  00051C  D001               	goto	u690
+  1219  00051E                     u680:
+  1220  00051E  0E00               	movlw	0
+  1221  000520                     u690:
+  1222  000520  ECA8  F003         	call	_LCDwrchar
+  1223  000524  D011               	goto	l1194
+  1224  000526                     l1186:
+  1225                           
+  1226                           ;main.c: 235: else
+  1227                           ;main.c: 236: LCDwrchar(last ? 0x2F:0x06);
+  1228  000526  5016               	movf	DefaultMenu@last,w,c
+  1229  000528  1017               	iorwf	DefaultMenu@last+1,w,c
+  1230  00052A  A4D8               	btfss	status,2,c
+  1231  00052C  D004               	goto	l1190
+  1232  00052E  0E00               	movlw	0
+  1233  000530  6E11               	movwf	_DefaultMenu$483+1,c
+  1234  000532  0E06               	movlw	6
+  1235  000534  D003               	goto	L7
+  1236  000536                     l1190:
+  1237  000536  0E00               	movlw	0
+  1238  000538  6E11               	movwf	_DefaultMenu$483+1,c
+  1239  00053A  0E2F               	movlw	47
+  1240  00053C                     L7:
+  1241  00053C  6E10               	movwf	_DefaultMenu$483,c
+  1242  00053E  D000               	goto	l1192
+  1243  000540                     l1192:
+  1244  000540  5010               	movf	_DefaultMenu$483,w,c
+  1245  000542  ECA8  F003         	call	_LCDwrchar
+  1246  000546  D000               	goto	l1194
+  1247  000548                     l1194:
+  1248                           
+  1249                           ;main.c: 238: last=last ? 0:1;
+  1250  000548  5016               	movf	DefaultMenu@last,w,c
+  1251  00054A  1017               	iorwf	DefaultMenu@last+1,w,c
+  1252  00054C  A4D8               	btfss	status,2,c
+  1253  00054E  D002               	goto	u710
+  1254  000550  0E01               	movlw	1
+  1255  000552  D001               	goto	u720
+  1256  000554                     u710:
+  1257  000554  0E00               	movlw	0
+  1258  000556                     u720:
+  1259  000556  6E16               	movwf	DefaultMenu@last,c
+  1260  000558  6A17               	clrf	DefaultMenu@last+1,c
+  1261                           
+  1262                           ;main.c: 239: INTCONbits.TMR0IF=0;
+  1263  00055A  94F2               	bcf	intcon,2,c	;volatile
+  1264  00055C  D64C               	goto	l1088
+  1265  00055E  D7FF               	goto	l110
+  1266  000560  0012               	return		;funcret
+  1267  000562                     __end_of_DefaultMenu:
+  1268                           	opt stack 0
+  1269                           tblptru	equ	0xFF8
+  1270                           tblptrh	equ	0xFF7
+  1271                           tblptrl	equ	0xFF6
+  1272                           tablat	equ	0xFF5
+  1273                           prodh	equ	0xFF4
+  1274                           prodl	equ	0xFF3
+  1275                           intcon	equ	0xFF2
+  1276                           postinc0	equ	0xFEE
+  1277                           wreg	equ	0xFE8
+  1278                           indf1	equ	0xFE7
+  1279                           postdec1	equ	0xFE5
+  1280                           plusw1	equ	0xFE3
+  1281                           fsr1h	equ	0xFE2
+  1282                           fsr1l	equ	0xFE1
+  1283                           indf2	equ	0xFDF
+  1284                           plusw2	equ	0xFDB
+  1285                           fsr2h	equ	0xFDA
+  1286                           fsr2l	equ	0xFD9
+  1287                           status	equ	0xFD8
+  1288                           
+  1289 ;; *************** function ___wmul *****************
+  1290 ;; Defined at:
+  1291 ;;		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul16.c"
+  1292 ;; Parameters:    Size  Location     Type
+  1293 ;;  multiplier      2    0[COMRAM] unsigned int 
+  1294 ;;  multiplicand    2    2[COMRAM] unsigned int 
+  1295 ;; Auto vars:     Size  Location     Type
+  1296 ;;  product         2    4[COMRAM] unsigned int 
+  1297 ;; Return value:  Size  Location     Type
+  1298 ;;                  2    0[COMRAM] unsigned int 
+  1299 ;; Registers used:
+  1300 ;;		wreg, status,2, status,0, prodl, prodh
+  1301 ;; Tracked objects:
+  1302 ;;		On entry : 0/0
+  1303 ;;		On exit  : 0/0
+  1304 ;;		Unchanged: 0/0
+  1305 ;; Data sizes:     COMRAM   BANK0
+  1306 ;;      Params:         4       0
+  1307 ;;      Locals:         2       0
+  1308 ;;      Temps:          0       0
+  1309 ;;      Totals:         6       0
+  1310 ;;Total ram usage:        6 bytes
+  1311 ;; Hardware stack levels used:    1
+  1312 ;; This function calls:
+  1313 ;;		Nothing
+  1314 ;; This function is called by:
+  1315 ;;		_DefaultMenu
+  1316 ;; This function uses a non-reentrant model
+  1317 ;;
+  1318                           
+  1319                           	psect	text2
+  1320  00070A                     __ptext2:
+  1321                           	opt stack 0
+  1322  00070A                     ___wmul:
+  1323                           	opt stack 29
+  1324                           
+  1325                           ;incstack = 0
+  1326  00070A  5001               	movf	___wmul@multiplier,w,c
+  1327  00070C  0203               	mulwf	___wmul@multiplicand,c
+  1328  00070E  CFF3 F005          	movff	prodl,___wmul@product
+  1329  000712  CFF4 F006          	movff	prodh,___wmul@product+1
+  1330  000716  5001               	movf	___wmul@multiplier,w,c
+  1331  000718  0204               	mulwf	___wmul@multiplicand+1,c
+  1332  00071A  50F3               	movf	prodl,w,c
+  1333  00071C  2606               	addwf	___wmul@product+1,f,c
+  1334  00071E  5002               	movf	___wmul@multiplier+1,w,c
+  1335  000720  0203               	mulwf	___wmul@multiplicand,c
+  1336  000722  50F3               	movf	prodl,w,c
+  1337  000724  2606               	addwf	___wmul@product+1,f,c
+  1338  000726  C005  F001         	movff	___wmul@product,?___wmul
+  1339  00072A  C006  F002         	movff	___wmul@product+1,?___wmul+1
+  1340  00072E  D000               	goto	l145
+  1341  000730                     l145:
+  1342  000730  0012               	return		;funcret
+  1343  000732                     __end_of___wmul:
+  1344                           	opt stack 0
+  1345                           tblptru	equ	0xFF8
+  1346                           tblptrh	equ	0xFF7
+  1347                           tblptrl	equ	0xFF6
+  1348                           tablat	equ	0xFF5
+  1349                           prodh	equ	0xFF4
+  1350                           prodl	equ	0xFF3
+  1351                           intcon	equ	0xFF2
+  1352                           postinc0	equ	0xFEE
+  1353                           wreg	equ	0xFE8
+  1354                           indf1	equ	0xFE7
+  1355                           postdec1	equ	0xFE5
+  1356                           plusw1	equ	0xFE3
+  1357                           fsr1h	equ	0xFE2
+  1358                           fsr1l	equ	0xFE1
+  1359                           indf2	equ	0xFDF
+  1360                           plusw2	equ	0xFDB
+  1361                           fsr2h	equ	0xFDA
+  1362                           fsr2l	equ	0xFD9
+  1363                           status	equ	0xFD8
+  1364                           
+  1365 ;; *************** function _LCDwrstring *****************
+  1366 ;; Defined at:
+  1367 ;;		line 42 in file "Hitachi_LCD.c"
+  1368 ;; Parameters:    Size  Location     Type
+  1369 ;;  string          2    5[COMRAM] PTR const unsigned char 
+  1370 ;;		 -> STR_5(5), STR_4(5), STR_3(5), STR_2(17), 
+  1371 ;;		 -> STR_1(17), 
+  1372 ;; Auto vars:     Size  Location     Type
+  1373 ;;		None
+  1374 ;; Return value:  Size  Location     Type
+  1375 ;;		None               void
+  1376 ;; Registers used:
+  1377 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1378 ;; Tracked objects:
+  1379 ;;		On entry : 0/0
+  1380 ;;		On exit  : 0/0
+  1381 ;;		Unchanged: 0/0
+  1382 ;; Data sizes:     COMRAM   BANK0
+  1383 ;;      Params:         2       0
+  1384 ;;      Locals:         0       0
+  1385 ;;      Temps:          0       0
+  1386 ;;      Totals:         2       0
+  1387 ;;Total ram usage:        2 bytes
+  1388 ;; Hardware stack levels used:    1
+  1389 ;; Hardware stack levels required when called:    2
+  1390 ;; This function calls:
+  1391 ;;		_LCDwrchar
+  1392 ;; This function is called by:
+  1393 ;;		_DefaultMenu
+  1394 ;; This function uses a non-reentrant model
+  1395 ;;
+  1396                           
+  1397                           	psect	text3
+  1398  0006DE                     __ptext3:
+  1399                           	opt stack 0
+  1400  0006DE                     _LCDwrstring:
+  1401                           	opt stack 27
+  1402                           
+  1403                           ;Hitachi_LCD.c: 44: while(*string)
+  1404                           
+  1405                           ;incstack = 0
+  1406  0006DE  D00B               	goto	l1046
+  1407  0006E0                     l1042:
+  1408                           
+  1409                           ;Hitachi_LCD.c: 45: {
+  1410                           ;Hitachi_LCD.c: 46: LCDwrchar(*string);
+  1411  0006E0  C006  FFF6         	movff	LCDwrstring@string,tblptrl
+  1412  0006E4  C007  FFF7         	movff	LCDwrstring@string+1,tblptrh
+  1413  0006E8                     	if	0	;tblptru may be non-zero
+  1414  0006E8                     	endif
+  1415  0006E8                     	if	0	;tblptru may be non-zero
+  1416  0006E8                     	endif
+  1417  0006E8  0008               	tblrd		*
+  1418  0006EA  50F5               	movf	tablat,w,c
+  1419  0006EC  ECA8  F003         	call	_LCDwrchar
+  1420                           
+  1421                           ;Hitachi_LCD.c: 47: string++;
+  1422  0006F0  4A06               	infsnz	LCDwrstring@string,f,c
+  1423  0006F2  2A07               	incf	LCDwrstring@string+1,f,c
+  1424  0006F4  D000               	goto	l1046
+  1425  0006F6                     l1046:
+  1426  0006F6  C006  FFF6         	movff	LCDwrstring@string,tblptrl
+  1427  0006FA  C007  FFF7         	movff	LCDwrstring@string+1,tblptrh
+  1428  0006FE                     	if	0	;tblptru may be non-zero
+  1429  0006FE                     	endif
+  1430  0006FE                     	if	0	;tblptru may be non-zero
+  1431  0006FE                     	endif
+  1432  0006FE  0008               	tblrd		*
+  1433  000700  50F5               	movf	tablat,w,c
+  1434  000702  0900               	iorlw	0
+  1435  000704  A4D8               	btfss	status,2,c
+  1436  000706  D7EC               	goto	l1042
+  1437  000708  0012               	return		;funcret
+  1438  00070A                     __end_of_LCDwrstring:
+  1439                           	opt stack 0
+  1440                           tblptru	equ	0xFF8
+  1441                           tblptrh	equ	0xFF7
+  1442                           tblptrl	equ	0xFF6
+  1443                           tablat	equ	0xFF5
+  1444                           prodh	equ	0xFF4
+  1445                           prodl	equ	0xFF3
+  1446                           intcon	equ	0xFF2
+  1447                           postinc0	equ	0xFEE
+  1448                           wreg	equ	0xFE8
+  1449                           indf1	equ	0xFE7
+  1450                           postdec1	equ	0xFE5
+  1451                           plusw1	equ	0xFE3
+  1452                           fsr1h	equ	0xFE2
+  1453                           fsr1l	equ	0xFE1
+  1454                           indf2	equ	0xFDF
+  1455                           plusw2	equ	0xFDB
+  1456                           fsr2h	equ	0xFDA
+  1457                           fsr2l	equ	0xFD9
+  1458                           status	equ	0xFD8
+  1459                           
+  1460 ;; *************** function _LCDwrchar *****************
+  1461 ;; Defined at:
+  1462 ;;		line 32 in file "Hitachi_LCD.c"
+  1463 ;; Parameters:    Size  Location     Type
+  1464 ;;  letter          1    wreg     unsigned char 
+  1465 ;; Auto vars:     Size  Location     Type
+  1466 ;;  letter          1    4[COMRAM] unsigned char 
+  1467 ;; Return value:  Size  Location     Type
+  1468 ;;		None               void
+  1469 ;; Registers used:
+  1470 ;;		wreg, status,2, status,0, cstack
+  1471 ;; Tracked objects:
+  1472 ;;		On entry : 0/0
+  1473 ;;		On exit  : 0/0
+  1474 ;;		Unchanged: 0/0
+  1475 ;; Data sizes:     COMRAM   BANK0
+  1476 ;;      Params:         0       0
+  1477 ;;      Locals:         1       0
+  1478 ;;      Temps:          0       0
+  1479 ;;      Totals:         1       0
+  1480 ;;Total ram usage:        1 bytes
+  1481 ;; Hardware stack levels used:    1
+  1482 ;; Hardware stack levels required when called:    1
+  1483 ;; This function calls:
+  1484 ;;		_LCDdata
+  1485 ;; This function is called by:
+  1486 ;;		_DefaultMenu
+  1487 ;;		_LCDwrstring
+  1488 ;; This function uses a non-reentrant model
+  1489 ;;
+  1490                           
+  1491                           	psect	text4
+  1492  000750                     __ptext4:
+  1493                           	opt stack 0
+  1494  000750                     _LCDwrchar:
+  1495                           	opt stack 27
+  1496                           
+  1497                           ;incstack = 0
+  1498                           ;LCDwrchar@letter stored from wreg
+  1499  000750  6E05               	movwf	LCDwrchar@letter,c
+  1500                           
+  1501                           ;Hitachi_LCD.c: 34: LATBbits.LATB4=1;
+  1502  000752  888A               	bsf	3978,4,c	;volatile
+  1503                           
+  1504                           ;Hitachi_LCD.c: 35: LATBbits.LATB5=0;
+  1505  000754  9A8A               	bcf	3978,5,c	;volatile
+  1506                           
+  1507                           ;Hitachi_LCD.c: 36: LCDdata(letter);
+  1508  000756  5005               	movf	LCDwrchar@letter,w,c
+  1509  000758  EC19  F003         	call	_LCDdata
+  1510                           
+  1511                           ;Hitachi_LCD.c: 37: LATBbits.LATB3=1;
+  1512  00075C  868A               	bsf	3978,3,c	;volatile
+  1513                           
+  1514                           ;Hitachi_LCD.c: 38: _delay(2);
+  1515  00075E  D000               	nop2		;2 cycle nop
+  1516                           
+  1517                           ;Hitachi_LCD.c: 39: LATBbits.LATB3=0;
+  1518  000760  968A               	bcf	3978,3,c	;volatile
+  1519                           
+  1520                           ;Hitachi_LCD.c: 40: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+  1521  000762  0E18               	movlw	24
+  1522  000764                     u777:
+  1523  000764  2EE8               	decfsz	wreg,f,c
+  1524  000766  D7FE               	goto	u777
+  1525  000768  D000               	nop2		;nop
+  1526  00076A  0012               	return		;funcret
+  1527  00076C                     __end_of_LCDwrchar:
+  1528                           	opt stack 0
+  1529                           tblptru	equ	0xFF8
+  1530                           tblptrh	equ	0xFF7
+  1531                           tblptrl	equ	0xFF6
+  1532                           tablat	equ	0xFF5
+  1533                           prodh	equ	0xFF4
+  1534                           prodl	equ	0xFF3
+  1535                           intcon	equ	0xFF2
+  1536                           postinc0	equ	0xFEE
+  1537                           wreg	equ	0xFE8
+  1538                           indf1	equ	0xFE7
+  1539                           postdec1	equ	0xFE5
+  1540                           plusw1	equ	0xFE3
+  1541                           fsr1h	equ	0xFE2
+  1542                           fsr1l	equ	0xFE1
+  1543                           indf2	equ	0xFDF
+  1544                           plusw2	equ	0xFDB
+  1545                           fsr2h	equ	0xFDA
+  1546                           fsr2l	equ	0xFD9
+  1547                           status	equ	0xFD8
+  1548                           
+  1549 ;; *************** function _LCDwrcmd *****************
+  1550 ;; Defined at:
+  1551 ;;		line 50 in file "Hitachi_LCD.c"
+  1552 ;; Parameters:    Size  Location     Type
+  1553 ;;  value           1    wreg     unsigned char 
+  1554 ;; Auto vars:     Size  Location     Type
+  1555 ;;  value           1    4[COMRAM] unsigned char 
+  1556 ;; Return value:  Size  Location     Type
+  1557 ;;		None               void
+  1558 ;; Registers used:
+  1559 ;;		wreg, status,2, status,0, cstack
+  1560 ;; Tracked objects:
+  1561 ;;		On entry : 0/0
+  1562 ;;		On exit  : 0/0
+  1563 ;;		Unchanged: 0/0
+  1564 ;; Data sizes:     COMRAM   BANK0
+  1565 ;;      Params:         0       0
+  1566 ;;      Locals:         1       0
+  1567 ;;      Temps:          0       0
+  1568 ;;      Totals:         1       0
+  1569 ;;Total ram usage:        1 bytes
+  1570 ;; Hardware stack levels used:    1
+  1571 ;; Hardware stack levels required when called:    1
+  1572 ;; This function calls:
+  1573 ;;		_LCDdata
+  1574 ;; This function is called by:
+  1575 ;;		_main
+  1576 ;;		_DefaultMenu
+  1577 ;; This function uses a non-reentrant model
+  1578 ;;
+  1579                           
+  1580                           	psect	text5
+  1581  00076C                     __ptext5:
+  1582                           	opt stack 0
+  1583  00076C                     _LCDwrcmd:
+  1584                           	opt stack 29
+  1585                           
+  1586                           ;incstack = 0
+  1587                           ;LCDwrcmd@value stored from wreg
+  1588  00076C  6E05               	movwf	LCDwrcmd@value,c
+  1589                           
+  1590                           ;Hitachi_LCD.c: 52: LATBbits.LATB4=0, LATBbits.LATB5=0;
+  1591  00076E  988A               	bcf	3978,4,c	;volatile
+  1592  000770  9A8A               	bcf	3978,5,c	;volatile
+  1593                           
+  1594                           ;Hitachi_LCD.c: 53: LCDdata(value);
+  1595  000772  5005               	movf	LCDwrcmd@value,w,c
+  1596  000774  EC19  F003         	call	_LCDdata
+  1597                           
+  1598                           ;Hitachi_LCD.c: 54: LATBbits.LATB3=1;
+  1599  000778  868A               	bsf	3978,3,c	;volatile
+  1600                           
+  1601                           ;Hitachi_LCD.c: 55: _delay(2);
+  1602  00077A  D000               	nop2		;2 cycle nop
+  1603                           
+  1604                           ;Hitachi_LCD.c: 56: LATBbits.LATB3=0;
+  1605  00077C  968A               	bcf	3978,3,c	;volatile
+  1606                           
+  1607                           ;Hitachi_LCD.c: 57: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+  1608  00077E  0E18               	movlw	24
+  1609  000780                     u787:
+  1610  000780  2EE8               	decfsz	wreg,f,c
+  1611  000782  D7FE               	goto	u787
+  1612  000784  D000               	nop2		;nop
+  1613  000786  0012               	return		;funcret
+  1614  000788                     __end_of_LCDwrcmd:
+  1615                           	opt stack 0
+  1616                           tblptru	equ	0xFF8
+  1617                           tblptrh	equ	0xFF7
+  1618                           tblptrl	equ	0xFF6
+  1619                           tablat	equ	0xFF5
+  1620                           prodh	equ	0xFF4
+  1621                           prodl	equ	0xFF3
+  1622                           intcon	equ	0xFF2
+  1623                           postinc0	equ	0xFEE
+  1624                           wreg	equ	0xFE8
+  1625                           indf1	equ	0xFE7
+  1626                           postdec1	equ	0xFE5
+  1627                           plusw1	equ	0xFE3
+  1628                           fsr1h	equ	0xFE2
+  1629                           fsr1l	equ	0xFE1
+  1630                           indf2	equ	0xFDF
+  1631                           plusw2	equ	0xFDB
+  1632                           fsr2h	equ	0xFDA
+  1633                           fsr2l	equ	0xFD9
+  1634                           status	equ	0xFD8
+  1635                           
+  1636 ;; *************** function _LCDsetaddr *****************
+  1637 ;; Defined at:
+  1638 ;;		line 59 in file "Hitachi_LCD.c"
+  1639 ;; Parameters:    Size  Location     Type
+  1640 ;;  add             1    wreg     unsigned char 
+  1641 ;; Auto vars:     Size  Location     Type
+  1642 ;;  add             1    4[COMRAM] unsigned char 
+  1643 ;; Return value:  Size  Location     Type
+  1644 ;;		None               void
+  1645 ;; Registers used:
+  1646 ;;		wreg, status,2, status,0, cstack
+  1647 ;; Tracked objects:
+  1648 ;;		On entry : 0/0
+  1649 ;;		On exit  : 0/0
+  1650 ;;		Unchanged: 0/0
+  1651 ;; Data sizes:     COMRAM   BANK0
+  1652 ;;      Params:         0       0
+  1653 ;;      Locals:         1       0
+  1654 ;;      Temps:          0       0
+  1655 ;;      Totals:         1       0
+  1656 ;;Total ram usage:        1 bytes
+  1657 ;; Hardware stack levels used:    1
+  1658 ;; Hardware stack levels required when called:    1
+  1659 ;; This function calls:
+  1660 ;;		_LCDdata
+  1661 ;; This function is called by:
+  1662 ;;		_DefaultMenu
+  1663 ;; This function uses a non-reentrant model
+  1664 ;;
+  1665                           
+  1666                           	psect	text6
+  1667  000732                     __ptext6:
+  1668                           	opt stack 0
+  1669  000732                     _LCDsetaddr:
+  1670                           	opt stack 28
+  1671                           
+  1672                           ;incstack = 0
+  1673                           ;LCDsetaddr@add stored from wreg
+  1674  000732  6E05               	movwf	LCDsetaddr@add,c
+  1675                           
+  1676                           ;Hitachi_LCD.c: 61: LATBbits.LATB4=0, LATBbits.LATB5=0;
+  1677  000734  988A               	bcf	3978,4,c	;volatile
+  1678  000736  9A8A               	bcf	3978,5,c	;volatile
+  1679                           
+  1680                           ;Hitachi_LCD.c: 62: LCDdata(add|0b10000000);
+  1681  000738  5005               	movf	LCDsetaddr@add,w,c
+  1682  00073A  0980               	iorlw	128
+  1683  00073C  EC19  F003         	call	_LCDdata
+  1684                           
+  1685                           ;Hitachi_LCD.c: 63: LATBbits.LATB3=1;
+  1686  000740  868A               	bsf	3978,3,c	;volatile
+  1687                           
+  1688                           ;Hitachi_LCD.c: 64: _delay(2);
+  1689  000742  D000               	nop2		;2 cycle nop
+  1690                           
+  1691                           ;Hitachi_LCD.c: 65: LATBbits.LATB3=0;
+  1692  000744  968A               	bcf	3978,3,c	;volatile
+  1693                           
+  1694                           ;Hitachi_LCD.c: 66: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+  1695  000746  0E18               	movlw	24
+  1696  000748                     u797:
+  1697  000748  2EE8               	decfsz	wreg,f,c
+  1698  00074A  D7FE               	goto	u797
+  1699  00074C  D000               	nop2		;nop
+  1700  00074E  0012               	return		;funcret
+  1701  000750                     __end_of_LCDsetaddr:
+  1702                           	opt stack 0
+  1703                           tblptru	equ	0xFF8
+  1704                           tblptrh	equ	0xFF7
+  1705                           tblptrl	equ	0xFF6
+  1706                           tablat	equ	0xFF5
+  1707                           prodh	equ	0xFF4
+  1708                           prodl	equ	0xFF3
+  1709                           intcon	equ	0xFF2
+  1710                           postinc0	equ	0xFEE
+  1711                           wreg	equ	0xFE8
+  1712                           indf1	equ	0xFE7
+  1713                           postdec1	equ	0xFE5
+  1714                           plusw1	equ	0xFE3
+  1715                           fsr1h	equ	0xFE2
+  1716                           fsr1l	equ	0xFE1
+  1717                           indf2	equ	0xFDF
+  1718                           plusw2	equ	0xFDB
+  1719                           fsr2h	equ	0xFDA
+  1720                           fsr2l	equ	0xFD9
+  1721                           status	equ	0xFD8
+  1722                           
+  1723 ;; *************** function _LCDdata *****************
+  1724 ;; Defined at:
+  1725 ;;		line 14 in file "Hitachi_LCD.c"
+  1726 ;; Parameters:    Size  Location     Type
+  1727 ;;  data            1    wreg     unsigned char 
+  1728 ;; Auto vars:     Size  Location     Type
+  1729 ;;  data            1    1[COMRAM] unsigned char 
+  1730 ;;  x               2    2[COMRAM] int 
+  1731 ;; Return value:  Size  Location     Type
+  1732 ;;		None               void
+  1733 ;; Registers used:
+  1734 ;;		wreg, status,2, status,0
+  1735 ;; Tracked objects:
+  1736 ;;		On entry : 0/0
+  1737 ;;		On exit  : 0/0
+  1738 ;;		Unchanged: 0/0
+  1739 ;; Data sizes:     COMRAM   BANK0
+  1740 ;;      Params:         0       0
+  1741 ;;      Locals:         3       0
+  1742 ;;      Temps:          1       0
+  1743 ;;      Totals:         4       0
+  1744 ;;Total ram usage:        4 bytes
+  1745 ;; Hardware stack levels used:    1
+  1746 ;; This function calls:
+  1747 ;;		Nothing
+  1748 ;; This function is called by:
+  1749 ;;		_LCDwrchar
+  1750 ;;		_LCDwrcmd
+  1751 ;;		_LCDsetaddr
+  1752 ;; This function uses a non-reentrant model
+  1753 ;;
+  1754                           
+  1755                           	psect	text7
+  1756  000632                     __ptext7:
+  1757                           	opt stack 0
+  1758  000632                     _LCDdata:
+  1759                           	opt stack 29
+  1760                           
+  1761                           ;incstack = 0
+  1762                           ;LCDdata@data stored from wreg
+  1763  000632  6E02               	movwf	LCDdata@data,c
+  1764                           
+  1765                           ;Hitachi_LCD.c: 16: int x;
+  1766                           ;Hitachi_LCD.c: 17: for(x=0;x<8;x++)
+  1767  000634  0E00               	movlw	0
+  1768  000636  6E04               	movwf	LCDdata@x+1,c
+  1769  000638  0E00               	movlw	0
+  1770  00063A  6E03               	movwf	LCDdata@x,c
+  1771  00063C  BE04               	btfsc	LCDdata@x+1,7,c
+  1772  00063E  D008               	goto	l990
+  1773  000640  5004               	movf	LCDdata@x+1,w,c
+  1774  000642  E121               	bnz	l126
+  1775  000644  0E08               	movlw	8
+  1776  000646  5C03               	subwf	LCDdata@x,w,c
+  1777  000648  B0D8               	btfsc	status,0,c
+  1778  00064A  D01D               	goto	l126
+  1779  00064C  D001               	goto	l990
+  1780  00064E  D01B               	goto	l126
+  1781  000650                     l990:
+  1782                           
+  1783                           ;Hitachi_LCD.c: 18: {
+  1784                           ;Hitachi_LCD.c: 19: LATAbits.LATA6=data & 0x1 ? 1:0;
+  1785  000650  A002               	btfss	LCDdata@data,0,c
+  1786  000652  D003               	goto	u380
+  1787  000654  6A01               	clrf	??_LCDdata& (0+255),c
+  1788  000656  2A01               	incf	??_LCDdata& (0+255),f,c
+  1789  000658  D001               	goto	u398
+  1790  00065A                     u380:
+  1791  00065A  6A01               	clrf	??_LCDdata& (0+255),c
+  1792  00065C                     u398:
+  1793  00065C  3A01               	swapf	??_LCDdata,f,c
+  1794  00065E  4601               	rlncf	??_LCDdata,f,c
+  1795  000660  4601               	rlncf	??_LCDdata,f,c
+  1796  000662  5089               	movf	3977,w,c	;volatile
+  1797  000664  1801               	xorwf	??_LCDdata,w,c
+  1798  000666  0BBF               	andlw	-65
+  1799  000668  1801               	xorwf	??_LCDdata,w,c
+  1800  00066A  6E89               	movwf	3977,c	;volatile
+  1801                           
+  1802                           ;Hitachi_LCD.c: 20: __nop();
+  1803  00066C  F000               	nop	
+  1804                           
+  1805                           ;Hitachi_LCD.c: 21: LATBbits.LATB2=1;
+  1806  00066E  848A               	bsf	3978,2,c	;volatile
+  1807                           
+  1808                           ;Hitachi_LCD.c: 22: __nop();
+  1809  000670  F000               	nop	
+  1810                           
+  1811                           ;Hitachi_LCD.c: 23: LATBbits.LATB2=0;
+  1812  000672  948A               	bcf	3978,2,c	;volatile
+  1813                           
+  1814                           ;Hitachi_LCD.c: 24: data>>=1;
+  1815  000674  90D8               	bcf	status,0,c
+  1816  000676  3202               	rrcf	LCDdata@data,f,c
+  1817  000678  4A03               	infsnz	LCDdata@x,f,c
+  1818  00067A  2A04               	incf	LCDdata@x+1,f,c
+  1819  00067C  BE04               	btfsc	LCDdata@x+1,7,c
+  1820  00067E  D7E8               	goto	l990
+  1821  000680  5004               	movf	LCDdata@x+1,w,c
+  1822  000682  E101               	bnz	u400
+  1823  000684  D7DF               	goto	L8
+  1824  000686                     u400:
+  1825  000686                     l126:
+  1826                           
+  1827                           ;Hitachi_LCD.c: 25: }
+  1828                           ;Hitachi_LCD.c: 26: __nop();
+  1829  000686  F000               	nop	
+  1830                           
+  1831                           ;Hitachi_LCD.c: 27: LATAbits.LATA7=1;
+  1832  000688  8E89               	bsf	3977,7,c	;volatile
+  1833                           
+  1834                           ;Hitachi_LCD.c: 28: __nop();
+  1835  00068A  F000               	nop	
+  1836                           
+  1837                           ;Hitachi_LCD.c: 29: LATAbits.LATA7=0;
+  1838  00068C  9E89               	bcf	3977,7,c	;volatile
+  1839  00068E  0012               	return		;funcret
+  1840  000690                     __end_of_LCDdata:
+  1841                           	opt stack 0
+  1842                           tblptru	equ	0xFF8
+  1843                           tblptrh	equ	0xFF7
+  1844                           tblptrl	equ	0xFF6
+  1845                           tablat	equ	0xFF5
+  1846                           prodh	equ	0xFF4
+  1847                           prodl	equ	0xFF3
+  1848                           intcon	equ	0xFF2
+  1849                           postinc0	equ	0xFEE
+  1850                           wreg	equ	0xFE8
+  1851                           indf1	equ	0xFE7
+  1852                           postdec1	equ	0xFE5
+  1853                           plusw1	equ	0xFE3
+  1854                           fsr1h	equ	0xFE2
+  1855                           fsr1l	equ	0xFE1
+  1856                           indf2	equ	0xFDF
+  1857                           plusw2	equ	0xFDB
+  1858                           fsr2h	equ	0xFDA
+  1859                           fsr2l	equ	0xFD9
+  1860                           status	equ	0xFD8
+  1861                           tblptru	equ	0xFF8
+  1862                           tblptrh	equ	0xFF7
+  1863                           tblptrl	equ	0xFF6
+  1864                           tablat	equ	0xFF5
+  1865                           prodh	equ	0xFF4
+  1866                           prodl	equ	0xFF3
+  1867                           intcon	equ	0xFF2
+  1868                           postinc0	equ	0xFEE
+  1869                           wreg	equ	0xFE8
+  1870                           indf1	equ	0xFE7
+  1871                           postdec1	equ	0xFE5
+  1872                           plusw1	equ	0xFE3
+  1873                           fsr1h	equ	0xFE2
+  1874                           fsr1l	equ	0xFE1
+  1875                           indf2	equ	0xFDF
+  1876                           plusw2	equ	0xFDB
+  1877                           fsr2h	equ	0xFDA
+  1878                           fsr2l	equ	0xFD9
+  1879                           status	equ	0xFD8
+  1880                           
+  1881                           	psect	rparam
+  1882  0000                     tblptru	equ	0xFF8
+  1883                           tblptrh	equ	0xFF7
+  1884                           tblptrl	equ	0xFF6
+  1885                           tablat	equ	0xFF5
+  1886                           prodh	equ	0xFF4
+  1887                           prodl	equ	0xFF3
+  1888                           intcon	equ	0xFF2
+  1889                           postinc0	equ	0xFEE
+  1890                           wreg	equ	0xFE8
+  1891                           indf1	equ	0xFE7
+  1892                           postdec1	equ	0xFE5
+  1893                           plusw1	equ	0xFE3
+  1894                           fsr1h	equ	0xFE2
+  1895                           fsr1l	equ	0xFE1
+  1896                           indf2	equ	0xFDF
+  1897                           plusw2	equ	0xFDB
+  1898                           fsr2h	equ	0xFDA
+  1899                           fsr2l	equ	0xFD9
+  1900                           status	equ	0xFD8
 
 
 Data Sizes:
-    Strings     0
+    Strings     34
     Constant    0
-    Data        0
-    BSS         0
+    Data        123
+    BSS         2
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMRAM          127      1       1
-    BANK0           128      0       0
+    COMRAM          127     35      48
+    BANK0           128      0     112
 
 Pointer List with Targets:
 
-    None.
+    LCDwrstring@string	PTR const unsigned char  size(2) Largest target is 17
+		 -> STR_5(CODE[5]), STR_4(CODE[5]), STR_3(CODE[5]), STR_2(CODE[17]), 
+		 -> STR_1(CODE[17]), 
+
 
 Critical Paths under _main in COMRAM
 
-    None.
+    _main->_DefaultMenu
+    _DefaultMenu->_LCDwrstring
+    _LCDwrstring->_LCDwrchar
+    _LCDwrchar->_LCDdata
+    _LCDwrcmd->_LCDdata
+    _LCDsetaddr->_LCDdata
 
 Critical Paths under _main in BANK0
 
@@ -250,50 +1945,144 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 1     1      0       0
-                                              0 COMRAM     1     1      0
+ (0) _main                                                 1     1      0    2423
+                                             34 COMRAM     1     1      0
+                        _DefaultMenu
+                           _LCDwrcmd
  ---------------------------------------------------------------------------------
- Estimated maximum stack depth 0
+ (1) _DefaultMenu                                         27    27      0    2332
+                                              7 COMRAM    27    27      0
+                         _LCDsetaddr
+                          _LCDwrchar
+                           _LCDwrcmd
+                        _LCDwrstring
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (2) ___wmul                                               6     2      4     287
+                                              0 COMRAM     6     2      4
+ ---------------------------------------------------------------------------------
+ (2) _LCDwrstring                                          2     0      2     456
+                                              5 COMRAM     2     0      2
+                          _LCDwrchar
+ ---------------------------------------------------------------------------------
+ (3) _LCDwrchar                                            1     1      0      91
+                                              4 COMRAM     1     1      0
+                            _LCDdata
+ ---------------------------------------------------------------------------------
+ (1) _LCDwrcmd                                             1     1      0      91
+                                              4 COMRAM     1     1      0
+                            _LCDdata
+ ---------------------------------------------------------------------------------
+ (2) _LCDsetaddr                                           1     1      0      91
+                                              4 COMRAM     1     1      0
+                            _LCDdata
+ ---------------------------------------------------------------------------------
+ (2) _LCDdata                                              4     4      0      69
+                                              0 COMRAM     4     4      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
+   _DefaultMenu
+     _LCDsetaddr
+       _LCDdata
+     _LCDwrchar
+       _LCDdata
+     _LCDwrcmd
+       _LCDdata
+     _LCDwrstring
+       _LCDwrchar
+         _LCDdata
+     ___wmul
+   _LCDwrcmd
+     _LCDdata
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BITCOMRAM           7F      0       0       0        0.0%
 EEDATA             100      0       0       0        0.0%
-NULL                 0      0       0       0        0.0%
-CODE                 0      0       0       0        0.0%
-COMRAM              7F      1       1       1        0.8%
-STACK                0      0       0       2        0.0%
-BITBANK0            80      0       0       3        0.0%
-BANK0               80      0       0       4        0.0%
-ABS                  0      0       0       5        0.0%
 BIGRAM              FF      0       0       6        0.0%
-DATA                 0      0       0       7        0.0%
+BITBANK0            80      0       0       3        0.0%
+BANK0               80      0      70       4       87.5%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F     23      30       1       37.8%
 BITSFR               0      0       0      40        0.0%
 SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      A0       5        0.0%
+DATA                 0      0      A0       7        0.0%
+CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.34 build -361300703 
-Symbol Table                                                                                   Mon Oct 12 07:38:07 2015
+Symbol Table                                                                                   Mon Oct 26 16:45:18 2015
 
-                     l22 0FB4                       l24 0FAC                       l34 0FF4  
-                     l27 0FD8                       l29 0FD0                      l627 0F90  
-                    u107 0F9A                      u117 0FBE                      u127 0FE2  
-           __CFG_BOR$OFF 000000                      wreg 000FE8             __CFG_LVP$OFF 000000  
-           __CFG_WDT$OFF 000000                     _LATA 000F89                     _LATB 000F8A  
-           __CFG_PWRT$ON 000000             __CFG_STVR$ON 000000                     _main 0F76  
-                   start 0002            __CFG_FSCM$OFF 000000            __CFG_IESO$OFF 000000  
-          __CFG_MCLRE$ON 000000             ___param_bank 000010                    ?_main 0001  
-                  _TRISA 000F92                    _TRISB 000F93          __initialization 0F70  
-           __end_of_main 1000                   ??_main 0001            __activetblptr 000000  
-                 _ADCON1 000FC1               __accesstop 0080  __end_of__initialization 0F70  
-          ___rparam_used 000001           __pcstackCOMRAM 0001          __CFG_OSC$INTIO2 000000  
-                __Hparam 0000                  __Lparam 0000                  __pcinit 0F70  
-                __ramtop 0100                  __ptext0 0F76     end_of_initialization 0F70  
-              _PORTAbits 000F80      start_initialization 0F70                 _LATBbits 000F8A  
-               __Hrparam 0000                 __Lrparam 0000            __size_of_main 008A  
-             _OSCCONbits 000FD3  
+                     l55 0288                       l64 0280                       l67 031A  
+                     l76 0312                       l93 049A                       l79 04A2  
+    ___wmul@multiplicand 0003                      l110 055E                      l126 0686  
+                    l145 0730                      l990 0650                      u400 0686  
+                    u421 0136                      u380 065A                      u710 0554  
+                    u720 0556                      u398 065C                      u680 051E  
+                    u737 0620                      u690 0520                      u747 0200  
+                    u757 0292                      u767 0324                      u777 0764  
+                    u787 0780                      u797 0748             __CFG_BOR$OFF 000000  
+                    prod 000FF3                      wreg 000FE8             __CFG_LVP$OFF 000000  
+        __end_of_LCDdata 0690             __CFG_WDT$OFF 000000                     l1100 0238  
+                   l1104 025E                     l1042 06E0                     l1130 02FA  
+                   l1106 0268                     l1132 0302                     l1124 02CA  
+                   l1108 0270                     l1060 0146                     l1046 06F6  
+                   l1070 0176                     l1160 03D6                     l1136 030E  
+                   l1128 02F0                     l1064 015A                     l1162 03FE  
+                   l1170 047E                     l1066 0162                     l1082 01D0  
+                   l1180 04DA                     l1164 0428                     l1156 03C4  
+                   l1148 0352                     l1190 0536                     l1182 04F4  
+                   l1166 0454                     l1158 03CE                     l1078 01C8  
+                   l1192 0540                     l1088 01F6                     l1186 0526  
+                   l1194 0548              ?_LCDsetaddr 0001                     STR_1 0101  
+                   STR_2 0112                     STR_3 011E                     STR_4 011E  
+                   STR_5 011E                     _LATA 000F89                     _LATB 000F8A  
+           __CFG_PWRT$ON 000000             __CFG_STVR$ON 000000                     _main 05D2  
+                   fsr2h 000FDA                     indf1 000FE7                     fsr1l 000FE1  
+                   indf2 000FDF                     fsr2l 000FD9                     prodh 000FF4  
+                   prodl 000FF3                     start 0002            __CFG_FSCM$OFF 000000  
+          __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000             ___param_bank 000010  
+     __size_of_LCDwrchar 001C                    ?_main 0001                    _T0CON 000FD5  
+       __end_of_LCDwrcmd 0788                    _TMR0H 000FD7                    _TMR0L 000FD6  
+                  _TRISA 000F92                    _TRISB 000F93              _DefaultMenu 0124  
+        DefaultMenu@last 0016                    tablat 000FF5             ?_LCDwrstring 0006  
+                  plusw1 000FE3                    plusw2 000FDB                    status 000FD8  
+            LCDdata@data 0002          __initialization 0690             __end_of_main 0632  
+    __size_of_LCDsetaddr 001E                   ??_main 0023            __activetblptr 000002  
+              ??_LCDdata 0001        LCDwrstring@string 0006                   _ADCON1 000FC1  
+      __end_of_LCDwrchar 076C         DefaultMenu@F2818 0024                   ___wmul 070A  
+           __pdataCOMRAM 0024             __mediumconst 0000                   tblptrh 000FF7  
+                 tblptrl 000FF6                   tblptru 000FF8               __accesstop 0080  
+__end_of__initialization 06D4            ___rparam_used 000001                ?_LCDwrcmd 0001  
+         __pcstackCOMRAM 0001             __pidataBANK0 0562          __CFG_OSC$INTIO2 000000  
+           ??_LCDsetaddr 0005     __size_of_LCDwrstring 002C               ??_LCDwrcmd 0005  
+                ?___wmul 0001       __end_of_LCDsetaddr 0750             ?_DefaultMenu 0001  
+                _LCDdata 0632                  __Hparam 0000                  __Lparam 0000  
+        __size_of___wmul 0028             __psmallconst 0100                  __pcinit 0690  
+                __ramtop 0100                  __ptext0 05D2                  __ptext1 0124  
+                __ptext2 070A                  __ptext3 06DE                  __ptext4 0750  
+                __ptext5 076C                  __ptext6 0732                  __ptext7 0632  
+   end_of_initialization 06D4            __Lmediumconst 0000                _LCDwrchar 0750  
+                postdec1 000FE5                  postinc0 000FEE                _PORTAbits 000F80  
+        _DefaultMenu$480 000C          _DefaultMenu$481 000E          _DefaultMenu$483 0010  
+        _DefaultMenu$478 000A             DefaultMenu@x 0012             DefaultMenu@y 0014  
+             ?_LCDwrchar 0001        __size_of_LCDwrcmd 001C           __end_of___wmul 0732  
+          __pidataCOMRAM 0788      start_initialization 0690     __size_of_DefaultMenu 043E  
+    DefaultMenu@MenuItem 0018                 ??___wmul 0005              __pdataBANK0 0080  
+               ?_LCDdata 0001              __pbssCOMRAM 002F                 LCDdata@x 0003  
+          ??_LCDwrstring 0008              ??_LCDwrchar 0005              __smallconst 0100  
+         ___wmul@product 0005                 _LATAbits 000F89                 _LATBbits 000F8A  
+               _LCDwrcmd 076C      __end_of_LCDwrstring 070A     _Default_Menu_Bitmaps 0080  
+               _RCONbits 000FD0        ___wmul@multiplier 0001           _CharacterBlink 002F  
+       __size_of_LCDdata 005E                copy_data0 06A8                copy_data1 06C8  
+               __Hrparam 0000                 __Lrparam 0000          LCDwrchar@letter 0005  
+          LCDsetaddr@add 0005              _LCDwrstring 06DE            __size_of_main 0060  
+          ??_DefaultMenu 0008               _INTCONbits 000FF2               _LCDsetaddr 0732  
+             _OSCCONbits 000FD3            LCDwrcmd@value 0005      __end_of_DefaultMenu 0562  

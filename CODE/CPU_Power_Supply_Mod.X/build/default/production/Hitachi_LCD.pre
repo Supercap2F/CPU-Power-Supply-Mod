@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "Hitachi_LCD.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.34\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3491,256 +3491,58 @@ void LCDwrstring(const unsigned char *string);
 void LCDwrcmd(unsigned char value);
 void LCDsetaddr(unsigned char add);
 
-# 8 "Bitmaps.c"
-int Default_Menu_Bitmaps[8][7]={
-0b00000100,
-0b00000100,
-0b00010101,
-0b00010001,
-0b00010001,
-0b00001110,
-0b00000000,
-
-0b00011011,
-0b00011011,
-0b00001010,
-0b00001110,
-0b00001110,
-0b00010001,
-0b00011111,
-
-0b00001110,
-0b00000100,
-0b00001010,
-0b00001010,
-0b00001110,
-0b00001110,
-0b00001110,
-
-0b00000000,
-0b00001111,
-0b00001111,
-0b00000001,
-0b00001111,
-0b00001111,
-0b00000000,
-
-0b00001110,
-0b00001110,
-0b00000110,
-0b00001010,
-0b00001100,
-0b00001110,
-0b00001110,
-
-0b00001110,
-0b00001110,
-0b00001110,
-0b00001110,
-0b00001110,
-0b00001110,
-0b00010001,
-
-0b00011111,
-0b00011110,
-0b00011101,
-0b00011011,
-0b00010111,
-0b00001111,
-0b00011111,
-
-0b00000000,
-0b00000000,
-0b00001010,
-0b00001110,
-0b00000100,
-0b00000000,
-0b00000000
-};
-
-
-# 21 "main.c"
-#pragma config OSC=INTIO2
-#pragma config FSCM=OFF
-#pragma config IESO=OFF
-#pragma config PWRT=ON
-#pragma config BOR=OFF
-#pragma config WDT=OFF
-#pragma config MCLRE=ON
-#pragma config LVP=OFF
-#pragma config STVR=ON
-
-# 34
-void DefaultMenu(void);
-void interrupt isr(void);
-
-# 40
-int CharacterBlink=0;
-
-# 45
-int main()
+# 14 "Hitachi_LCD.c"
+void LCDdata(unsigned char data)
 {
-
-# 51
-OSCCONbits.IRCF0=1;
-OSCCONbits.IRCF1=1;
-OSCCONbits.IRCF2=1;
-
-# 65
-TRISA=0b00010011;
-LATA=0b00000000;
-ADCON1=0b11111111;
-
-TRISB=0b00000000;
-LATB=0b00000000;
-
-LATBbits.LATB1=1;
-LATBbits.LATB0=1;
-LATBbits.LATB7=1;
-LATBbits.LATB6=1;
-
-# 80
-RCONbits.IPEN=0;
-
-# 90
-TMR0L=0;
-TMR0H=0;
-T0CON=0b10010011;
-
-
-
-INTCONbits.TMR0IF=0;
-
-# 102
-LCDwrcmd(0b00111100);
-LCDwrcmd(0b00000110);
-LCDwrcmd(0b00001100);
-LCDwrcmd(0b00000001);
-_delay((unsigned long)((2)*(0x7A1200/4000.0)));
-
-DefaultMenu();
-}
-
-# 116
-void DefaultMenu(void)
+int x;
+for(x=0;x<8;x++)
 {
+LATAbits.LATA6=data & 0x1 ? 1:0;
+__nop();
+LATBbits.LATB2=1;
+__nop();
+LATBbits.LATB2=0;
+data>>=1;
+}
+__nop();
+LATAbits.LATA7=1;
+__nop();
+LATAbits.LATA7=0;
+}
 
-# 121
-int x,y;
-int last=0;
-struct MenuDisplay {
-unsigned char Addr[5];
-unsigned char CurrentSelect;
-unsigned char ONorOFF[5];
-};
-
-struct MenuDisplay MenuItem = {
-0x04,0x09,0x0F,0x45,0x4C,
-0,
-0,0,0,0,0
-};
-
-# 138
-for(y=0;y<8;y++)
-for(x=0;x<7;x++)
+void LCDwrchar(unsigned char letter)
 {
-LCDwrcmd((0b01000000|x)|(y<<3));
-LCDwrchar(Default_Menu_Bitmaps[y][x]);
+LATBbits.LATB4=1;
+LATBbits.LATB5=0;
+LCDdata(letter);
+LATBbits.LATB3=1;
+_delay(2);
+LATBbits.LATB3=0;
+_delay((unsigned long)((37)*(0x7A1200/4000000.0)));
 }
-LCDsetaddr(0);
-
-LCDwrstring("12V=/ 5V=/ 3V3=/");
-LCDsetaddr(0x40);
-LCDwrstring("-12V=/      MENU");
-
-# 155
-while(1) {
-if(PORTAbits.RA4==1) {
-_delay((unsigned long)((12)*(0x7A1200/4000.0)));
-if(PORTAbits.RA4==1) {
-LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-if(MenuItem.CurrentSelect==4)
-LCDwrstring("MENU");
-else
-LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-
-
-
-
-MenuItem.CurrentSelect++;
-if(MenuItem.CurrentSelect==5)
-MenuItem.CurrentSelect=0;
-while(PORTAbits.RA4==1);
+void LCDwrstring(const unsigned char *string)
+{
+while(*string)
+{
+LCDwrchar(*string);
+string++;
 }
 }
-
-if(PORTAbits.RA1==1) {
-_delay((unsigned long)((12)*(0x7A1200/4000.0)));
-if(PORTAbits.RA1==1) {
-LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-if(MenuItem.CurrentSelect==4)
-LCDwrstring("MENU");
-else
-LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-
-if(MenuItem.CurrentSelect==0)
-MenuItem.CurrentSelect=5;
-MenuItem.CurrentSelect--;
-while(PORTAbits.RA1==1);
+void LCDwrcmd(unsigned char value)
+{
+LATBbits.LATB4=0, LATBbits.LATB5=0;
+LCDdata(value);
+LATBbits.LATB3=1;
+_delay(2);
+LATBbits.LATB3=0;
+_delay((unsigned long)((37)*(0x7A1200/4000000.0)));
 }
+void LCDsetaddr(unsigned char add)
+{
+LATBbits.LATB4=0, LATBbits.LATB5=0;
+LCDdata(add|0b10000000);
+LATBbits.LATB3=1;
+_delay(2);
+LATBbits.LATB3=0;
+_delay((unsigned long)((37)*(0x7A1200/4000000.0)));
 }
-
-if(PORTAbits.RA0==1) {
-_delay((unsigned long)((12)*(0x7A1200/4000.0)));
-if(PORTAbits.RA0==1) {
-LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-if(MenuItem.CurrentSelect==4) {
-
-}
-else {
-MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-switch(MenuItem.CurrentSelect) {
-case 0:
-LATBbits.LATB1=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-break;
-case 1:
-LATBbits.LATB7=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-break;
-case 2:
-LATBbits.LATB6=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-break;
-case 3:
-LATBbits.LATB0=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-break;
-}
-}
-while(PORTAbits.RA0==1);
-}
-}
-
-if(INTCONbits.TMR0IF) {
-LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-if(MenuItem.CurrentSelect==4)
-if(last)
-LCDwrstring("MENU");
-else {
-LCDwrchar(0x02);
-LCDwrchar(0x03);
-LCDwrchar(0x04);
-LCDwrchar(0x05);
-}
-else
-if(MenuItem.ONorOFF[MenuItem.CurrentSelect])
-LCDwrchar(last ? 0:1);
-else
-LCDwrchar(last ? 0x2F:0x06);
-
-last=last ? 0:1;
-INTCONbits.TMR0IF=0;
-}
-}
-while(1);
-}
-

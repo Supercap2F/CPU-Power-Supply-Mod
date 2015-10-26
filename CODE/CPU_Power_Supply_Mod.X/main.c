@@ -8,28 +8,12 @@
  * Included files                              *
  ***********************************************/
 #include <xc.h>
-
+#include "CPU_Power_Supply_Mod.h"
+#include "Hitachi_LCD.h" // .h file with all display functions 
+#include "Bitmaps.c"     // c file with all the CGRAM data in it
 /***********************************************
  * Definitions                                 *
  ***********************************************/
-#define _XTAL_FREQ 0x7A1200 // set system clock to 8MHz
-
-#define SW1 PORTAbits.RA0 
-#define SW2 PORTAbits.RA1
-#define PN  LATAbits.LATA2 // power on
-#define PG  PORTAbits.RA3 // power good 
-#define SW3 PORTAbits.RA4
-#define SDI LATAbits.LATA6
-#define LCHCLK LATAbits.LATA7
-
-#define RLn12V LATBbits.LATB0
-#define RL12V  LATBbits.LATB1
-#define SHFCLK LATBbits.LATB2
-#define eLCD   LATBbits.LATB3
-#define rsLCD  LATBbits.LATB4
-#define rwLCD  LATBbits.LATB5
-#define RL5V   LATBbits.LATB6
-#define RL3V3  LATBbits.LATB7
 
 /***********************************************
  * Device configuration                        *
@@ -44,12 +28,23 @@
 #pragma config LVP=OFF    // low voltage programming is off
 #pragma config STVR=ON    // stack overflow will cause a reset 
 
+/***********************************************
+ * Function Definitions                        *
+ ***********************************************/
+void DefaultMenu(void); 
+void interrupt isr(void);
+
+/***********************************************
+ * Global Variables                            *
+ ***********************************************/
+int CharacterBlink=0;
 
 /***************************************************************
  * Program entry point - Main Function                         *
  ***************************************************************/
 int main()
 {
+    
     /***********************************************
      * Oscillator Configuration                    *
      ***********************************************/
@@ -74,33 +69,183 @@ int main()
     TRISB=0b00000000; //  set I/O ports to either input (1) or output (0)
     LATB=0b00000000;  // clear outputs
     
+    RL12V=1;
+    RLn12V=1;
+    RL5V=1;
+    RL3V3=1;
+    
+    /***********************************************
+     * interrupt Setup                             *
+     ***********************************************/
+    RCONbits.IPEN=0;     //Turn off interrupt priority
+    
+    /***********************************************
+     * Timer0 Setup                                *
+     ***********************************************
+     * Timer0 is for any blinking character on the *
+     * screen. When it interrupts it sets the      *
+     * variable "CharacterBlink" which should be   *
+     * polled and cleared in software.             *
+     ***********************************************/
+    TMR0L=0;             // clear the timer0 count 
+    TMR0H=0;             //
+    T0CON=0b10010011;    // setup timer0 so that:
+                         //      it is a 16 bit timer
+                         //      it counts on clock cycles
+                         //      it uses a prescaler set to 128 so the timer rolls over every 1.04s
+    INTCONbits.TMR0IF=0; // clear the timer 0 flag bit
+   
     /***********************************************
      * Main Code                                   *
      ***********************************************/
-    while(1) {
-        if(SW1==1) {
-            __delay_ms(8); // delay for 8 mS to debounce 
-            if(SW1==1){
-                RL3V3=~RL3V3; 
-                while(SW1==1); 
-            }
-        }    
-        
-        if(SW2==1) {
-            __delay_ms(8); // delay for 8 mS to debounce 
-            if(SW2==1){
-                RL5V =~RL5V; 
-                while(SW2==1);
-            }
-        } 
-        
-        if(SW3==1) {
-            __delay_ms(8); // delay for 8 mS to debounce 
-            if(SW3==1){
-                RL12V =~RL12V; 
-                while(SW3==1);
-            }
-        } 
-    }
+    //while(1) {
+       LCDwrcmd(0b00111100); // 8 bit mode
+       LCDwrcmd(0b00000110); // address counter will increment
+       LCDwrcmd(0b00001100); // cursor off display on blink off
+       LCDwrcmd(0b00000001); // clear display
+       __delay_ms(2);
+       
+       DefaultMenu();  
 }
+
+
+/***************************************************************
+ * DefaultMenu Function                                        *
+ ***************************************************************/
+void DefaultMenu(void)
+{
+    /***********************************************
+     * Variable Definitions                        *
+     ***********************************************/
+    int x,y;    // random variables  
+    int last=0; // variable the keeps track of the last cursor state
+    
+    struct MenuDisplay {             // structure that holds general information
+        unsigned char Addr[5];       // addresses of each place the cursor can be
+        unsigned char CurrentSelect; // current place where the cursor is 
+        unsigned char ONorOFF[5];    // variable that keeps track of each voltages on/off state
+    };
+    
+    struct MenuDisplay MenuItem = {  // create the structure 
+        0x04,0x09,0x0F,0x45,0x4C,    // fill up the Addr variable 
+        0,                           // fill up the CurrentSelect variable 
+        0,0,0,0,0                    // fill up the ONorOFF variable 
+    };
+    
+    /***********************************************
+     * Setup the LCD                               *
+     ***********************************************/
+    for(y=0;y<8;y++) // this loop loads the custom characters into the CGRAM
+            for(x=0;x<7;x++)
+            {
+                LCDwrcmd((0b01000000|x)|(y<<3));
+                LCDwrchar(Default_Menu_Bitmaps[y][x]);
+            }
+   LCDsetaddr(0); // set address to start - else it will still write to the CGRAM
+   
+   LCDwrstring("12V=/ 5V=/ 3V3=/"); // default menu screen (all outputs off)
+   LCDsetaddr(0x40);                //
+   LCDwrstring("-12V=/      MENU"); //
+   
+   /***********************************************
+    * This loop scans the keyboard and the TMR0   *
+    * flag, and updates the screen/relay states   *
+    * accordingly                                 *
+    ***********************************************/
+   while(1) {
+       if(SW3==1) {        // check to see if the move right key was pressed 
+           __delay_ms(12); // debounce if it looks like it was pressed 
+           if(SW3==1) {    // if it was pressed
+               LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]); // set the cursor to the current address 
+               if(MenuItem.CurrentSelect==4)                      // if the current address is the menu option
+                   LCDwrstring("MENU");                           //    set it to "MENU" to make sure it's not highlighted
+               else                                               //    when current selection is switched 
+                   LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F); // else 
+                                                                  //    make sure either the power symbol or the '/' symbol
+                                                                  //    aren't highlighted (according to if the voltage is
+                                                                  //    on or off)
+               
+               MenuItem.CurrentSelect++;     // change where the cursor is 
+               if(MenuItem.CurrentSelect==5) // if it equals five (i.e. if it's off the screen)
+                   MenuItem.CurrentSelect=0; //     then move it to the first place on the screen 
+               while(SW3==1);                // wait for the switch to be let off of before moving forward in the code 
+           }
+       }
+       
+       if(SW2==1) {        // check to see if the move left key was pressed 
+           __delay_ms(12); // debounce if it looks like it was pressed 
+           if(SW2==1) {    // if it was pressed 
+               LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]); // set the cursor to the current address 
+               if(MenuItem.CurrentSelect==4)                      // if the current address is the menu option
+                   LCDwrstring("MENU");                           //    set it to "MENU" to make sure it's not highlighted 
+               else                                               //    when current selection is switched 
+                   LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F); // else 
+                                                                  //    make sure either the power symbol or the '/' symbol
+                                                                  //    aren't highlighted (according to if the voltage is
+                                                                  //    on or off)
+               
+               if(MenuItem.CurrentSelect==0) // if the current selection is zero 
+                   MenuItem.CurrentSelect=5; //     set it to 5 so a negative number is not created 
+               MenuItem.CurrentSelect--;     // change where the cursor is 
+               while(SW2==1);                // wait for the switch to be let off of before moving forward in the code 
+           }
+       }
+       
+       if(SW1==1) {        // check to see if the select key was pressed
+           __delay_ms(12); // debounce if it looks like it was pressed
+           if(SW1==1) {    // if it was pressed 
+               if(MenuItem.CurrentSelect==4) {                    // if the current selection is "MENU"
+                   // put menu function here                                                     
+               }
+               else {                                                               // else 
+                   MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.CurrentSelect]; // invert the current state
+                                                                                    // of the selected voltage 
+                   LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);               // set the cursor to the current selection                  
+                   LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F); // depending on what state the selections is
+                                                                                    // being changed to, put up the correct symbol
+                   switch(MenuItem.CurrentSelect) {                                 // this switch turns on/off the appropriate 
+                       case 0:                                                      // relay based upon the selection 
+                           RL12V=~MenuItem.ONorOFF[MenuItem.CurrentSelect];         //
+                           break;                                                   //
+                       case 1:                                                      //
+                           RL5V=~MenuItem.ONorOFF[MenuItem.CurrentSelect];          //
+                           break;                                                   //
+                       case 2:                                                      //
+                           RL3V3=~MenuItem.ONorOFF[MenuItem.CurrentSelect];         //
+                           break;                                                   //
+                       case 3:                                                      //
+                           RLn12V=~MenuItem.ONorOFF[MenuItem.CurrentSelect];        //
+                           break;                                                   //
+                   }
+               }
+               while(SW1==1); // wait for the switch to be let off of before moving forward in the code 
+           }
+       }
+       
+       if(INTCONbits.TMR0IF) {           // if the TMR0 flag is set (i.e. the cursor needs to change state)
+           LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]); // set the cursor to the current address
+           if(MenuItem.CurrentSelect==4)                      // if it's on "MENU"
+               if(last)                                       //    invert it based upon it's last state 
+                   LCDwrstring("MENU");                       //
+               else {                                         //
+                   LCDwrchar(0x02);                           //
+                   LCDwrchar(0x03);                           //
+                   LCDwrchar(0x04);                           //
+                   LCDwrchar(0x05);                           //
+               }
+           else                                               // if it's on anything besides "MENU"
+               if(MenuItem.ONorOFF[MenuItem.CurrentSelect])   //    invert it based upon it's last state 
+                   LCDwrchar(last ? 0:1);                     //
+               else                                           //
+                   LCDwrchar(last ? 0x2F:0x06);               //
+      
+           last=last ? 0:1;     // invert the last variable so the last cursor state can be kept track of 
+           INTCONbits.TMR0IF=0; // reset the TMR0 flag    
+       } 
+   }
+   while(1);
+}
+
+
+
 

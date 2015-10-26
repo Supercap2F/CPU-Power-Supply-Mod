@@ -1,27 +1,40 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[p mainexit ]
-"3492 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
-[s S190 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S190 . SCS0 SCS1 IOFS OSTS IRCF IDLEN ]
-"3500
-[s S191 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S191 . SCS . FLTS . IRCF0 IRCF1 IRCF2 ]
-"3491
-[u S189 `S190 1 `S191 1 ]
-[n S189 . . . ]
-"3510
-[v _OSCCONbits `VS189 ~T0 @X0 0 e@4051 ]
-"748
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"489
-[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-"2707
-[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
-"949
-[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"616
-[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
-"622
+"495 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
+[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . LATA0 LATA1 LATA2 LATA3 LATA4 . LATA6 LATA7 ]
+"505
+[s S20 :1 `uc 1 ]
+[n S20 . LA0 ]
+"508
+[s S21 :1 `uc 1 :1 `uc 1 ]
+[n S21 . . LA1 ]
+"512
+[s S22 :2 `uc 1 :1 `uc 1 ]
+[n S22 . . LA2 ]
+"516
+[s S23 :3 `uc 1 :1 `uc 1 ]
+[n S23 . . LA3 ]
+"520
+[s S24 :4 `uc 1 :1 `uc 1 ]
+[n S24 . . LA4 ]
+"524
+[s S25 :5 `uc 1 :1 `uc 1 ]
+[n S25 . . LA5 ]
+"528
+[s S26 :6 `uc 1 :1 `uc 1 ]
+[n S26 . . LA6 ]
+"532
+[s S27 :7 `uc 1 :1 `uc 1 ]
+[n S27 . . LA7 ]
+"494
+[u S18 `S19 1 `S20 1 `S21 1 `S22 1 `S23 1 `S24 1 `S25 1 `S26 1 `S27 1 ]
+[n S18 . . . . . . . . . . ]
+"537
+[v _LATAbits `VS18 ~T0 @X0 0 e@3977 ]
+"42 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"622 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
 [s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S29 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
 "632
@@ -53,98 +66,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S28 . . . . . . . . . . ]
 "664
 [v _LATBbits `VS28 ~T0 @X0 0 e@3978 ]
-"3275
-[s S176 :1 `uc 1 ]
-[n S176 . NOT_BOR ]
-"3278
-[s S177 :1 `uc 1 :1 `uc 1 ]
-[n S177 . . NOT_POR ]
-"3282
-[s S178 :2 `uc 1 :1 `uc 1 ]
-[n S178 . . NOT_PD ]
-"3286
-[s S179 :3 `uc 1 :1 `uc 1 ]
-[n S179 . . NOT_TO ]
-"3290
-[s S180 :4 `uc 1 :1 `uc 1 ]
-[n S180 . . NOT_RI ]
-"3294
-[s S181 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S181 . nBOR nPOR nPD nTO nRI . IPEN ]
-"3303
-[s S182 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S182 . BOR POR PD TO RI ]
-"3274
-[u S175 `S176 1 `S177 1 `S178 1 `S179 1 `S180 1 `S181 1 `S182 1 ]
-[n S175 . . . . . . . . ]
-"3311
-[v _RCONbits `VS175 ~T0 @X0 0 e@4048 ]
-"3651
-[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
-"3657
-[v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
-"3569
-[v _T0CON `Vuc ~T0 @X0 0 e@4053 ]
-"4075
-[s S209 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S209 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"4085
-[s S210 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S210 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
-"4095
-[s S211 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S211 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
-"4105
-[s S212 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S212 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"4115
-[s S213 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S213 . . INTF . INTE . GIEL GIEH ]
-"4074
-[u S208 `S209 1 `S210 1 `S211 1 `S212 1 `S213 1 ]
-[n S208 . . . . . . ]
-"4125
-[v _INTCONbits `VS208 ~T0 @X0 0 e@4082 ]
-"27 Hitachi_LCD.h
-[v _LCDwrcmd `(v ~T0 @X0 0 ef1`uc ]
 [v F2782 `(v ~T0 @X0 1 tf1`ul ]
 "161 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18.h
 [v __delay `JF2782 ~T0 @X0 0 e ]
 [p i __delay ]
-"34 main.c
-[v _DefaultMenu `(v ~T0 @X0 0 ef ]
-"25 Hitachi_LCD.h
-[v _LCDwrchar `(v ~T0 @X0 0 ef1`uc ]
-"28
-[v _LCDsetaddr `(v ~T0 @X0 0 ef1`uc ]
-"26
-[v _LCDwrstring `(v ~T0 @X0 0 ef1`*Cuc ]
-"55 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
-[s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-"65
-[s S3 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S3 . AN0 AN1 AN2 AN3 . MCLR CLKO CLKI ]
-"75
-[s S4 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S4 . . LVDIN VREFM VREFP T0CKI . OSC2 OSC1 ]
-"85
-[s S5 :5 `uc 1 :1 `uc 1 ]
-[n S5 . . NOT_MCLR ]
-"89
-[s S6 :5 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S6 . . nMCLR CLKOUT CLKIN ]
-"95
-[s S7 :7 `uc 1 :1 `uc 1 ]
-[n S7 . . RJPU ]
-"99
-[s S8 :1 `uc 1 ]
-[n S8 . ULPWUIN ]
-"54
-[u S1 `S2 1 `S3 1 `S4 1 `S5 1 `S6 1 `S7 1 `S8 1 ]
-[n S1 . . . . . . . . ]
-"103
-[v _PORTAbits `VS1 ~T0 @X0 0 e@3968 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f1220.h: 49: extern volatile unsigned char PORTA @ 0xF80;
@@ -2751,716 +2676,207 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Hitachi_LCD.h: 26: void LCDwrstring(const unsigned char *string);
 [; ;Hitachi_LCD.h: 27: void LCDwrcmd(unsigned char value);
 [; ;Hitachi_LCD.h: 28: void LCDsetaddr(unsigned char add);
-[v F2800 `i ~T0 @X0 -> 7 `i t ]
-"8 Bitmaps.c
-[v _Default_Menu_Bitmaps `F2800 ~T0 @X0 -> 8 `i e ]
-[i _Default_Menu_Bitmaps
-:U ..
-:U ..
-"9
--> 4 `i
-"10
--> 4 `i
-"11
--> 21 `i
-"12
--> 17 `i
-"13
--> 17 `i
-"14
--> 14 `i
+"14 Hitachi_LCD.c
+[v _LCDdata `(v ~T0 @X0 1 ef1`uc ]
 "15
--> 0 `i
-..
-:U ..
-"17
--> 27 `i
-"18
--> 27 `i
-"19
--> 10 `i
-"20
--> 14 `i
-"21
--> 14 `i
-"22
--> 17 `i
-"23
--> 31 `i
-..
-:U ..
-"25
--> 14 `i
-"26
--> 4 `i
-"27
--> 10 `i
-"28
--> 10 `i
-"29
--> 14 `i
-"30
--> 14 `i
-"31
--> 14 `i
-..
-:U ..
-"33
--> 0 `i
-"34
--> 15 `i
-"35
--> 15 `i
-"36
--> 1 `i
-"37
--> 15 `i
-"38
--> 15 `i
-"39
--> 0 `i
-..
-:U ..
-"41
--> 14 `i
-"42
--> 14 `i
-"43
--> 6 `i
-"44
--> 10 `i
-"45
--> 12 `i
-"46
--> 14 `i
-"47
--> 14 `i
-..
-:U ..
-"49
--> 14 `i
-"50
--> 14 `i
-"51
--> 14 `i
-"52
--> 14 `i
-"53
--> 14 `i
-"54
--> 14 `i
-"55
--> 17 `i
-..
-:U ..
-"57
--> 31 `i
-"58
--> 30 `i
-"59
--> 29 `i
-"60
--> 27 `i
-"61
--> 23 `i
-"62
--> 15 `i
-"63
--> 31 `i
-..
-:U ..
-"65
--> 0 `i
-"66
--> 0 `i
-"67
--> 10 `i
-"68
--> 14 `i
-"69
--> 4 `i
-"70
--> 0 `i
-"72
--> 0 `i
-..
-..
-]
-[; ;Bitmaps.c: 8: int Default_Menu_Bitmaps[8][7]={
-[; ;Bitmaps.c: 9: 0b00000100,
-[; ;Bitmaps.c: 10: 0b00000100,
-[; ;Bitmaps.c: 11: 0b00010101,
-[; ;Bitmaps.c: 12: 0b00010001,
-[; ;Bitmaps.c: 13: 0b00010001,
-[; ;Bitmaps.c: 14: 0b00001110,
-[; ;Bitmaps.c: 15: 0b00000000,
-[; ;Bitmaps.c: 17: 0b00011011,
-[; ;Bitmaps.c: 18: 0b00011011,
-[; ;Bitmaps.c: 19: 0b00001010,
-[; ;Bitmaps.c: 20: 0b00001110,
-[; ;Bitmaps.c: 21: 0b00001110,
-[; ;Bitmaps.c: 22: 0b00010001,
-[; ;Bitmaps.c: 23: 0b00011111,
-[; ;Bitmaps.c: 25: 0b00001110,
-[; ;Bitmaps.c: 26: 0b00000100,
-[; ;Bitmaps.c: 27: 0b00001010,
-[; ;Bitmaps.c: 28: 0b00001010,
-[; ;Bitmaps.c: 29: 0b00001110,
-[; ;Bitmaps.c: 30: 0b00001110,
-[; ;Bitmaps.c: 31: 0b00001110,
-[; ;Bitmaps.c: 33: 0b00000000,
-[; ;Bitmaps.c: 34: 0b00001111,
-[; ;Bitmaps.c: 35: 0b00001111,
-[; ;Bitmaps.c: 36: 0b00000001,
-[; ;Bitmaps.c: 37: 0b00001111,
-[; ;Bitmaps.c: 38: 0b00001111,
-[; ;Bitmaps.c: 39: 0b00000000,
-[; ;Bitmaps.c: 41: 0b00001110,
-[; ;Bitmaps.c: 42: 0b00001110,
-[; ;Bitmaps.c: 43: 0b00000110,
-[; ;Bitmaps.c: 44: 0b00001010,
-[; ;Bitmaps.c: 45: 0b00001100,
-[; ;Bitmaps.c: 46: 0b00001110,
-[; ;Bitmaps.c: 47: 0b00001110,
-[; ;Bitmaps.c: 49: 0b00001110,
-[; ;Bitmaps.c: 50: 0b00001110,
-[; ;Bitmaps.c: 51: 0b00001110,
-[; ;Bitmaps.c: 52: 0b00001110,
-[; ;Bitmaps.c: 53: 0b00001110,
-[; ;Bitmaps.c: 54: 0b00001110,
-[; ;Bitmaps.c: 55: 0b00010001,
-[; ;Bitmaps.c: 57: 0b00011111,
-[; ;Bitmaps.c: 58: 0b00011110,
-[; ;Bitmaps.c: 59: 0b00011101,
-[; ;Bitmaps.c: 60: 0b00011011,
-[; ;Bitmaps.c: 61: 0b00010111,
-[; ;Bitmaps.c: 62: 0b00001111,
-[; ;Bitmaps.c: 63: 0b00011111,
-[; ;Bitmaps.c: 65: 0b00000000,
-[; ;Bitmaps.c: 66: 0b00000000,
-[; ;Bitmaps.c: 67: 0b00001010,
-[; ;Bitmaps.c: 68: 0b00001110,
-[; ;Bitmaps.c: 69: 0b00000100,
-[; ;Bitmaps.c: 70: 0b00000000,
-[; ;Bitmaps.c: 71: 0b00000000
-[; ;Bitmaps.c: 72: };
-"21 main.c
-[p x OSC=INTIO2 ]
-"22
-[p x FSCM=OFF ]
-"23
-[p x IESO=OFF ]
-"24
-[p x PWRT=ON ]
-"25
-[p x BOR=OFF ]
-"26
-[p x WDT=OFF ]
-"27
-[p x MCLRE=ON ]
-"28
-[p x LVP=OFF ]
-"29
-[p x STVR=ON ]
-[; ;main.c: 34: void DefaultMenu(void);
-[; ;main.c: 35: void interrupt isr(void);
-"40
-[v _CharacterBlink `i ~T0 @X0 1 e ]
-[i _CharacterBlink
--> 0 `i
-]
-[; ;main.c: 40: int CharacterBlink=0;
-"45
-[v _main `(i ~T0 @X0 1 ef ]
-"46
 {
-[; ;main.c: 45: int main()
-[; ;main.c: 46: {
-[e :U _main ]
+[; ;Hitachi_LCD.c: 14: void LCDdata(unsigned char data)
+[; ;Hitachi_LCD.c: 15: {
+[e :U _LCDdata ]
+"14
+[v _data `uc ~T0 @X0 1 r1 ]
+"15
 [f ]
-[; ;main.c: 51: OSCCONbits.IRCF0=1;
-"51
-[e = . . _OSCCONbits 1 4 -> -> 1 `i `uc ]
-[; ;main.c: 52: OSCCONbits.IRCF1=1;
-"52
-[e = . . _OSCCONbits 1 5 -> -> 1 `i `uc ]
-[; ;main.c: 53: OSCCONbits.IRCF2=1;
-"53
-[e = . . _OSCCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 65: TRISA=0b00010011;
-"65
-[e = _TRISA -> -> 19 `i `uc ]
-[; ;main.c: 66: LATA=0b00000000;
-"66
-[e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 67: ADCON1=0b11111111;
-"67
-[e = _ADCON1 -> -> 255 `i `uc ]
-[; ;main.c: 69: TRISB=0b00000000;
-"69
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 70: LATB=0b00000000;
-"70
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 72: LATBbits.LATB1=1;
-"72
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 73: LATBbits.LATB0=1;
-"73
-[e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 74: LATBbits.LATB7=1;
-"74
-[e = . . _LATBbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 75: LATBbits.LATB6=1;
-"75
-[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 80: RCONbits.IPEN=0;
-"80
-[e = . . _RCONbits 5 6 -> -> 0 `i `uc ]
-[; ;main.c: 90: TMR0L=0;
-"90
-[e = _TMR0L -> -> 0 `i `uc ]
-[; ;main.c: 91: TMR0H=0;
-"91
-[e = _TMR0H -> -> 0 `i `uc ]
-[; ;main.c: 92: T0CON=0b10010011;
-"92
-[e = _T0CON -> -> 147 `i `uc ]
-[; ;main.c: 96: INTCONbits.TMR0IF=0;
-"96
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 102: LCDwrcmd(0b00111100);
-"102
-[e ( _LCDwrcmd (1 -> -> 60 `i `uc ]
-[; ;main.c: 103: LCDwrcmd(0b00000110);
-"103
-[e ( _LCDwrcmd (1 -> -> 6 `i `uc ]
-[; ;main.c: 104: LCDwrcmd(0b00001100);
-"104
-[e ( _LCDwrcmd (1 -> -> 12 `i `uc ]
-[; ;main.c: 105: LCDwrcmd(0b00000001);
-"105
-[e ( _LCDwrcmd (1 -> -> 1 `i `uc ]
-[; ;main.c: 106: _delay((unsigned long)((2)*(0x7A1200/4000.0)));
-"106
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 108: DefaultMenu();
-"108
-[e ( _DefaultMenu ..  ]
-[; ;main.c: 109: }
-"109
-[e :UE 254 ]
-}
-"116
-[v _DefaultMenu `(v ~T0 @X0 1 ef ]
-"117
-{
-[; ;main.c: 116: void DefaultMenu(void)
-[; ;main.c: 117: {
-[e :U _DefaultMenu ]
-[f ]
-"121
+"16
 [v _x `i ~T0 @X0 1 a ]
-[v _y `i ~T0 @X0 1 a ]
-"122
-[v _last `i ~T0 @X0 1 a ]
-[; ;main.c: 121: int x,y;
-[; ;main.c: 122: int last=0;
-[e = _last -> 0 `i ]
-"123
-[s S255 `uc -> 5 `i `uc 1 `uc -> 5 `i ]
-[n S255 MenuDisplay Addr CurrentSelect ONorOFF ]
-"129
-[v _MenuItem `S255 ~T0 @X0 1 a ]
-[v F2818 `S255 ~T0 @X0 1 s ]
-[i F2818
-:U ..
-:U ..
-:U ..
-"130
--> -> 4 `i `uc
--> -> 9 `i `uc
--> -> 15 `i `uc
--> -> 69 `i `uc
--> -> 76 `i `uc
-..
-"131
--> -> 0 `i `uc
-:U ..
-"132
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
-"133
--> -> 0 `i `uc
-..
-..
-..
-]
-[; ;main.c: 123: struct MenuDisplay {
-[; ;main.c: 124: unsigned char Addr[5];
-[; ;main.c: 125: unsigned char CurrentSelect;
-[; ;main.c: 126: unsigned char ONorOFF[5];
-[; ;main.c: 127: };
-[; ;main.c: 129: struct MenuDisplay MenuItem = {
-[; ;main.c: 130: 0x04,0x09,0x0F,0x45,0x4C,
-[; ;main.c: 131: 0,
-[; ;main.c: 132: 0,0,0,0,0
-[; ;main.c: 133: };
-[e = _MenuItem F2818 ]
-[; ;main.c: 138: for(y=0;y<8;y++)
-"138
-{
-[e = _y -> 0 `i ]
-[e $ < _y -> 8 `i 257  ]
-[e $U 258  ]
-"139
-[e :U 257 ]
-[; ;main.c: 139: for(x=0;x<7;x++)
+[; ;Hitachi_LCD.c: 16: int x;
+[; ;Hitachi_LCD.c: 17: for(x=0;x<8;x++)
+"17
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 7 `i 260  ]
-[e $U 261  ]
-"140
-[e :U 260 ]
-[; ;main.c: 140: {
+[e $ < _x -> 8 `i 255  ]
+[e $U 256  ]
+"18
+[e :U 255 ]
+[; ;Hitachi_LCD.c: 18: {
 {
-[; ;main.c: 141: LCDwrcmd((0b01000000|x)|(y<<3));
-"141
-[e ( _LCDwrcmd (1 -> | | -> 64 `i _x << _y -> 3 `i `uc ]
-[; ;main.c: 142: LCDwrchar(Default_Menu_Bitmaps[y][x]);
-"142
-[e ( _LCDwrchar (1 -> *U + &U *U + &U _Default_Menu_Bitmaps * -> -> _y `ui `ux -> * -> # *U &U *U &U _Default_Menu_Bitmaps `ui -> -> 7 `i `ui `ux * -> -> _x `ui `ux -> -> # *U &U *U + &U _Default_Menu_Bitmaps * -> -> _y `ui `ux -> * -> # *U &U *U &U _Default_Menu_Bitmaps `ui -> -> 7 `i `ui `ux `ui `ux `uc ]
-"143
+[; ;Hitachi_LCD.c: 19: LATAbits.LATA6=data & 0x1 ? 1:0;
+"19
+[e = . . _LATAbits 0 6 -> ? != & -> _data `i -> 1 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 20: __nop();
+"20
+[e ( ___nop ..  ]
+[; ;Hitachi_LCD.c: 21: LATBbits.LATB2=1;
+"21
+[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 22: __nop();
+"22
+[e ( ___nop ..  ]
+[; ;Hitachi_LCD.c: 23: LATBbits.LATB2=0;
+"23
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 24: data>>=1;
+"24
+[e =>> _data -> 1 `i ]
+"25
 }
-"139
+"17
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 7 `i 260  ]
+[e $ < _x -> 8 `i 255  ]
+[e :U 256 ]
+"25
+}
+[; ;Hitachi_LCD.c: 25: }
+[; ;Hitachi_LCD.c: 26: __nop();
+"26
+[e ( ___nop ..  ]
+[; ;Hitachi_LCD.c: 27: LATAbits.LATA7=1;
+"27
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 28: __nop();
+"28
+[e ( ___nop ..  ]
+[; ;Hitachi_LCD.c: 29: LATAbits.LATA7=0;
+"29
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 30: }
+"30
+[e :UE 254 ]
+}
+"32
+[v _LCDwrchar `(v ~T0 @X0 1 ef1`uc ]
+"33
+{
+[; ;Hitachi_LCD.c: 32: void LCDwrchar(unsigned char letter)
+[; ;Hitachi_LCD.c: 33: {
+[e :U _LCDwrchar ]
+"32
+[v _letter `uc ~T0 @X0 1 r1 ]
+"33
+[f ]
+[; ;Hitachi_LCD.c: 34: LATBbits.LATB4=1;
+"34
+[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 35: LATBbits.LATB5=0;
+"35
+[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 36: LCDdata(letter);
+"36
+[e ( _LCDdata (1 _letter ]
+[; ;Hitachi_LCD.c: 37: LATBbits.LATB3=1;
+"37
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 38: _delay(2);
+"38
+[e ( __delay (1 -> -> -> 2 `i `l `ul ]
+[; ;Hitachi_LCD.c: 39: LATBbits.LATB3=0;
+"39
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 40: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+"40
+[e ( __delay (1 -> * -> -> 37 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;Hitachi_LCD.c: 41: }
+"41
+[e :UE 258 ]
+}
+"42
+[v _LCDwrstring `(v ~T0 @X0 1 ef1`*Cuc ]
+"43
+{
+[; ;Hitachi_LCD.c: 42: void LCDwrstring(const unsigned char *string)
+[; ;Hitachi_LCD.c: 43: {
+[e :U _LCDwrstring ]
+"42
+[v _string `*Cuc ~T0 @X0 1 r1 ]
+"43
+[f ]
+[; ;Hitachi_LCD.c: 44: while(*string)
+"44
+[e $U 260  ]
 [e :U 261 ]
-"143
-}
-"138
-[e ++ _y -> 1 `i ]
-[e $ < _y -> 8 `i 257  ]
-[e :U 258 ]
-"143
-}
-[; ;main.c: 143: }
-[; ;main.c: 144: LCDsetaddr(0);
-"144
-[e ( _LCDsetaddr (1 -> -> 0 `i `uc ]
-[; ;main.c: 146: LCDwrstring("12V=/ 5V=/ 3V3=/");
-"146
-[e ( _LCDwrstring (1 :s 1C ]
-[; ;main.c: 147: LCDsetaddr(0x40);
-"147
-[e ( _LCDsetaddr (1 -> -> 64 `i `uc ]
-[; ;main.c: 148: LCDwrstring("-12V=/      MENU");
-"148
-[e ( _LCDwrstring (1 :s 2C ]
-[; ;main.c: 155: while(1) {
-"155
-[e :U 264 ]
+[; ;Hitachi_LCD.c: 45: {
+"45
 {
-[; ;main.c: 156: if(PORTAbits.RA4==1) {
-"156
-[e $ ! == -> . . _PORTAbits 0 4 `i -> 1 `i 266  ]
+[; ;Hitachi_LCD.c: 46: LCDwrchar(*string);
+"46
+[e ( _LCDwrchar (1 *U _string ]
+[; ;Hitachi_LCD.c: 47: string++;
+"47
+[e ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
+"48
+}
+[e :U 260 ]
+"44
+[e $ != -> *U _string `i -> -> -> 0 `i `Cuc `i 261  ]
+[e :U 262 ]
+[; ;Hitachi_LCD.c: 48: }
+[; ;Hitachi_LCD.c: 49: }
+"49
+[e :UE 259 ]
+}
+"50
+[v _LCDwrcmd `(v ~T0 @X0 1 ef1`uc ]
+"51
 {
-[; ;main.c: 157: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
-"157
-[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 158: if(PORTAbits.RA4==1) {
-"158
-[e $ ! == -> . . _PORTAbits 0 4 `i -> 1 `i 267  ]
+[; ;Hitachi_LCD.c: 50: void LCDwrcmd(unsigned char value)
+[; ;Hitachi_LCD.c: 51: {
+[e :U _LCDwrcmd ]
+"50
+[v _value `uc ~T0 @X0 1 r1 ]
+"51
+[f ]
+[; ;Hitachi_LCD.c: 52: LATBbits.LATB4=0, LATBbits.LATB5=0;
+"52
+[e ; = . . _LATBbits 0 4 -> -> 0 `i `uc = . . _LATBbits 0 5 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 53: LCDdata(value);
+"53
+[e ( _LCDdata (1 _value ]
+[; ;Hitachi_LCD.c: 54: LATBbits.LATB3=1;
+"54
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 55: _delay(2);
+"55
+[e ( __delay (1 -> -> -> 2 `i `l `ul ]
+[; ;Hitachi_LCD.c: 56: LATBbits.LATB3=0;
+"56
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 57: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+"57
+[e ( __delay (1 -> * -> -> 37 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;Hitachi_LCD.c: 58: }
+"58
+[e :UE 263 ]
+}
+"59
+[v _LCDsetaddr `(v ~T0 @X0 1 ef1`uc ]
+"60
 {
-[; ;main.c: 159: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-"159
-[e ( _LCDsetaddr (1 *U + &U . _MenuItem 0 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 0 `ui `ux ]
-[; ;main.c: 160: if(MenuItem.CurrentSelect==4)
-"160
-[e $ ! == -> . _MenuItem 1 `i -> 4 `i 268  ]
-[; ;main.c: 161: LCDwrstring("MENU");
-"161
-[e ( _LCDwrstring (1 :s 3C ]
-[e $U 269  ]
-"162
-[e :U 268 ]
-[; ;main.c: 162: else
-[; ;main.c: 163: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-"163
-[e ( _LCDwrchar (1 -> ? != -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i -> -> -> 0 `i `uc `i : -> 0 `i -> 47 `i `uc ]
-[e :U 269 ]
-[; ;main.c: 168: MenuItem.CurrentSelect++;
-"168
-[e ++ . _MenuItem 1 -> -> 1 `i `uc ]
-[; ;main.c: 169: if(MenuItem.CurrentSelect==5)
-"169
-[e $ ! == -> . _MenuItem 1 `i -> 5 `i 270  ]
-[; ;main.c: 170: MenuItem.CurrentSelect=0;
-"170
-[e = . _MenuItem 1 -> -> 0 `i `uc ]
-[e :U 270 ]
-[; ;main.c: 171: while(PORTAbits.RA4==1);
-"171
-[e $U 271  ]
-[e :U 272 ]
-[e :U 271 ]
-[e $ == -> . . _PORTAbits 0 4 `i -> 1 `i 272  ]
-[e :U 273 ]
-"172
+[; ;Hitachi_LCD.c: 59: void LCDsetaddr(unsigned char add)
+[; ;Hitachi_LCD.c: 60: {
+[e :U _LCDsetaddr ]
+"59
+[v _add `uc ~T0 @X0 1 r1 ]
+"60
+[f ]
+[; ;Hitachi_LCD.c: 61: LATBbits.LATB4=0, LATBbits.LATB5=0;
+"61
+[e ; = . . _LATBbits 0 4 -> -> 0 `i `uc = . . _LATBbits 0 5 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 62: LCDdata(add|0b10000000);
+"62
+[e ( _LCDdata (1 -> | -> _add `i -> 128 `i `uc ]
+[; ;Hitachi_LCD.c: 63: LATBbits.LATB3=1;
+"63
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[; ;Hitachi_LCD.c: 64: _delay(2);
+"64
+[e ( __delay (1 -> -> -> 2 `i `l `ul ]
+[; ;Hitachi_LCD.c: 65: LATBbits.LATB3=0;
+"65
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;Hitachi_LCD.c: 66: _delay((unsigned long)((37)*(0x7A1200/4000000.0)));
+"66
+[e ( __delay (1 -> * -> -> 37 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;Hitachi_LCD.c: 67: }
+"67
+[e :UE 264 ]
 }
-[e :U 267 ]
-"173
-}
-[e :U 266 ]
-[; ;main.c: 172: }
-[; ;main.c: 173: }
-[; ;main.c: 175: if(PORTAbits.RA1==1) {
-"175
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 274  ]
-{
-[; ;main.c: 176: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
-"176
-[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 177: if(PORTAbits.RA1==1) {
-"177
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 275  ]
-{
-[; ;main.c: 178: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-"178
-[e ( _LCDsetaddr (1 *U + &U . _MenuItem 0 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 0 `ui `ux ]
-[; ;main.c: 179: if(MenuItem.CurrentSelect==4)
-"179
-[e $ ! == -> . _MenuItem 1 `i -> 4 `i 276  ]
-[; ;main.c: 180: LCDwrstring("MENU");
-"180
-[e ( _LCDwrstring (1 :s 4C ]
-[e $U 277  ]
-"181
-[e :U 276 ]
-[; ;main.c: 181: else
-[; ;main.c: 182: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-"182
-[e ( _LCDwrchar (1 -> ? != -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i -> -> -> 0 `i `uc `i : -> 0 `i -> 47 `i `uc ]
-[e :U 277 ]
-[; ;main.c: 184: if(MenuItem.CurrentSelect==0)
-"184
-[e $ ! == -> . _MenuItem 1 `i -> 0 `i 278  ]
-[; ;main.c: 185: MenuItem.CurrentSelect=5;
-"185
-[e = . _MenuItem 1 -> -> 5 `i `uc ]
-[e :U 278 ]
-[; ;main.c: 186: MenuItem.CurrentSelect--;
-"186
-[e -- . _MenuItem 1 -> -> 1 `i `uc ]
-[; ;main.c: 187: while(PORTAbits.RA1==1);
-"187
-[e $U 279  ]
-[e :U 280 ]
-[e :U 279 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 280  ]
-[e :U 281 ]
-"188
-}
-[e :U 275 ]
-"189
-}
-[e :U 274 ]
-[; ;main.c: 188: }
-[; ;main.c: 189: }
-[; ;main.c: 191: if(PORTAbits.RA0==1) {
-"191
-[e $ ! == -> . . _PORTAbits 0 0 `i -> 1 `i 282  ]
-{
-[; ;main.c: 192: _delay((unsigned long)((12)*(0x7A1200/4000.0)));
-"192
-[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 193: if(PORTAbits.RA0==1) {
-"193
-[e $ ! == -> . . _PORTAbits 0 0 `i -> 1 `i 283  ]
-{
-[; ;main.c: 194: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-"194
-[e ( _LCDsetaddr (1 *U + &U . _MenuItem 0 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 0 `ui `ux ]
-[; ;main.c: 195: if(MenuItem.CurrentSelect==4) {
-"195
-[e $ ! == -> . _MenuItem 1 `i -> 4 `i 284  ]
-{
-"197
-}
-[; ;main.c: 197: }
-[e $U 285  ]
-"198
-[e :U 284 ]
-[; ;main.c: 198: else {
-{
-[; ;main.c: 199: MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-"199
-[e = *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux -> ~ -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i `uc ]
-[; ;main.c: 200: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-"200
-[e ( _LCDsetaddr (1 *U + &U . _MenuItem 0 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 0 `ui `ux ]
-[; ;main.c: 201: LCDwrchar(MenuItem.ONorOFF[MenuItem.CurrentSelect] ? 0x00:0x2F);
-"201
-[e ( _LCDwrchar (1 -> ? != -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i -> -> -> 0 `i `uc `i : -> 0 `i -> 47 `i `uc ]
-[; ;main.c: 202: switch(MenuItem.CurrentSelect) {
-"202
-[e $U 287  ]
-{
-[; ;main.c: 203: case 0:
-"203
-[e :U 288 ]
-[; ;main.c: 204: LATBbits.LATB1=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-"204
-[e = . . _LATBbits 0 1 -> ~ -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i `uc ]
-[; ;main.c: 205: break;
-"205
-[e $U 286  ]
-[; ;main.c: 206: case 1:
-"206
-[e :U 289 ]
-[; ;main.c: 207: LATBbits.LATB7=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-"207
-[e = . . _LATBbits 0 7 -> ~ -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i `uc ]
-[; ;main.c: 208: break;
-"208
-[e $U 286  ]
-[; ;main.c: 209: case 2:
-"209
-[e :U 290 ]
-[; ;main.c: 210: LATBbits.LATB6=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-"210
-[e = . . _LATBbits 0 6 -> ~ -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i `uc ]
-[; ;main.c: 211: break;
-"211
-[e $U 286  ]
-[; ;main.c: 212: case 3:
-"212
-[e :U 291 ]
-[; ;main.c: 213: LATBbits.LATB0=~MenuItem.ONorOFF[MenuItem.CurrentSelect];
-"213
-[e = . . _LATBbits 0 0 -> ~ -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i `uc ]
-[; ;main.c: 214: break;
-"214
-[e $U 286  ]
-"215
-}
-[; ;main.c: 215: }
-[e $U 286  ]
-"202
-[e :U 287 ]
-[e [\ . _MenuItem 1 , $ -> -> 0 `i `uc 288
- , $ -> -> 1 `i `uc 289
- , $ -> -> 2 `i `uc 290
- , $ -> -> 3 `i `uc 291
- 286 ]
-"215
-[e :U 286 ]
-"216
-}
-[e :U 285 ]
-[; ;main.c: 216: }
-[; ;main.c: 217: while(PORTAbits.RA0==1);
-"217
-[e $U 292  ]
-[e :U 293 ]
-[e :U 292 ]
-[e $ == -> . . _PORTAbits 0 0 `i -> 1 `i 293  ]
-[e :U 294 ]
-"218
-}
-[e :U 283 ]
-"219
-}
-[e :U 282 ]
-[; ;main.c: 218: }
-[; ;main.c: 219: }
-[; ;main.c: 221: if(INTCONbits.TMR0IF) {
-"221
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 295  ]
-{
-[; ;main.c: 222: LCDsetaddr(MenuItem.Addr[MenuItem.CurrentSelect]);
-"222
-[e ( _LCDsetaddr (1 *U + &U . _MenuItem 0 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 0 `ui `ux ]
-[; ;main.c: 223: if(MenuItem.CurrentSelect==4)
-"223
-[e $ ! == -> . _MenuItem 1 `i -> 4 `i 296  ]
-[; ;main.c: 224: if(last)
-"224
-[e $ ! != _last -> 0 `i 297  ]
-[; ;main.c: 225: LCDwrstring("MENU");
-"225
-[e ( _LCDwrstring (1 :s 5C ]
-[e $U 298  ]
-"226
-[e :U 297 ]
-[; ;main.c: 226: else {
-{
-[; ;main.c: 227: LCDwrchar(0x02);
-"227
-[e ( _LCDwrchar (1 -> -> 2 `i `uc ]
-[; ;main.c: 228: LCDwrchar(0x03);
-"228
-[e ( _LCDwrchar (1 -> -> 3 `i `uc ]
-[; ;main.c: 229: LCDwrchar(0x04);
-"229
-[e ( _LCDwrchar (1 -> -> 4 `i `uc ]
-[; ;main.c: 230: LCDwrchar(0x05);
-"230
-[e ( _LCDwrchar (1 -> -> 5 `i `uc ]
-"231
-}
-[e :U 298 ]
-[; ;main.c: 231: }
-[e $U 299  ]
-"232
-[e :U 296 ]
-[; ;main.c: 232: else
-[; ;main.c: 233: if(MenuItem.ONorOFF[MenuItem.CurrentSelect])
-"233
-[e $ ! != -> *U + &U . _MenuItem 2 * -> . _MenuItem 1 `ux -> -> # *U &U . _MenuItem 2 `ui `ux `i -> -> -> 0 `i `uc `i 300  ]
-[; ;main.c: 234: LCDwrchar(last ? 0:1);
-"234
-[e ( _LCDwrchar (1 -> ? != _last -> 0 `i : -> 0 `i -> 1 `i `uc ]
-[e $U 301  ]
-"235
-[e :U 300 ]
-[; ;main.c: 235: else
-[; ;main.c: 236: LCDwrchar(last ? 0x2F:0x06);
-"236
-[e ( _LCDwrchar (1 -> ? != _last -> 0 `i : -> 47 `i -> 6 `i `uc ]
-[e :U 301 ]
-[e :U 299 ]
-[; ;main.c: 238: last=last ? 0:1;
-"238
-[e = _last ? != _last -> 0 `i : -> 0 `i -> 1 `i ]
-[; ;main.c: 239: INTCONbits.TMR0IF=0;
-"239
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"240
-}
-[e :U 295 ]
-"241
-}
-[e :U 263 ]
-"155
-[e $U 264  ]
-[e :U 265 ]
-[; ;main.c: 240: }
-[; ;main.c: 241: }
-[; ;main.c: 242: while(1);
-"242
-[e :U 303 ]
-[e :U 302 ]
-[e $U 303  ]
-[e :U 304 ]
-[; ;main.c: 243: }
-"243
-[e :UE 256 ]
-}
-[a 2C 45 49 50 86 61 47 32 32 32 32 32 32 77 69 78 85 0 ]
-[a 3C 77 69 78 85 0 ]
-[a 4C 77 69 78 85 0 ]
-[a 5C 77 69 78 85 0 ]
-[a 1C 49 50 86 61 47 32 53 86 61 47 32 51 86 51 61 47 0 ]
