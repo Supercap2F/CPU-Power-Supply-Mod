@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F2 `i ~T0 @X0 -> 7 `i t ]
+[v F2 `Ci ~T0 @X0 -> 7 `i t ]
 "8 Bitmaps.c
 [v _Default_Menu_Bitmaps `F2 ~T0 @X0 -> 8 `i e ]
 [i _Default_Menu_Bitmaps
@@ -134,7 +134,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;Bitmaps.c: 8: int Default_Menu_Bitmaps[8][7]={
+[; ;Bitmaps.c: 8: const int Default_Menu_Bitmaps[8][7]={
 [; ;Bitmaps.c: 9: 0b00000100,
 [; ;Bitmaps.c: 10: 0b00000100,
 [; ;Bitmaps.c: 11: 0b00010101,

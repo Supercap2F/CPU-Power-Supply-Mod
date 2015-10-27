@@ -37,13 +37,15 @@
 [v _LCDwrcmd LCDwrcmd `(v  1 e 0 0 ]
 "59
 [v _LCDsetaddr LCDsetaddr `(v  1 e 0 0 ]
-"45 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+"47 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"116
+"160
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
+"301
+[v _OptMenu OptMenu `(v  1 e 0 0 ]
 "8 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\Bitmaps.c
-[v _Default_Menu_Bitmaps Default_Menu_Bitmaps `[8][7]i  1 e 112 0 ]
-[s S328 . 1 `uc 1 RA0 1 0 :1:0 
+[v _Default_Menu_Bitmaps Default_Menu_Bitmaps `C[8][7]i  1 e 112 0 ]
+[s S393 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -53,7 +55,7 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "103 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
-[s S337 . 1 `uc 1 AN0 1 0 :1:0 
+[s S402 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -62,7 +64,7 @@
 `uc 1 CLKO 1 0 :1:6 
 `uc 1 CLKI 1 0 :1:7 
 ]
-[s S346 . 1 `uc 1 . 1 0 :1:0 
+[s S411 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LVDIN 1 0 :1:1 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
@@ -71,24 +73,24 @@
 `uc 1 OSC2 1 0 :1:6 
 `uc 1 OSC1 1 0 :1:7 
 ]
-[s S355 . 1 `uc 1 . 1 0 :5:0 
+[s S420 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_MCLR 1 0 :1:5 
 ]
-[s S358 . 1 `uc 1 . 1 0 :5:0 
+[s S423 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 nMCLR 1 0 :1:5 
 `uc 1 CLKOUT 1 0 :1:6 
 `uc 1 CLKIN 1 0 :1:7 
 ]
-[s S363 . 1 `uc 1 . 1 0 :7:0 
+[s S428 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RJPU 1 0 :1:7 
 ]
-[s S366 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S431 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S368 . 1 `S328 1 . 1 0 `S337 1 . 1 0 `S346 1 . 1 0 `S355 1 . 1 0 `S358 1 . 1 0 `S363 1 . 1 0 `S366 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES368  1 e 1 @3968 ]
+[u S433 . 1 `S393 1 . 1 0 `S402 1 . 1 0 `S411 1 . 1 0 `S420 1 . 1 0 `S423 1 . 1 0 `S428 1 . 1 0 `S431 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES433  1 e 1 @3968 ]
 "489
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S486 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S60 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -98,34 +100,34 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "537
-[s S495 . 1 `uc 1 LA0 1 0 :1:0 
+[s S69 . 1 `uc 1 LA0 1 0 :1:0 
 ]
-[s S497 . 1 `uc 1 . 1 0 :1:0 
+[s S71 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 ]
-[s S500 . 1 `uc 1 . 1 0 :2:0 
+[s S74 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LA2 1 0 :1:2 
 ]
-[s S503 . 1 `uc 1 . 1 0 :3:0 
+[s S77 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 LA3 1 0 :1:3 
 ]
-[s S506 . 1 `uc 1 . 1 0 :4:0 
+[s S80 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LA4 1 0 :1:4 
 ]
-[s S509 . 1 `uc 1 . 1 0 :5:0 
+[s S83 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LA5 1 0 :1:5 
 ]
-[s S512 . 1 `uc 1 . 1 0 :6:0 
+[s S86 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 LA6 1 0 :1:6 
 ]
-[s S515 . 1 `uc 1 . 1 0 :7:0 
+[s S89 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S518 . 1 `S486 1 . 1 0 `S495 1 . 1 0 `S497 1 . 1 0 `S500 1 . 1 0 `S503 1 . 1 0 `S506 1 . 1 0 `S509 1 . 1 0 `S512 1 . 1 0 `S515 1 . 1 0 ]
-[v _LATAbits LATAbits `VES518  1 e 1 @3977 ]
+[u S92 . 1 `S60 1 . 1 0 `S69 1 . 1 0 `S71 1 . 1 0 `S74 1 . 1 0 `S77 1 . 1 0 `S80 1 . 1 0 `S83 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
+[v _LATAbits LATAbits `VES92  1 e 1 @3977 ]
 "616
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S60 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S135 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -135,53 +137,53 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "664
-[s S69 . 1 `uc 1 LB0 1 0 :1:0 
+[s S144 . 1 `uc 1 LB0 1 0 :1:0 
 ]
-[s S71 . 1 `uc 1 . 1 0 :1:0 
+[s S146 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 ]
-[s S74 . 1 `uc 1 . 1 0 :2:0 
+[s S149 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LB2 1 0 :1:2 
 ]
-[s S77 . 1 `uc 1 . 1 0 :3:0 
+[s S152 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 LB3 1 0 :1:3 
 ]
-[s S80 . 1 `uc 1 . 1 0 :4:0 
+[s S155 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LB4 1 0 :1:4 
 ]
-[s S83 . 1 `uc 1 . 1 0 :5:0 
+[s S158 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LB5 1 0 :1:5 
 ]
-[s S86 . 1 `uc 1 . 1 0 :6:0 
+[s S161 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 LB6 1 0 :1:6 
 ]
-[s S89 . 1 `uc 1 . 1 0 :7:0 
+[s S164 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S92 . 1 `S60 1 . 1 0 `S69 1 . 1 0 `S71 1 . 1 0 `S74 1 . 1 0 `S77 1 . 1 0 `S80 1 . 1 0 `S83 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
-[v _LATBbits LATBbits `VES92  1 e 1 @3978 ]
+[u S167 . 1 `S135 1 . 1 0 `S144 1 . 1 0 `S146 1 . 1 0 `S149 1 . 1 0 `S152 1 . 1 0 `S155 1 . 1 0 `S158 1 . 1 0 `S161 1 . 1 0 `S164 1 . 1 0 ]
+[v _LATBbits LATBbits `VES167  1 e 1 @3978 ]
 "748
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
 "949
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
 "2707
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-[s S135 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S210 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "3311
-[s S137 . 1 `uc 1 . 1 0 :1:0 
+[s S212 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
-[s S140 . 1 `uc 1 . 1 0 :2:0 
+[s S215 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_PD 1 0 :1:2 
 ]
-[s S143 . 1 `uc 1 . 1 0 :3:0 
+[s S218 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_TO 1 0 :1:3 
 ]
-[s S146 . 1 `uc 1 . 1 0 :4:0 
+[s S221 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RI 1 0 :1:4 
 ]
-[s S149 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S224 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nPD 1 0 :1:2 
 `uc 1 nTO 1 0 :1:3 
@@ -189,14 +191,14 @@
 `uc 1 . 1 0 :2:5 
 `uc 1 IPEN 1 0 :1:7 
 ]
-[s S157 . 1 `uc 1 BOR 1 0 :1:0 
+[s S232 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 PD 1 0 :1:2 
 `uc 1 TO 1 0 :1:3 
 `uc 1 RI 1 0 :1:4 
 ]
-[u S163 . 1 `S135 1 . 1 0 `S137 1 . 1 0 `S140 1 . 1 0 `S143 1 . 1 0 `S146 1 . 1 0 `S149 1 . 1 0 `S157 1 . 1 0 ]
-[v _RCONbits RCONbits `VES163  1 e 1 @4048 ]
+[u S238 . 1 `S210 1 . 1 0 `S212 1 . 1 0 `S215 1 . 1 0 `S218 1 . 1 0 `S221 1 . 1 0 `S224 1 . 1 0 `S232 1 . 1 0 ]
+[v _RCONbits RCONbits `VES238  1 e 1 @4048 ]
 [s S21 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 IOFS 1 0 :1:2 
@@ -221,7 +223,7 @@
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "3657
 [v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
-[s S203 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S278 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -231,7 +233,7 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "4125
-[s S212 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S287 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -240,7 +242,7 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S221 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S296 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -249,7 +251,7 @@
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[s S230 . 1 `uc 1 . 1 0 :1:0 
+[s S305 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -258,7 +260,7 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S239 . 1 `uc 1 . 1 0 :1:0 
+[s S314 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 INTE 1 0 :1:4 
@@ -266,27 +268,27 @@
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S247 . 1 `S203 1 . 1 0 `S212 1 . 1 0 `S221 1 . 1 0 `S230 1 . 1 0 `S239 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES247  1 e 1 @4082 ]
-"45 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+[u S322 . 1 `S278 1 . 1 0 `S287 1 . 1 0 `S296 1 . 1 0 `S305 1 . 1 0 `S314 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES322  1 e 1 @4082 ]
+"47 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"109
+"113
 } 0
-"116
+"160
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
 {
-[s S455 MenuDisplay 11 `[5]uc 1 Addr 5 0 `uc 1 CurrentSelect 1 5 `[5]uc 1 ONorOFF 5 6 ]
-"129
-[v DefaultMenu@MenuItem MenuItem `S455  1 a 11 23 ]
-"122
-[v DefaultMenu@last last `i  1 a 2 21 ]
-"121
-[v DefaultMenu@y y `i  1 a 2 19 ]
-[v DefaultMenu@x x `i  1 a 2 17 ]
-"129
-[v DefaultMenu@F2818 F2818 `S455  1 s 11 F2818 ]
-"243
+[s S552 MenuDisplay 11 `[5]uc 1 Addr 5 0 `uc 1 CurrentSelect 1 5 `[5]uc 1 ONorOFF 5 6 ]
+"174
+[v DefaultMenu@MenuItem MenuItem `S552  1 a 11 110 ]
+"166
+[v DefaultMenu@last last `i  1 a 2 108 ]
+"165
+[v DefaultMenu@y y `i  1 a 2 106 ]
+[v DefaultMenu@x x `i  1 a 2 104 ]
+"174
+[v DefaultMenu@F2827 F2827 `S552  1 s 11 F2827 ]
+"296
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -298,10 +300,22 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
+"301 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+[v _OptMenu OptMenu `(v  1 e 0 0 ]
+{
+[s S580 MenuDisplay 81 `uc 1 CurrentItem 1 0 `[5][16]uc 1 Items 80 1 ]
+"314
+[v OptMenu@Menu Menu `S580  1 a 81 11 ]
+"307
+[v OptMenu@update update `i  1 a 2 9 ]
+"314
+[v OptMenu@F2840 F2840 `S580  1 s 81 F2840 ]
+"386
+} 0
 "42 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\Hitachi_LCD.c
 [v _LCDwrstring LCDwrstring `(v  1 e 0 0 ]
 {
-[v LCDwrstring@string string `*.25Cuc  1 p 2 5 ]
+[v LCDwrstring@string string `*.35Cuc  1 p 2 5 ]
 "49
 } 0
 "32

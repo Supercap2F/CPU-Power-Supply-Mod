@@ -2,7 +2,7 @@
 # 1 "Bitmaps.c"
 
 # 8
-int Default_Menu_Bitmaps[8][7]={
+const int Default_Menu_Bitmaps[8][7]={
 0b00000100,
 0b00000100,
 0b00010101,
@@ -67,3 +67,4 @@ int Default_Menu_Bitmaps[8][7]={
 0b00000000,
 0b00000000
 };
+

@@ -24,7 +24,7 @@
 #pragma config PWRT=ON    // power up timer enabled 
 #pragma config BOR=OFF    // brown out reset off **MAY NEED TO BE CHANGED**
 #pragma config WDT=OFF    // watch dog timer off
-#pragma config MCLRE=ON    // MCLR pin is for reseting
+#pragma config MCLRE=ON   // MCLR pin is for reseting
 #pragma config LVP=OFF    // low voltage programming is off
 #pragma config STVR=ON    // stack overflow will cause a reset 
 
@@ -32,6 +32,8 @@
  * Function Definitions                        *
  ***********************************************/
 void DefaultMenu(void); 
+void StandbyMenu(void);
+void OptMenu(void);
 void interrupt isr(void);
 
 /***********************************************
@@ -69,6 +71,7 @@ int main()
     TRISB=0b00000000; //  set I/O ports to either input (1) or output (0)
     LATB=0b00000000;  // clear outputs
     
+    PN=1;
     RL12V=1;
     RLn12V=1;
     RL5V=1;
@@ -105,8 +108,50 @@ int main()
        LCDwrcmd(0b00000001); // clear display
        __delay_ms(2);
        
+       //StandbyMenu();
        DefaultMenu();  
 }
+
+
+/***************************************************************
+ * StandbyMenu Function                                        *
+ ***************************************************************/
+void StandbyMenu(void)
+{
+    LCDwrcmd(0b00000001); // clear display
+    __delay_ms(2);
+    LCDwrstring("    STANDBY    ");
+    
+    while(1) {
+        if(SW1){
+           __delay_ms(12);
+           if(SW1)
+           {
+               PN=0;
+               while(SW1);
+               return;
+           }
+        }
+        if(SW2){
+           __delay_ms(12);
+           if(SW2)
+               {
+               PN=0;
+               while(SW2);
+               return;
+           }
+        }if(SW3){
+           __delay_ms(12);
+           if(SW3)
+                {
+               PN=0;
+               while(SW3);
+               return;
+           }
+        }
+    }
+}
+
 
 
 /***************************************************************
@@ -194,8 +239,12 @@ void DefaultMenu(void)
        if(SW1==1) {        // check to see if the select key was pressed
            __delay_ms(12); // debounce if it looks like it was pressed
            if(SW1==1) {    // if it was pressed 
-               if(MenuItem.CurrentSelect==4) {                    // if the current selection is "MENU"
-                   // put menu function here                                                     
+               if(MenuItem.CurrentSelect==4) { // if the current selection is "MENU"
+                   OptMenu();                  // put menu function here    
+                   LCDsetaddr(0); // set address to start - else it will still write to the CGRAM
+                   LCDwrstring("12V=/ 5V=/ 3V3=/"); // default menu screen (all outputs off)
+                   LCDsetaddr(0x40);                //
+                   LCDwrstring("-12V=/      MENU"); //
                }
                else {                                                               // else 
                    MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.CurrentSelect]; // invert the current state
@@ -246,6 +295,94 @@ void DefaultMenu(void)
    while(1);
 }
 
+/***************************************************************
+ * OptMenu Function                                            *
+ ***************************************************************/
+void OptMenu(void)
+{
+    /***********************************************
+     * Variable Definitions                        *
+     ***********************************************/
+    int x,y; 
+    int update=1;
+    
+    struct MenuDisplay {
+        unsigned char CurrentItem;
+        unsigned char Items[5][16];
+        
+    };
+    struct MenuDisplay Menu ={
+        0,
+        "Standby",
+        "Pair",
+        "Pair All",
+        "Pair None",
+        "Back"
+    };
+    
+    
+    LCDwrcmd(0b00000001); // clear display
+    __delay_ms(2);
+    
+    while(1)
+    {
+        if(update){
+            LCDsetaddr(0x00);
+            LCDwrchar(Menu.CurrentItem+1+0x30);
+            LCDwrstring(": ");
+            LCDwrstring(Menu.Items[Menu.CurrentItem]);
+            LCDwrstring("             ");
+            LCDsetaddr(0x0F);
+            LCDwrchar(0x7F);
 
+            LCDsetaddr(0x40);
+            if(Menu.CurrentItem<4) {
+                LCDwrchar(Menu.CurrentItem+2+0x30);
+                LCDwrstring(": ");
+                LCDwrstring(Menu.Items[Menu.CurrentItem+1]);
+                LCDwrstring("             ");
+            }
+            else
+                LCDwrstring("                ");
+            update=0;
+        }
+        if(SW3){
+            __delay_ms(12);
+            if(SW3) {
+                if(Menu.CurrentItem==4)
+                    Menu.CurrentItem=0;
+                else
+                    Menu.CurrentItem++;
+                update=1;
+                while(SW3);
+            }
+        }
+        if(SW2){
+            __delay_ms(12);
+            if(SW2) {
+                if(Menu.CurrentItem==0)
+                    Menu.CurrentItem=4;
+                else
+                    Menu.CurrentItem--;
+                update=1;
+                while(SW2);
+            }
+        }
+        if(SW1){
+            __delay_ms(12);
+            if(SW1) {
+                switch(Menu.CurrentItem){
+                    case 4:
+                        while(SW1);
+                        return;
+                        break;
+                }
+                while(SW1);
+            }
+        }
+       
+    
+    }
+}
 
 
