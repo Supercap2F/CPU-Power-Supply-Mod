@@ -44,7 +44,7 @@ $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 1 1
 Title "CPU Power Supply Mod "
-Date "21 sep 2015"
+Date "29 oct 2015"
 Rev "1.0"
 Comp ""
 Comment1 ""
@@ -1086,7 +1086,7 @@ Wire Wire Line
 Wire Wire Line
 	7350 2800 6950 2800
 Wire Wire Line
-	6950 2600 6950 2400
+	6950 2350 6950 2600
 Wire Wire Line
 	6950 2400 7350 2400
 Wire Wire Line
@@ -1324,4 +1324,29 @@ Wire Wire Line
 	5900 5600 5900 5950
 Wire Wire Line
 	6000 5750 5700 5750
+$Comp
+L R R?
+U 1 1 563288E8
+P 6950 2100
+F 0 "R?" V 7030 2100 40  0000 C CNN
+F 1 "10K" V 6957 2101 40  0000 C CNN
+F 2 "~" V 6880 2100 30  0000 C CNN
+F 3 "~" H 6950 2100 30  0000 C CNN
+	1    6950 2100
+	1    0    0    -1  
+$EndComp
+Connection ~ 6950 2400
+$Comp
+L +5VA #PWR?
+U 1 1 563289B3
+P 6950 1800
+F 0 "#PWR?" H 6950 1930 20  0001 C CNN
+F 1 "+5VA" H 6950 1900 30  0000 C CNN
+F 2 "" H 6950 1800 60  0000 C CNN
+F 3 "" H 6950 1800 60  0000 C CNN
+	1    6950 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 1800 6950 1850
 $EndSCHEMATC
