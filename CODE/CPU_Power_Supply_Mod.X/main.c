@@ -28,18 +28,20 @@
 #pragma config LVP=OFF    // low voltage programming is off
 #pragma config STVR=ON    // stack overflow will cause a reset 
 
+#define COME_FROM_DEFAULT 0
+#define COME_FROM_PAIR 1
+#define CALL_PAIR_MENU 2
+#define RETURN_TO_DEFAULT 3
+
+
 /***********************************************
  * Function Definitions                        *
  ***********************************************/
 void DefaultMenu(void); 
 void StandbyMenu(void);
-void OptMenu(void);
-void interrupt isr(void);
+unsigned char OptMenu(unsigned char z);
+void PairMenu();
 
-/***********************************************
- * Global Variables                            *
- ***********************************************/
-int CharacterBlink=0;
 
 /***************************************************************
  * Program entry point - Main Function                         *
@@ -108,7 +110,7 @@ int main()
        LCDwrcmd(0b00000001); // clear display
        __delay_ms(2);
        
-       //StandbyMenu();
+       StandbyMenu();
        DefaultMenu();  
 }
 
@@ -118,38 +120,19 @@ int main()
  ***************************************************************/
 void StandbyMenu(void)
 {
+    PN=1; // standby
     LCDwrcmd(0b00000001); // clear display
     __delay_ms(2);
     LCDwrstring("    STANDBY    ");
     
     while(1) {
-        if(SW1){
+        if(SW1 || SW2 || SW3){
            __delay_ms(12);
-           if(SW1)
-           {
-               PN=0;
-               while(SW1);
+               while(SW1 || SW2 || SW3);
+               PN=0; // turn on psu
                return;
            }
         }
-        if(SW2){
-           __delay_ms(12);
-           if(SW2)
-               {
-               PN=0;
-               while(SW2);
-               return;
-           }
-        }if(SW3){
-           __delay_ms(12);
-           if(SW3)
-                {
-               PN=0;
-               while(SW3);
-               return;
-           }
-        }
-    }
 }
 
 
@@ -164,17 +147,21 @@ void DefaultMenu(void)
      ***********************************************/
     int x,y;    // random variables  
     int last=0; // variable the keeps track of the last cursor state
+    unsigned char z, buffer;
+    
     
     struct MenuDisplay {             // structure that holds general information
         unsigned char Addr[5];       // addresses of each place the cursor can be
         unsigned char CurrentSelect; // current place where the cursor is 
         unsigned char ONorOFF[5];    // variable that keeps track of each voltages on/off state
+        unsigned char Pair;
     };
     
     struct MenuDisplay MenuItem = {  // create the structure 
         0x04,0x09,0x0F,0x45,0x4C,    // fill up the Addr variable 
         0,                           // fill up the CurrentSelect variable 
-        0,0,0,0,0                    // fill up the ONorOFF variable 
+        0,0,0,0,0,                    // fill up the ONorOFF variable 
+        0b00000101
     };
     
     /***********************************************
@@ -240,7 +227,10 @@ void DefaultMenu(void)
            __delay_ms(12); // debounce if it looks like it was pressed
            if(SW1==1) {    // if it was pressed 
                if(MenuItem.CurrentSelect==4) { // if the current selection is "MENU"
-                   OptMenu();                  // put menu function here    
+                   while(SW1);
+                   buffer=OptMenu(COME_FROM_DEFAULT);                  // put menu function here    
+                   if(buffer==CALL_PAIR_MENU)
+                       PairMenu();
                    LCDsetaddr(0); // set address to start - else it will still write to the CGRAM
                    LCDwrstring("12V=/ 5V=/ 3V3=/"); // default menu screen (all outputs off)
                    LCDsetaddr(0x40);                //
@@ -298,28 +288,30 @@ void DefaultMenu(void)
 /***************************************************************
  * OptMenu Function                                            *
  ***************************************************************/
-void OptMenu(void)
+unsigned char OptMenu(unsigned char z)
 {
     /***********************************************
      * Variable Definitions                        *
      ***********************************************/
     int x,y; 
     int update=1;
+    const unsigned char AlternateDisplay[]="INDIV On/Off";
     
     struct MenuDisplay {
         unsigned char CurrentItem;
-        unsigned char Items[5][16];
+        unsigned char Items[3][13];
         
     };
     struct MenuDisplay Menu ={
         0,
         "Standby",
-        "Pair",
-        "Pair All",
-        "Pair None",
+        "All On/Off",
         "Back"
     };
     
+    if(z) 
+        for(x=0;x<12;x++)
+            Menu.Items[1][x]=AlternateDisplay[x];
     
     LCDwrcmd(0b00000001); // clear display
     __delay_ms(2);
@@ -331,16 +323,16 @@ void OptMenu(void)
             LCDwrchar(Menu.CurrentItem+1+0x30);
             LCDwrstring(": ");
             LCDwrstring(Menu.Items[Menu.CurrentItem]);
-            LCDwrstring("             ");
+            LCDwrstring("        ");
             LCDsetaddr(0x0F);
             LCDwrchar(0x7F);
 
             LCDsetaddr(0x40);
-            if(Menu.CurrentItem<4) {
+            if(Menu.CurrentItem<2) {
                 LCDwrchar(Menu.CurrentItem+2+0x30);
                 LCDwrstring(": ");
                 LCDwrstring(Menu.Items[Menu.CurrentItem+1]);
-                LCDwrstring("             ");
+                LCDwrstring("        ");
             }
             else
                 LCDwrstring("                ");
@@ -349,7 +341,7 @@ void OptMenu(void)
         if(SW3){
             __delay_ms(12);
             if(SW3) {
-                if(Menu.CurrentItem==4)
+                if(Menu.CurrentItem==2)
                     Menu.CurrentItem=0;
                 else
                     Menu.CurrentItem++;
@@ -361,7 +353,7 @@ void OptMenu(void)
             __delay_ms(12);
             if(SW2) {
                 if(Menu.CurrentItem==0)
-                    Menu.CurrentItem=4;
+                    Menu.CurrentItem=2;
                 else
                     Menu.CurrentItem--;
                 update=1;
@@ -371,18 +363,125 @@ void OptMenu(void)
         if(SW1){
             __delay_ms(12);
             if(SW1) {
-                switch(Menu.CurrentItem){
-                    case 4:
-                        while(SW1);
-                        return;
-                        break;
-                }
                 while(SW1);
+                switch(Menu.CurrentItem) {
+                    case 0:
+                        StandbyMenu();
+                        return(0);
+                    case 1:
+                        if(z==COME_FROM_PAIR)
+                            return(RETURN_TO_DEFAULT);
+                        else
+                            return(CALL_PAIR_MENU);
+                    case 2:
+                        return(0);
+                }
             }
         }
        
     
     }
+    return(0);
+}
+
+/***************************************************************
+ * PairMenu Function                                            *
+ ***************************************************************/
+void PairMenu()
+{
+    static bit OnOrOff;       // 1 is on
+    static bit CurrentSelect; // if 1, then the selection is Menu.
+    static bit Last;        // if 1, then the text is inverted
+    unsigned char buffer;
+    
+    OnOrOff=0;
+    CurrentSelect=0;
+    Last=0;
+    RL5V=1;      // turn all off
+    RL12V=1;
+    RL3V3=1;
+    RLn12V=1;
+    LCDsetaddr(0x00);
+    LCDwrstring("All Voltages:/  ");
+    LCDsetaddr(0x40);
+    LCDwrstring("            MENU");
+    while(1) {
+        if(INTCONbits.TMR0IF) {
+            if(CurrentSelect) {
+                LCDsetaddr(0x4C);
+                if(Last) {
+                    LCDwrchar(0x02);                           //
+                    LCDwrchar(0x03);                           //
+                    LCDwrchar(0x04);                           //
+                    LCDwrchar(0x05); 
+                }
+                else
+                    LCDwrstring("MENU");  
+            }
+            else {
+                LCDsetaddr(0x0D);
+                if(Last) 
+                    LCDwrchar(OnOrOff ? 0x01:0x06);
+                else
+                    LCDwrchar(OnOrOff ? 0x00:'/');
+            }
+            Last=~Last;
+            INTCONbits.TMR0IF=0;
+        }
+        if(SW3 || SW2) {
+            __delay_ms(12);
+            if(SW3 || SW2) {
+                if(CurrentSelect) {
+                    LCDsetaddr(0x4C);
+                    LCDwrstring("MENU");
+                }
+                else {
+                    LCDsetaddr(0x0D);
+                    LCDwrchar(OnOrOff ? 0x00:'/');
+                }
+                
+                CurrentSelect=~CurrentSelect;
+            }
+            while(SW3 || SW2);
+        }
+        if(SW1) {
+            __delay_ms(12);
+            if(SW1) {
+                LCDsetaddr(0x0D);
+                if(CurrentSelect) {
+                    while(SW1);
+                    buffer=OptMenu(COME_FROM_PAIR);// put menu function here
+                    if(buffer==RETURN_TO_DEFAULT) {                               
+                        RL5V=1;
+                        RL12V=1;
+                        RL3V3=1;
+                        RLn12V=1;
+                        return;
+                    }
+                    LCDsetaddr(0x00);
+                    LCDwrstring("All Voltages:");
+                    LCDwrchar(OnOrOff ? 0x00:'/');
+                    LCDwrstring("  ");
+                    LCDsetaddr(0x40);
+                    LCDwrstring("            MENU");
+                    
+                }
+                else {
+                    RL5V=~RL5V;
+                    RL12V=~RL12V;
+                    RL3V3=~RL3V3;
+                    RLn12V=~RLn12V;
+                    OnOrOff=~OnOrOff;
+                    if(Last) 
+                        LCDwrchar(OnOrOff ? 0x01:0x06);
+                    else
+                        LCDwrchar(OnOrOff ? 0x00:'/');
+                }
+                while(SW1);
+            }
+        }
+    }
+    return;
 }
 
 

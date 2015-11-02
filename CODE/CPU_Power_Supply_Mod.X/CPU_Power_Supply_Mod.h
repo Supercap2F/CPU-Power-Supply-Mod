@@ -23,5 +23,7 @@
 #define RL5V   LATBbits.LATB7
 #define RL3V3  LATBbits.LATB6
 
+#define PAIR_ALL 0b00001111
+
 #endif	/* CPU_POWER_SUPPLY_MOD_H */
 

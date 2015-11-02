@@ -118,19 +118,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 :U ..
 "65
--> 0 `i
+-> 31 `i
 "66
--> 0 `i
+-> 19 `i
 "67
--> 10 `i
+-> 19 `i
 "68
--> 14 `i
+-> 31 `i
 "69
--> 4 `i
+-> 19 `i
 "70
--> 0 `i
+-> 19 `i
 "72
--> 0 `i
+-> 31 `i
 ..
 ..
 ]
@@ -184,11 +184,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Bitmaps.c: 61: 0b00010111,
 [; ;Bitmaps.c: 62: 0b00001111,
 [; ;Bitmaps.c: 63: 0b00011111,
-[; ;Bitmaps.c: 65: 0b00000000,
-[; ;Bitmaps.c: 66: 0b00000000,
-[; ;Bitmaps.c: 67: 0b00001010,
-[; ;Bitmaps.c: 68: 0b00001110,
-[; ;Bitmaps.c: 69: 0b00000100,
-[; ;Bitmaps.c: 70: 0b00000000,
-[; ;Bitmaps.c: 71: 0b00000000
+[; ;Bitmaps.c: 65: 0b00011111,
+[; ;Bitmaps.c: 66: 0b00010011,
+[; ;Bitmaps.c: 67: 0b00010011,
+[; ;Bitmaps.c: 68: 0b00011111,
+[; ;Bitmaps.c: 69: 0b00010011,
+[; ;Bitmaps.c: 70: 0b00010011,
+[; ;Bitmaps.c: 71: 0b00011111
 [; ;Bitmaps.c: 72: };

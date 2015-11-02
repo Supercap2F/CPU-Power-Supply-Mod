@@ -37,15 +37,19 @@
 [v _LCDwrcmd LCDwrcmd `(v  1 e 0 0 ]
 "59
 [v _LCDsetaddr LCDsetaddr `(v  1 e 0 0 ]
-"47 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+"49 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"160
+"121
+[v _StandbyMenu StandbyMenu `(v  1 e 0 0 ]
+"143
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
-"301
-[v _OptMenu OptMenu `(v  1 e 0 0 ]
+"291
+[v _OptMenu OptMenu `(uc  1 e 1 0 ]
+"390
+[v _PairMenu PairMenu `(v  1 e 0 0 ]
 "8 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\Bitmaps.c
 [v _Default_Menu_Bitmaps Default_Menu_Bitmaps `C[8][7]i  1 e 112 0 ]
-[s S393 . 1 `uc 1 RA0 1 0 :1:0 
+[s S397 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -55,7 +59,7 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "103 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic18f1220.h
-[s S402 . 1 `uc 1 AN0 1 0 :1:0 
+[s S406 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -64,7 +68,7 @@
 `uc 1 CLKO 1 0 :1:6 
 `uc 1 CLKI 1 0 :1:7 
 ]
-[s S411 . 1 `uc 1 . 1 0 :1:0 
+[s S415 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LVDIN 1 0 :1:1 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
@@ -73,21 +77,21 @@
 `uc 1 OSC2 1 0 :1:6 
 `uc 1 OSC1 1 0 :1:7 
 ]
-[s S420 . 1 `uc 1 . 1 0 :5:0 
+[s S424 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_MCLR 1 0 :1:5 
 ]
-[s S423 . 1 `uc 1 . 1 0 :5:0 
+[s S427 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 nMCLR 1 0 :1:5 
 `uc 1 CLKOUT 1 0 :1:6 
 `uc 1 CLKIN 1 0 :1:7 
 ]
-[s S428 . 1 `uc 1 . 1 0 :7:0 
+[s S432 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RJPU 1 0 :1:7 
 ]
-[s S431 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S435 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S433 . 1 `S393 1 . 1 0 `S402 1 . 1 0 `S411 1 . 1 0 `S420 1 . 1 0 `S423 1 . 1 0 `S428 1 . 1 0 `S431 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES433  1 e 1 @3968 ]
+[u S437 . 1 `S397 1 . 1 0 `S406 1 . 1 0 `S415 1 . 1 0 `S424 1 . 1 0 `S427 1 . 1 0 `S432 1 . 1 0 `S435 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES437  1 e 1 @3968 ]
 "489
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
 [s S60 . 1 `uc 1 LATA0 1 0 :1:0 
@@ -270,25 +274,63 @@
 ]
 [u S322 . 1 `S278 1 . 1 0 `S287 1 . 1 0 `S296 1 . 1 0 `S305 1 . 1 0 `S314 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES322  1 e 1 @4082 ]
-"47 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+"49 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"113
+"115
 } 0
-"160
+"143
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
 {
-[s S552 MenuDisplay 11 `[5]uc 1 Addr 5 0 `uc 1 CurrentSelect 1 5 `[5]uc 1 ONorOFF 5 6 ]
-"174
-[v DefaultMenu@MenuItem MenuItem `S552  1 a 11 110 ]
-"166
-[v DefaultMenu@last last `i  1 a 2 108 ]
-"165
-[v DefaultMenu@y y `i  1 a 2 106 ]
-[v DefaultMenu@x x `i  1 a 2 104 ]
-"174
-[v DefaultMenu@F2827 F2827 `S552  1 s 11 F2827 ]
+[s S562 MenuDisplay 12 `[5]uc 1 Addr 5 0 `uc 1 CurrentSelect 1 5 `[5]uc 1 ONorOFF 5 6 `uc 1 Pair 1 11 ]
+"160
+[v DefaultMenu@MenuItem MenuItem `S562  1 a 12 102 ]
+"149
+[v DefaultMenu@last last `i  1 a 2 100 ]
+"148
+[v DefaultMenu@y y `i  1 a 2 98 ]
+[v DefaultMenu@x x `i  1 a 2 96 ]
+"150
+[v DefaultMenu@buffer buffer `uc  1 a 1 95 ]
+"160
+[v DefaultMenu@F2825 F2825 `S562  1 s 12 F2825 ]
+"286
+} 0
+"390
+[v _PairMenu PairMenu `(v  1 e 0 0 ]
+{
+"395
+[v PairMenu@buffer buffer `uc  1 a 1 82 ]
+"392
+[v PairMenu@OnOrOff OnOrOff `b  1 s 0 OnOrOff ]
+"393
+[v PairMenu@CurrentSelect CurrentSelect `b  1 s 0 CurrentSelect ]
+"394
+[v PairMenu@Last Last `b  1 s 0 Last ]
+"485
+} 0
+"291
+[v _OptMenu OptMenu `(uc  1 e 1 0 ]
+{
+[v OptMenu@z z `uc  1 a 1 wreg ]
+[s S596 MenuDisplay 40 `uc 1 CurrentItem 1 0 `[3][13]uc 1 Items 39 1 ]
+"305
+[v OptMenu@Menu Menu `S596  1 a 40 29 ]
+"298
+[v OptMenu@AlternateDisplay AlternateDisplay `C[13]uc  1 a 13 11 ]
 "296
+[v OptMenu@x x `i  1 a 2 27 ]
+"297
+[v OptMenu@update update `i  1 a 2 24 ]
+"291
+[v OptMenu@z z `uc  1 a 1 wreg ]
+"297
+[v OptMenu@F2834 F2834 `C[13]uc  1 s 13 F2834 ]
+"305
+[v OptMenu@F2840 F2840 `S596  1 s 40 F2840 ]
+"297
+[v OptMenu@z z `uc  1 a 1 26 ]
+"385
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -300,22 +342,15 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
-"301 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
-[v _OptMenu OptMenu `(v  1 e 0 0 ]
+"121 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+[v _StandbyMenu StandbyMenu `(v  1 e 0 0 ]
 {
-[s S580 MenuDisplay 81 `uc 1 CurrentItem 1 0 `[5][16]uc 1 Items 80 1 ]
-"314
-[v OptMenu@Menu Menu `S580  1 a 81 11 ]
-"307
-[v OptMenu@update update `i  1 a 2 9 ]
-"314
-[v OptMenu@F2840 F2840 `S580  1 s 81 F2840 ]
-"386
+"136
 } 0
 "42 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\Hitachi_LCD.c
 [v _LCDwrstring LCDwrstring `(v  1 e 0 0 ]
 {
-[v LCDwrstring@string string `*.35Cuc  1 p 2 5 ]
+[v LCDwrstring@string string `*.35Cuc  1 p 2 6 ]
 "49
 } 0
 "32
