@@ -26,4 +26,3 @@
 #define PAIR_ALL 0b00001111
 
 #endif	/* CPU_POWER_SUPPLY_MOD_H */
-

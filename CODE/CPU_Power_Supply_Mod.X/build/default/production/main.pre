@@ -3619,17 +3619,18 @@ LCDwrcmd(0b00000001);
 _delay((unsigned long)((2)*(0x7A1200/4000.0)));
 
 StandbyMenu();
+while(1)
 DefaultMenu();
+
 }
 
-# 121
+# 123
 void StandbyMenu(void)
 {
 LATAbits.LATA2=1;
 LCDwrcmd(0b00000001);
 _delay((unsigned long)((2)*(0x7A1200/4000.0)));
 LCDwrstring("    STANDBY    ");
-
 while(1) {
 if(PORTAbits.RA0 || PORTAbits.RA1 || PORTAbits.RA4){
 _delay((unsigned long)((12)*(0x7A1200/4000.0)));
@@ -3640,11 +3641,11 @@ return;
 }
 }
 
-# 143
+# 142
 void DefaultMenu(void)
 {
 
-# 148
+# 147
 int x,y;
 int last=0;
 unsigned char z, buffer;
@@ -3664,7 +3665,7 @@ struct MenuDisplay MenuItem = {
 0b00000101
 };
 
-# 170
+# 169
 for(y=0;y<8;y++)
 for(x=0;x<7;x++)
 {
@@ -3677,7 +3678,7 @@ LCDwrstring("12V=/ 5V=/ 3V3=/");
 LCDsetaddr(0x40);
 LCDwrstring("-12V=/      MENU");
 
-# 187
+# 186
 while(1) {
 if(PORTAbits.RA4==1) {
 _delay((unsigned long)((12)*(0x7A1200/4000.0)));
@@ -3722,13 +3723,14 @@ _delay((unsigned long)((12)*(0x7A1200/4000.0)));
 if(PORTAbits.RA0==1) {
 if(MenuItem.CurrentSelect==4) {
 while(PORTAbits.RA0);
+LATBbits.LATB1=1;
+LATBbits.LATB0=1;
+LATBbits.LATB7=1;
+LATBbits.LATB6=1;
 buffer=OptMenu(0);
 if(buffer==2)
 PairMenu();
-LCDsetaddr(0);
-LCDwrstring("12V=/ 5V=/ 3V3=/");
-LCDsetaddr(0x40);
-LCDwrstring("-12V=/      MENU");
+return;
 }
 else {
 MenuItem.ONorOFF[MenuItem.CurrentSelect]=~MenuItem.ONorOFF[MenuItem.CurrentSelect];

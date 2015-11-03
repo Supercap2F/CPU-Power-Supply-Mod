@@ -5,7 +5,7 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.34\dat\en_msgs.txt -cs \
   -h+dist/default/production\CPU_Power_Supply_Mod.X.production.sym \
   --cmf=dist/default/production\CPU_Power_Supply_Mod.X.production.cmf -z \
-  -Q18F1220 -oC:\Users\OPTIPL~1\AppData\Local\Temp\s590.6 \
+  -Q18F1220 -oC:\Users\OPTIPL~1\AppData\Local\Temp\s7qs.6 \
   -Mdist/default/production/CPU_Power_Supply_Mod.X.production.map -E1 \
   -ver=XC8 -ASTACK=0B4h-0ffh -pstack=STACK -ACODE=00h-0FFFh \
   -ACONST=00h-0FFFh -ASMALLCONST=0100h-01FFhx15 -AMEDIUMCONST=0100h-0FFFh \
@@ -20,7 +20,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\OPTIPL~1\AppData\Local\Temp\s590.obj \
+  C:\Users\OPTIPL~1\AppData\Local\Temp\s7qs.obj \
   dist/default/production\CPU_Power_Supply_Mod.X.production.obj 
 
 Object code version is 3.11
@@ -33,29 +33,29 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\OPTIPL~1\AppData\Local\Temp\s590.obj
+C:\Users\OPTIPL~1\AppData\Local\Temp\s7qs.obj
                 end_init                              2        2        4        0       0
                 reset_vec                             0        0        2        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/default/production\CPU_Power_Supply_Mod.X.production.obj
                 smallconst                          100      100       F6       80       0
-                text10                              B0C      B0C       5E       FB       0
-                text9                               C98      C98       1E       FB       0
-                text8                               CD2      CD2       1C       FB       0
-                text7                               CB6      CB6       1C       FB       0
-                text6                               B6A      B6A       54       FB       0
-                text5                               BBE      BBE       52       FB       0
-                text4                               C70      C70       28       FB       0
-                text3                               66C      66C      238       FB       0
-                text2                               8A4      8A4      202       FB       0
-                text1                               1F6      1F6      476       FB       0
-                text0                               AA6      AA6       66       FB       0
+                text10                              AF4      AF4       5E       FB       0
+                text9                               C80      C80       1E       FB       0
+                text8                               CBA      CBA       1C       FB       0
+                text7                               C9E      C9E       1C       FB       0
+                text6                               B52      B52       54       FB       0
+                text5                               BA6      BA6       52       FB       0
+                text4                               C58      C58       28       FB       0
+                text3                               650      650      238       FB       0
+                text2                               888      888      202       FB       0
+                text1                               1F6      1F6      45A       FB       0
+                text0                               A8A      A8A       6A       FB       0
                 cstackCOMRAM                          1        1       73        1       1
                 dataBANK0                            80       80       34       80       1
                 bitbssCOMRAM                        3A0       74        3        1       1     8
-                cinit                               C44      C44       2C       FB       0
-                idataBANK0                          C10      C10       34       FB       0
+                cinit                               C2C      C2C       2C       FB       0
+                idataBANK0                          BF8      BF8       34       FB       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -63,19 +63,19 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   CODE           
                 end_init                              2        2        4         0
                 reset_vec                             0        0        2         0
-                text10                              B0C      B0C       5E         0
-                text9                               C98      C98       1E         0
-                text8                               CD2      CD2       1C         0
-                text7                               CB6      CB6       1C         0
-                text6                               B6A      B6A       54         0
-                text5                               BBE      BBE       52         0
-                text4                               C70      C70       28         0
-                text3                               66C      66C      238         0
-                text2                               8A4      8A4      202         0
-                text1                               1F6      1F6      476         0
-                text0                               AA6      AA6       66         0
-                cinit                               C44      C44       2C         0
-                idataBANK0                          C10      C10       34         0
+                text10                              AF4      AF4       5E         0
+                text9                               C80      C80       1E         0
+                text8                               CBA      CBA       1C         0
+                text7                               C9E      C9E       1C         0
+                text6                               B52      B52       54         0
+                text5                               BA6      BA6       52         0
+                text4                               C58      C58       28         0
+                text3                               650      650      238         0
+                text2                               888      888      202         0
+                text1                               1F6      1F6      45A         0
+                text0                               A8A      A8A       6A         0
+                cinit                               C2C      C2C       2C         0
+                idataBANK0                          BF8      BF8       34         0
 
         CLASS   CONST          
 
@@ -117,7 +117,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 cstackCOMRAM                   000001  000074  000075         1       1  COMRAM  
                 dataBANK0                      000080  000034  0000B4        80       1  BANK0   
                 smallconst                     000100  0000F6  0001F6        80       0  SMALLCON
-                text1                          0001F6  000AF8  000CEE        FB       0  CODE    
+                text1                          0001F6  000AE0  000CD6        FB       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -129,15 +129,15 @@ UNUSED ADDRESS RANGES
         BIGRAM           000075-00007F                B
                          0000B4-0000FF               4C
         CODE             000006-0000FF               FA
-                         000CEE-000FFF              312
+                         000CD6-000FFF              32A
         COMRAM           000075-00007F                B
         CONST            000006-0000FF               FA
-                         000CEE-000FFF              312
+                         000CD6-000FFF              32A
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000CEE-000FFF              312
+        MEDIUMCONST      000CD6-000FFF              32A
         RAM              0000B4-0000FF               4C
         SFR              000F80-000FFF               80
-        SMALLCONST       000CEE-000FFF              100
+        SMALLCONST       000CD6-000FFF              100
         STACK            0000B4-0000FF               4C
 
                                   Symbol Table
@@ -170,31 +170,31 @@ _ADCON1                       (abs)        000FC1
 _DefaultMenu                  text1        0001F6
 _DefaultMenu$580              cstackCOMRAM 000058
 _DefaultMenu$582              cstackCOMRAM 00005A
-_DefaultMenu$585              cstackCOMRAM 00005C
-_DefaultMenu$587              cstackCOMRAM 00005E
+_DefaultMenu$583              cstackCOMRAM 00005C
+_DefaultMenu$585              cstackCOMRAM 00005E
 _Default_Menu_Bitmaps         smallconst   000101
 _INTCONbits                   (abs)        000FF2
 _LATA                         (abs)        000F89
 _LATAbits                     (abs)        000F89
 _LATB                         (abs)        000F8A
 _LATBbits                     (abs)        000F8A
-_LCDdata                      text10       000B0C
-_LCDsetaddr                   text9        000C98
-_LCDwrchar                    text7        000CB6
-_LCDwrcmd                     text8        000CD2
-_LCDwrstring                  text6        000B6A
+_LCDdata                      text10       000AF4
+_LCDsetaddr                   text9        000C80
+_LCDwrchar                    text7        000C9E
+_LCDwrcmd                     text8        000CBA
+_LCDwrstring                  text6        000B52
 _OSCCONbits                   (abs)        000FD3
-_OptMenu                      text3        00066C
+_OptMenu                      text3        000650
 _PORTAbits                    (abs)        000F80
-_PairMenu                     text2        0008A4
-_PairMenu$618                 cstackCOMRAM 000047
-_PairMenu$619                 cstackCOMRAM 000049
-_PairMenu$621                 cstackCOMRAM 00004B
-_PairMenu$623                 cstackCOMRAM 00004D
-_PairMenu$626                 cstackCOMRAM 00004F
-_PairMenu$627                 cstackCOMRAM 000051
+_PairMenu                     text2        000888
+_PairMenu$616                 cstackCOMRAM 000047
+_PairMenu$617                 cstackCOMRAM 000049
+_PairMenu$619                 cstackCOMRAM 00004B
+_PairMenu$621                 cstackCOMRAM 00004D
+_PairMenu$624                 cstackCOMRAM 00004F
+_PairMenu$625                 cstackCOMRAM 000051
 _RCONbits                     (abs)        000FD0
-_StandbyMenu                  text5        000BBE
+_StandbyMenu                  text5        000BA6
 _T0CON                        (abs)        000FD5
 _TMR0H                        (abs)        000FD7
 _TMR0L                        (abs)        000FD6
@@ -349,45 +349,45 @@ ___intlo_sp                   stack        000000
 ___param_bank                 (abs)        000010
 ___rparam_used                (abs)        000001
 ___sp                         stack        000000
-___wmul                       text4        000C70
+___wmul                       text4        000C58
 ___wmul@multiplicand          cstackCOMRAM 000003
 ___wmul@multiplier            cstackCOMRAM 000001
 ___wmul@product               cstackCOMRAM 000005
 __accesstop                   (abs)        000080
 __activetblptr                (abs)        000002
 __end_ofOptMenu@F2834         smallconst   00017E
-__end_of_DefaultMenu          text1        00066C
+__end_of_DefaultMenu          text1        000650
 __end_of_Default_Menu_Bitmaps smallconst   000171
-__end_of_LCDdata              text10       000B6A
-__end_of_LCDsetaddr           text9        000CB6
-__end_of_LCDwrchar            text7        000CD2
-__end_of_LCDwrcmd             text8        000CEE
-__end_of_LCDwrstring          text6        000BBE
-__end_of_OptMenu              text3        0008A4
-__end_of_PairMenu             text2        000AA6
-__end_of_StandbyMenu          text5        000C10
-__end_of___wmul               text4        000C98
-__end_of__initialization      cinit        000C66
-__end_of_main                 text0        000B0C
-__initialization              cinit        000C44
+__end_of_LCDdata              text10       000B52
+__end_of_LCDsetaddr           text9        000C9E
+__end_of_LCDwrchar            text7        000CBA
+__end_of_LCDwrcmd             text8        000CD6
+__end_of_LCDwrstring          text6        000BA6
+__end_of_OptMenu              text3        000888
+__end_of_PairMenu             text2        000A8A
+__end_of_StandbyMenu          text5        000BF8
+__end_of___wmul               text4        000C80
+__end_of__initialization      cinit        000C4E
+__end_of_main                 text0        000AF4
+__initialization              cinit        000C2C
 __mediumconst                 mediumconst  000000
 __pbitbssCOMRAM               bitbssCOMRAM 0003A0
-__pcinit                      cinit        000C44
+__pcinit                      cinit        000C2C
 __pcstackCOMRAM               cstackCOMRAM 000001
 __pdataBANK0                  dataBANK0    000080
-__pidataBANK0                 idataBANK0   000C10
+__pidataBANK0                 idataBANK0   000BF8
 __psmallconst                 smallconst   000100
-__ptext0                      text0        000AA6
+__ptext0                      text0        000A8A
 __ptext1                      text1        0001F6
-__ptext10                     text10       000B0C
-__ptext2                      text2        0008A4
-__ptext3                      text3        00066C
-__ptext4                      text4        000C70
-__ptext5                      text5        000BBE
-__ptext6                      text6        000B6A
-__ptext7                      text7        000CB6
-__ptext8                      text8        000CD2
-__ptext9                      text9        000C98
+__ptext10                     text10       000AF4
+__ptext2                      text2        000888
+__ptext3                      text3        000650
+__ptext4                      text4        000C58
+__ptext5                      text5        000BA6
+__ptext6                      text6        000B52
+__ptext7                      text7        000C9E
+__ptext8                      text8        000CBA
+__ptext9                      text9        000C80
 __ramtop                      ramtop       000100
 __size_of_DefaultMenu         (abs)        000000
 __size_of_LCDdata             (abs)        000000
@@ -401,8 +401,8 @@ __size_of_StandbyMenu         (abs)        000000
 __size_of___wmul              (abs)        000000
 __size_of_main                (abs)        000000
 __smallconst                  smallconst   000100
-_main                         text0        000AA6
-end_of_initialization         cinit        000C66
+_main                         text0        000A8A
+end_of_initialization         cinit        000C4E
 intlevel0                     text         000000
 intlevel1                     text         000000
 intlevel2                     text         000000
@@ -410,7 +410,7 @@ intlevel3                     text         000000
 stackhi                       (abs)        0000FF
 stacklo                       (abs)        0000B4
 start                         init         000002
-start_initialization          cinit        000C44
+start_initialization          cinit        000C2C
 
 
 FUNCTION INFORMATION:
@@ -448,7 +448,7 @@ Total ram usage:        1 bytes
 
  *************** function _DefaultMenu *****************
  Defined at:
-		line 143 in file "main.c"
+		line 142 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -594,7 +594,7 @@ Total ram usage:        6 bytes
 
  *************** function _StandbyMenu *****************
  Defined at:
-		line 121 in file "main.c"
+		line 123 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -629,12 +629,11 @@ Total ram usage:        1 bytes
 		line 42 in file "Hitachi_LCD.c"
  Parameters:    Size  Location     Type
   string          2    6[COMRAM] PTR const unsigned char 
-		 -> STR_20(17), STR_19(3), STR_18(14), STR_17(5), 
-		 -> STR_16(5), STR_15(17), STR_14(17), STR_13(17), 
-		 -> STR_12(9), STR_11(3), STR_10(9), STR_9(3), 
-		 -> Menu.Items(39), OptMenu@Menu(40), STR_8(5), STR_7(17), 
-		 -> STR_6(17), STR_5(5), STR_4(5), STR_3(17), 
-		 -> STR_2(17), STR_1(16), 
+		 -> STR_18(17), STR_17(3), STR_16(14), STR_15(5), 
+		 -> STR_14(5), STR_13(17), STR_12(17), STR_11(17), 
+		 -> STR_10(9), STR_9(3), STR_8(9), STR_7(3), 
+		 -> Menu.Items(39), OptMenu@Menu(40), STR_6(5), STR_5(5), 
+		 -> STR_4(5), STR_3(17), STR_2(17), STR_1(16), 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -798,32 +797,32 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-		__initializatio		CODE           	0C44	0000	35
+		__initializatio		CODE           	0C2C	0000	35
 		_Default_Menu_B		SMALLCONST     	0101	0000	113
 		OptMenu@F2834  		SMALLCONST     	0171	0000	14
 
 shared estimated size: 162
 
 Hitachi_LCD.c
-		_LCDwrcmd      		CODE           	0CD2	0000	29
-		_LCDsetaddr    		CODE           	0C98	0000	31
-		_LCDdata       		CODE           	0B0C	0000	95
-		_LCDwrstring   		CODE           	0B6A	0000	85
-		_LCDwrchar     		CODE           	0CB6	0000	29
+		_LCDwrcmd      		CODE           	0CBA	0000	29
+		_LCDsetaddr    		CODE           	0C80	0000	31
+		_LCDdata       		CODE           	0AF4	0000	95
+		_LCDwrstring   		CODE           	0B52	0000	85
+		_LCDwrchar     		CODE           	0C9E	0000	29
 
 Hitachi_LCD.c estimated size: 269
 
 main.c
-		_StandbyMenu   		CODE           	0BBE	0000	83
-		_main          		CODE           	0AA6	0000	103
-		_OptMenu       		CODE           	066C	0000	569
-		_DefaultMenu   		CODE           	01F6	0000	1143
-		_PairMenu      		CODE           	08A4	0000	515
+		_StandbyMenu   		CODE           	0BA6	0000	83
+		_main          		CODE           	0A8A	0000	107
+		_OptMenu       		CODE           	0650	0000	569
+		_DefaultMenu   		CODE           	01F6	0000	1115
+		_PairMenu      		CODE           	0888	0000	515
 
-main.c estimated size: 2413
+main.c estimated size: 2389
 
 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul16.c
-		___wmul        		CODE           	0C70	0000	41
+		___wmul        		CODE           	0C58	0000	41
 
 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul16.c estimated size: 41
 

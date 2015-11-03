@@ -67,4 +67,3 @@ const int Default_Menu_Bitmaps[8][7]={
 0b00010011,
 0b00011111
 };
-

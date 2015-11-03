@@ -39,9 +39,9 @@
 [v _LCDsetaddr LCDsetaddr `(v  1 e 0 0 ]
 "49 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"121
+"123
 [v _StandbyMenu StandbyMenu `(v  1 e 0 0 ]
-"143
+"142
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
 "291
 [v _OptMenu OptMenu `(uc  1 e 1 0 ]
@@ -277,22 +277,22 @@
 "49 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"115
+"117
 } 0
-"143
+"142
 [v _DefaultMenu DefaultMenu `(v  1 e 0 0 ]
 {
 [s S562 MenuDisplay 12 `[5]uc 1 Addr 5 0 `uc 1 CurrentSelect 1 5 `[5]uc 1 ONorOFF 5 6 `uc 1 Pair 1 11 ]
-"160
+"159
 [v DefaultMenu@MenuItem MenuItem `S562  1 a 12 102 ]
-"149
-[v DefaultMenu@last last `i  1 a 2 100 ]
 "148
+[v DefaultMenu@last last `i  1 a 2 100 ]
+"147
 [v DefaultMenu@y y `i  1 a 2 98 ]
 [v DefaultMenu@x x `i  1 a 2 96 ]
-"150
+"149
 [v DefaultMenu@buffer buffer `uc  1 a 1 95 ]
-"160
+"159
 [v DefaultMenu@F2825 F2825 `S562  1 s 12 F2825 ]
 "286
 } 0
@@ -313,9 +313,9 @@
 [v _OptMenu OptMenu `(uc  1 e 1 0 ]
 {
 [v OptMenu@z z `uc  1 a 1 wreg ]
-[s S596 MenuDisplay 40 `uc 1 CurrentItem 1 0 `[3][13]uc 1 Items 39 1 ]
+[s S594 MenuDisplay 40 `uc 1 CurrentItem 1 0 `[3][13]uc 1 Items 39 1 ]
 "305
-[v OptMenu@Menu Menu `S596  1 a 40 29 ]
+[v OptMenu@Menu Menu `S594  1 a 40 29 ]
 "298
 [v OptMenu@AlternateDisplay AlternateDisplay `C[13]uc  1 a 13 11 ]
 "296
@@ -327,7 +327,7 @@
 "297
 [v OptMenu@F2834 F2834 `C[13]uc  1 s 13 F2834 ]
 "305
-[v OptMenu@F2840 F2840 `S596  1 s 40 F2840 ]
+[v OptMenu@F2840 F2840 `S594  1 s 40 F2840 ]
 "297
 [v OptMenu@z z `uc  1 a 1 26 ]
 "385
@@ -342,10 +342,10 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
-"121 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
+"123 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\main.c
 [v _StandbyMenu StandbyMenu `(v  1 e 0 0 ]
 {
-"136
+"137
 } 0
 "42 C:\Users\OPTIPLEX  960\Documents\Electronics\Projects\CPU Power Supply Mod\CODE\CPU_Power_Supply_Mod.X\Hitachi_LCD.c
 [v _LCDwrstring LCDwrstring `(v  1 e 0 0 ]
