@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/19/2015 2:12:00 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/14/2015 12:13:55 PM
 
 BeginCmp
 TimeStamp = /55FD6C07;
@@ -52,21 +52,21 @@ EndCmp
 BeginCmp
 TimeStamp = /55FDA3D9;
 Reference = F1;
-ValeurCmp = FUSE;
+ValeurCmp = 2.5A;
 IdModule  = FUSE;
 EndCmp
 
 BeginCmp
 TimeStamp = /55FDA3E6;
 Reference = F2;
-ValeurCmp = FUSE;
+ValeurCmp = 2.5A;
 IdModule  = FUSE;
 EndCmp
 
 BeginCmp
 TimeStamp = /55FDA3EC;
 Reference = F3;
-ValeurCmp = FUSE;
+ValeurCmp = 2.5A;
 IdModule  = FUSE;
 EndCmp
 
@@ -108,28 +108,28 @@ EndCmp
 BeginCmp
 TimeStamp = /55FD8B47;
 Reference = P1;
-ValeurCmp = CONN_6;
+ValeurCmp = ICSP;
 IdModule  = CON_6x1;
 EndCmp
 
 BeginCmp
 TimeStamp = /55FD7E9B;
 Reference = P2;
-ValeurCmp = CONN-12X2;
+ValeurCmp = ATX 2.x;
 IdModule  = ATX-24PIN;
 EndCmp
 
 BeginCmp
 TimeStamp = /55FDA6CE;
 Reference = P3;
-ValeurCmp = CONN_6;
+ValeurCmp = PWR OUT;
 IdModule  = 1.27mm_CON;
 EndCmp
 
 BeginCmp
 TimeStamp = /55FDC0CC;
 Reference = P4;
-ValeurCmp = CONN_2X2;
+ValeurCmp = PG SWT;
 IdModule  = CON_2x2;
 EndCmp
 
@@ -207,6 +207,13 @@ BeginCmp
 TimeStamp = /55FDB37E;
 Reference = R7;
 ValeurCmp = R;
+IdModule  = R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /563288E8;
+Reference = R8;
+ValeurCmp = 10K;
 IdModule  = R3;
 EndCmp
 
